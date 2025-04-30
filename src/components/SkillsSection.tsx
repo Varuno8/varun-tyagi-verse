@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Code, Database, Globe, Monitor } from 'lucide-react';
 
@@ -79,17 +78,36 @@ const SkillsSection: React.FC = () => {
     });
   };
   
-  // Add orbit animation
+  // Improved orbit animation with full 360-degree rotation
   useEffect(() => {
-    const orbitInterval = setInterval(() => {
-      const orbit = document.querySelector('.skill-orbit') as HTMLElement;
-      if (orbit) {
-        orbit.style.transform = `rotate(${Date.now() / 100 % 360}deg)`;
-      }
-    }, 100);
+    let animationFrame: number;
+    let rotation = 0;
     
-    return () => clearInterval(orbitInterval);
-  }, []);
+    const animate = () => {
+      rotation = (rotation + 0.2) % 360; // Slower rotation (0.2 degrees per frame)
+      
+      const orbit = document.querySelector('.skill-orbit') as HTMLElement;
+      const nodes = document.querySelectorAll('.skill-node') as NodeListOf<HTMLElement>;
+      
+      if (orbit) {
+        orbit.style.transform = `rotate(${rotation}deg)`;
+        
+        // Counter-rotate the skill tags to keep them upright
+        nodes.forEach((node) => {
+          const skillTag = node.querySelector('.skill-tag') as HTMLElement;
+          if (skillTag) {
+            skillTag.style.transform = `rotate(-${rotation}deg)`;
+          }
+        });
+      }
+      
+      animationFrame = requestAnimationFrame(animate);
+    };
+    
+    animate();
+    
+    return () => cancelAnimationFrame(animationFrame);
+  }, [activeCategory]);
   
   return (
     <section id="skills" className="section-padding relative overflow-hidden">
@@ -132,9 +150,9 @@ const SkillsSection: React.FC = () => {
             </div>
           </div>
           
-          {/* 3D Skill orbit */}
+          {/* 3D Skill orbit - improved with consistent rotation */}
           <div className="lg:col-span-4 flex justify-center items-center py-12">
-            <div className="relative h-[300px] w-[300px]">
+            <div className="relative h-[300px] w-[300px] perspective-1000">
               {/* Center content */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
                 <div className="h-16 w-16 rounded-full bg-neon-purple/20 backdrop-blur-md flex items-center justify-center mb-2 mx-auto animate-pulse-neon">
@@ -145,8 +163,8 @@ const SkillsSection: React.FC = () => {
                 </h3>
               </div>
               
-              {/* Orbit */}
-              <div className="skill-orbit absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[260px] w-[260px] rounded-full border border-white/10">
+              {/* Orbit - now with full 360 rotation */}
+              <div className="skill-orbit absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[260px] w-[260px] rounded-full border border-white/10 preserve-3d">
                 {/* Skills */}
                 {generateSkillNodes()}
               </div>

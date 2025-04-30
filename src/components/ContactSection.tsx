@@ -33,7 +33,14 @@ const ContactSection: React.FC = () => {
   };
   
   const handleResumeClick = () => {
-    window.open('https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing', '_blank');
+    // Direct download link approach
+    const link = document.createElement('a');
+    link.href = 'https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
   
   // Social links with animations
@@ -41,8 +48,9 @@ const ContactSection: React.FC = () => {
     { 
       name: 'GitHub', 
       icon: <Github className="h-6 w-6" />, 
-      url: 'https://github.com/',
-      color: 'bg-white text-dark hover:bg-white/90'
+      url: 'https://github.com/Varuno8',
+      color: 'bg-white text-dark hover:bg-white/90',
+      username: 'Varuno8'
     },
     { 
       name: 'LinkedIn', 
@@ -54,8 +62,9 @@ const ContactSection: React.FC = () => {
     { 
       name: 'Email', 
       icon: <Mail className="h-6 w-6" />, 
-      url: 'mailto:contact@example.com',
-      color: 'bg-neon-purple hover:bg-neon-purple/90'
+      url: 'mailto:varun28082001@gmail.com',
+      color: 'bg-neon-purple hover:bg-neon-purple/90',
+      username: 'varun28082001@gmail.com'
     },
   ];
   

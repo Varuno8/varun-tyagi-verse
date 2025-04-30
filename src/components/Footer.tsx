@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Github, Linkedin, Mail, ArrowUp, Download } from 'lucide-react';
 
@@ -11,9 +10,9 @@ const Footer: React.FC = () => {
   };
   
   const socialLinks = [
-    { icon: <Github className="h-4 w-4" />, href: 'https://github.com/', label: 'GitHub' },
+    { icon: <Github className="h-4 w-4" />, href: 'https://github.com/Varuno8', label: 'GitHub' },
     { icon: <Linkedin className="h-4 w-4" />, href: 'https://www.linkedin.com/in/varun-tyagi-32bb281b9/', label: 'LinkedIn' },
-    { icon: <Mail className="h-4 w-4" />, href: 'mailto:contact@example.com', label: 'Email' },
+    { icon: <Mail className="h-4 w-4" />, href: 'mailto:varun28082001@gmail.com', label: 'Email' },
   ];
   
   const navLinks = [
@@ -88,7 +87,7 @@ const Footer: React.FC = () => {
             <p className="text-gray-300 mb-2">
               Have a project in mind or want to collaborate? Feel free to reach out.
             </p>
-            <p className="text-neon-cyan mb-2">contact@example.com</p>
+            <p className="text-neon-cyan mb-2">varun28082001@gmail.com</p>
           </div>
         </div>
         

@@ -30,9 +30,9 @@ const Navbar = () => {
 
   // Social links with icons
   const socialLinks = [
-    { icon: <Github className="h-4 w-4" />, href: 'https://github.com/', label: 'GitHub' },
+    { icon: <Github className="h-4 w-4" />, href: 'https://github.com/Varuno8', label: 'GitHub' },
     { icon: <Linkedin className="h-4 w-4" />, href: 'https://www.linkedin.com/in/varun-tyagi-32bb281b9/', label: 'LinkedIn' },
-    { icon: <Mail className="h-4 w-4" />, href: 'mailto:contact@example.com', label: 'Email' },
+    { icon: <Mail className="h-4 w-4" />, href: 'mailto:varun28082001@gmail.com', label: 'Email' },
   ];
   
   const handleResumeClick = () => {
