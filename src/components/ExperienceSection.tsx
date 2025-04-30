@@ -1,6 +1,8 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Briefcase, Calendar, Star, ArrowRight } from 'lucide-react';
+import { Canvas } from '@react-three/fiber';
+import { Float } from '@react-three/drei';
 
 interface Experience {
   id: number;
@@ -8,6 +10,7 @@ interface Experience {
   position: string;
   period: string;
   highlights: string[];
+  color: string;
 }
 
 const experiences: Experience[] = [
@@ -17,13 +20,59 @@ const experiences: Experience[] = [
     position: "Software Engineer Intern",
     period: "Nov 2024 – April 2025",
     highlights: [
-      "Developed and optimized AWS-based cloud applications",
-      "Built and fine-tuned diffusion model pipelines",
-      "Created efficient data scraping systems",
-      "Assisted with ML model deployment to production"
-    ]
+      "Built a full-stack healthcare AI marketplace platform using React (TypeScript) frontend and Django backend",
+      "Created secure subscription systems, analytics dashboards, and an AI model catalog",
+      "Implemented JWT-based authentication with Google OAuth, Tailwind UI, and Recharts visualizations"
+    ],
+    color: "#8B5CF6" // purple
+  },
+  {
+    id: 2,
+    company: "Rovisor Research",
+    position: "Software Development Intern",
+    period: "June 2024 - August 2024",
+    highlights: [
+      "Enhanced frontend UX using Angular, integrated APIs, and optimized load times by 20%",
+      "Developed responsive UI components and implemented state management patterns",
+      "Collaborated with UX team to create intuitive user flows and interactions"
+    ],
+    color: "#00E5FF" // cyan
+  },
+  {
+    id: 3,
+    company: "Business Web Solutions",
+    position: "Web Developer Intern",
+    period: "May 2024 - June 2024",
+    highlights: [
+      "Designed modern, responsive interfaces with HTML/CSS/JS, focusing on usability and performance",
+      "Optimized web assets and implemented best practices for performance improvements",
+      "Created cross-browser compatible solutions for client websites"
+    ],
+    color: "#06D6A0" // teal
   }
 ];
+
+// 3D Timeline Node Component
+const TimelineNode = ({ position = [0, 0, 0], color = '#8B5CF6' }) => {
+  return (
+    <Float
+      speed={2} 
+      rotationIntensity={0.5} 
+      floatIntensity={0.5}
+    >
+      <mesh position={position as [number, number, number]}>
+        <sphereGeometry args={[0.5, 16, 16]} />
+        <meshStandardMaterial 
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.5}
+          transparent
+          opacity={0.8}
+        />
+      </mesh>
+    </Float>
+  );
+};
 
 const ExperienceSection: React.FC = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -73,10 +122,20 @@ const ExperienceSection: React.FC = () => {
           </p>
         </div>
         
-        {/* Timeline */}
+        {/* 3D Timeline */}
         <div ref={timelineRef} className="max-w-4xl mx-auto relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-neon-purple via-neon-cyan to-neon-teal"></div>
+          {/* Timeline line with 3D elements */}
+          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-neon-purple via-neon-cyan to-neon-teal">
+            {/* 3D Timeline Nodes rendered in a canvas over the timeline */}
+            <div className="absolute inset-0 pointer-events-none">
+              <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+                <ambientLight intensity={0.5} />
+                <TimelineNode position={[0, 4, 0]} color="#8B5CF6" />
+                <TimelineNode position={[0, 0, 0]} color="#00E5FF" />
+                <TimelineNode position={[0, -4, 0]} color="#06D6A0" />
+              </Canvas>
+            </div>
+          </div>
           
           {/* Experience cards */}
           {experiences.map((experience, index) => (
@@ -85,23 +144,58 @@ const ExperienceSection: React.FC = () => {
               className="experience-card mb-12 md:mb-24 relative grid grid-cols-1 md:grid-cols-2 gap-8"
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              {/* Timeline dot */}
-              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-neon-purple animate-pulse-neon z-10"></div>
+              {/* Timeline dot with glow effect */}
+              <div 
+                className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full z-10"
+                style={{ 
+                  backgroundColor: experience.color,
+                  boxShadow: `0 0 15px ${experience.color}`,
+                }}
+              ></div>
               
-              {/* Content */}
-              <div className={`glass-card rounded-xl p-6 ${
-                index % 2 === 0 
-                  ? 'md:col-start-1 md:text-right' 
-                  : 'md:col-start-2'
-              }`}>
+              {/* Content with 3D hover effect */}
+              <div 
+                className={`glass-card rounded-xl p-6 transition-all duration-300 hover:shadow-lg ${
+                  index % 2 === 0 
+                    ? 'md:col-start-1 md:text-right' 
+                    : 'md:col-start-2'
+                }`}
+                style={{
+                  transformStyle: 'preserve-3d',
+                  transform: 'perspective(1000px)',
+                  borderColor: `${experience.color}33`
+                }}
+                onMouseMove={(e) => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  const centerX = rect.width / 2;
+                  const centerY = rect.height / 2;
+                  const rotateX = ((y - centerY) / centerY) * -5;
+                  const rotateY = ((x - centerX) / centerX) * 5;
+                  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                }}
+              >
                 <div className={`flex items-center mb-2 ${
                   index % 2 === 0 ? 'md:justify-end' : ''
                 }`}>
-                  <Briefcase className="h-5 w-5 text-neon-purple mr-2 md:order-1" />
+                  <Briefcase 
+                    className={`h-5 w-5 mr-2 md:order-1`}
+                    style={{ color: experience.color }} 
+                  />
                   <h3 className="font-display text-xl font-semibold">{experience.position}</h3>
                 </div>
                 
-                <h4 className="text-neon-cyan font-medium mb-2">{experience.company}</h4>
+                <h4 
+                  className="font-medium mb-2"
+                  style={{ color: experience.color }}
+                >
+                  {experience.company}
+                </h4>
                 
                 <div className={`flex items-center text-sm text-gray-300 mb-4 ${
                   index % 2 === 0 ? 'md:justify-end' : ''
@@ -115,7 +209,10 @@ const ExperienceSection: React.FC = () => {
                 }`}>
                   {experience.highlights.map((highlight, i) => (
                     <li key={i} className="flex items-start">
-                      <Star className="h-4 w-4 text-neon-teal mr-2 mt-1 shrink-0" />
+                      <Star 
+                        className="h-4 w-4 mr-2 mt-1 shrink-0" 
+                        style={{ color: experience.color }}
+                      />
                       <span>{highlight}</span>
                     </li>
                   ))}
@@ -142,6 +239,10 @@ const ExperienceSection: React.FC = () => {
           </a>
         </div>
       </div>
+      
+      {/* Background elements */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-neon-purple/10 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-neon-cyan/10 rounded-full filter blur-3xl"></div>
     </section>
   );
 };

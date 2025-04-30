@@ -1,6 +1,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Award, Code, Star, Award as AwardIcon } from 'lucide-react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Float, Text3D, OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface Achievement {
   id: number;
@@ -8,6 +11,7 @@ interface Achievement {
   value: string;
   icon: JSX.Element;
   color: string;
+  numericValue: number;
 }
 
 const achievements: Achievement[] = [
@@ -16,30 +20,103 @@ const achievements: Achievement[] = [
     title: "GFG Problems",
     value: "320+",
     icon: <Code />,
-    color: "neon-cyan"
+    color: "neon-cyan",
+    numericValue: 320
   },
   {
     id: 2,
     title: "LeetCode",
     value: "250+",
     icon: <Star />,
-    color: "neon-purple"
+    color: "neon-purple",
+    numericValue: 250
   },
   {
     id: 3,
     title: "CodeChef Rating",
     value: "1500",
     icon: <Award />,
-    color: "neon-teal"
+    color: "neon-teal",
+    numericValue: 1500
   },
   {
     id: 4,
     title: "JEE Mains",
     value: "98.2 percentile",
     icon: <AwardIcon />,
-    color: "neon-purple"
+    color: "neon-purple",
+    numericValue: 98
   }
 ];
+
+// 3D Achievement Badge Component
+const AchievementBadge = ({ position, color, value }: { position: [number, number, number], color: string, value: string }) => {
+  const mesh = useRef<THREE.Mesh>(null!);
+  
+  useFrame((state) => {
+    if (!mesh.current) return;
+    mesh.current.rotation.y = state.clock.getElapsedTime() * 0.5;
+  });
+  
+  return (
+    <Float
+      speed={2} 
+      rotationIntensity={0.5} 
+      floatIntensity={1}
+      position={position}
+    >
+      <mesh ref={mesh}>
+        <octahedronGeometry args={[0.8, 0]} />
+        <meshStandardMaterial 
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.5}
+          transparent
+          opacity={0.7}
+          wireframe={true}
+        />
+        
+        {/* Number display */}
+        <Text3D
+          font="/fonts/helvetiker_regular.typeface.json"
+          size={0.3}
+          height={0.05}
+          position={[-0.2, -0.15, 0.4]}
+          curveSegments={8}
+        >
+          {value}
+          <meshStandardMaterial color="white" />
+        </Text3D>
+      </mesh>
+    </Float>
+  );
+};
+
+// 3D Achievements Background
+const AchievementBackground = () => {
+  return (
+    <div className="h-60 w-full mb-12">
+      <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
+        <ambientLight intensity={0.2} />
+        <pointLight position={[10, 10, 10]} intensity={0.5} />
+        
+        <AchievementBadge position={[-3, 0, 0]} color="#00E5FF" value="320+" />
+        <AchievementBadge position={[-1, 0, 0]} color="#8B5CF6" value="250+" />
+        <AchievementBadge position={[1, 0, 0]} color="#06D6A0" value="1500" />
+        <AchievementBadge position={[3, 0, 0]} color="#8B5CF6" value="98%" />
+        
+        <OrbitControls 
+          enableZoom={false}
+          autoRotate
+          autoRotateSpeed={0.5}
+          enablePan={false}
+          minPolarAngle={Math.PI / 2}
+          maxPolarAngle={Math.PI / 2}
+        />
+      </Canvas>
+    </div>
+  );
+};
 
 const AchievementsSection: React.FC = () => {
   // Refs for counter animation
@@ -102,7 +179,7 @@ const AchievementsSection: React.FC = () => {
     <section id="achievements" className="section-padding relative bg-dark-lighter">
       <div className="container mx-auto">
         {/* Section title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
             My <span className="text-gradient">Achievements</span>
           </h2>
@@ -111,14 +188,37 @@ const AchievementsSection: React.FC = () => {
           </p>
         </div>
         
+        {/* 3D Achievements visualization */}
+        <AchievementBackground />
+        
         {/* Achievement cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {achievements.map((achievement, index) => (
             <div 
               key={achievement.id} 
-              className="glass-card rounded-xl p-6 text-center transition-transform hover:scale-105"
+              className="glass-card rounded-xl p-6 text-center transition-all duration-300 hover:shadow-xl"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: 'perspective(1000px)',
+              }}
+              onMouseMove={(e) => {
+                const card = e.currentTarget;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+              }}
             >
-              <div className={`h-16 w-16 rounded-full bg-${achievement.color}/20 flex items-center justify-center mx-auto mb-4 text-${achievement.color}`}>
+              <div className={`h-16 w-16 rounded-full bg-${achievement.color}/20 flex items-center justify-center mx-auto mb-4 text-${achievement.color} shadow-lg`}
+                   style={{boxShadow: `0 0 15px var(--${achievement.color})`}}
+              >
                 {achievement.icon}
               </div>
               
@@ -126,7 +226,7 @@ const AchievementsSection: React.FC = () => {
                 <span 
                   ref={el => counterRefs.current[index] = el} 
                   className={`text-3xl font-display font-bold text-${achievement.color}`}
-                  data-target={achievement.value.replace(/\D/g, '')}
+                  data-target={achievement.numericValue}
                 >
                   0
                 </span>
@@ -148,10 +248,16 @@ const AchievementsSection: React.FC = () => {
         {/* Certificate highlight */}
         <div className="mt-16 max-w-3xl mx-auto glass-card rounded-xl p-8">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="mb-6 md:mb-0 md:mr-6">
-              <div className="h-20 w-20 rounded-full bg-neon-purple/20 flex items-center justify-center">
-                <Award className="h-10 w-10 text-neon-purple" />
+            <div className="mb-6 md:mb-0 md:mr-6 relative">
+              <div className="h-20 w-20 rounded-full bg-neon-purple/20 flex items-center justify-center relative overflow-hidden">
+                <Award className="h-10 w-10 text-neon-purple relative z-10" />
+                {/* Animated background glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/30 to-transparent animate-pulse-neon"></div>
               </div>
+              
+              {/* Animated rings */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full border border-neon-purple/30 animate-ping-slow opacity-70"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full border border-neon-purple/20 animate-ping-slower opacity-50"></div>
             </div>
             <div>
               <h3 className="text-xl font-display font-bold mb-2">Continuous Learning & Growth</h3>
@@ -169,6 +275,10 @@ const AchievementsSection: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      {/* Background elements */}
+      <div className="absolute -bottom-20 right-0 w-96 h-96 bg-neon-purple/10 rounded-full filter blur-3xl"></div>
+      <div className="absolute -top-20 left-0 w-96 h-96 bg-neon-cyan/10 rounded-full filter blur-3xl"></div>
     </section>
   );
 };

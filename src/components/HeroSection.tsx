@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, ArrowRight, Github } from 'lucide-react';
-import ParticlesBackground from './ParticlesBackground';
+import ThreeDBackground from './ThreeDBackground';
 
 const HeroSection: React.FC = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -35,7 +35,7 @@ const HeroSection: React.FC = () => {
   return (
     <section id="home" className="relative flex flex-col justify-center min-h-screen py-20 overflow-hidden">
       {/* 3D Animated Background */}
-      <ParticlesBackground />
+      <ThreeDBackground />
       
       <div className="container mx-auto px-6 z-10 mt-20">
         <div className="max-w-3xl mx-auto text-center">
