@@ -1,11 +1,7 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Github, ExternalLink } from 'lucide-react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useSpring, animated } from '@react-spring/three';
-import { Text } from '@react-three/drei';
 
 // Technologies icon components - simplified representation
 const TechIcon = ({ tech }: { tech: string }) => {
@@ -92,7 +88,7 @@ const projects: Project[] = [
   },
 ];
 
-// 3D Card component
+// Project Card component with CSS 3D effect instead of Three.js
 const ProjectCard3D = ({ project, isHovered, onHover }: { project: Project, isHovered: boolean, onHover: () => void }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   

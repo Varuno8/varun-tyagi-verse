@@ -1,8 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Briefcase, Calendar, Star, ArrowRight } from 'lucide-react';
-import { Canvas } from '@react-three/fiber';
-import { Float } from '@react-three/drei';
 
 interface Experience {
   id: number;
@@ -52,28 +50,6 @@ const experiences: Experience[] = [
   }
 ];
 
-// 3D Timeline Node Component
-const TimelineNode = ({ position = [0, 0, 0], color = '#8B5CF6' }) => {
-  return (
-    <Float
-      speed={2} 
-      rotationIntensity={0.5} 
-      floatIntensity={0.5}
-    >
-      <mesh position={position as [number, number, number]}>
-        <sphereGeometry args={[0.5, 16, 16]} />
-        <meshStandardMaterial 
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.5}
-          transparent
-          opacity={0.8}
-        />
-      </mesh>
-    </Float>
-  );
-};
-
 const ExperienceSection: React.FC = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
   
@@ -122,19 +98,14 @@ const ExperienceSection: React.FC = () => {
           </p>
         </div>
         
-        {/* 3D Timeline */}
+        {/* Timeline */}
         <div ref={timelineRef} className="max-w-4xl mx-auto relative">
-          {/* Timeline line with 3D elements */}
+          {/* Timeline line with animated elements */}
           <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-neon-purple via-neon-cyan to-neon-teal">
-            {/* 3D Timeline Nodes rendered in a canvas over the timeline */}
-            <div className="absolute inset-0 pointer-events-none">
-              <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-                <ambientLight intensity={0.5} />
-                <TimelineNode position={[0, 4, 0]} color="#8B5CF6" />
-                <TimelineNode position={[0, 0, 0]} color="#00E5FF" />
-                <TimelineNode position={[0, -4, 0]} color="#06D6A0" />
-              </Canvas>
-            </div>
+            {/* Timeline Nodes */}
+            <div className="hidden md:block absolute top-[10%] left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-purple animate-pulse-slow shadow-glow-purple"></div>
+            <div className="hidden md:block absolute top-[50%] left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-cyan animate-pulse-slow shadow-glow-cyan"></div>
+            <div className="hidden md:block absolute top-[90%] left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-teal animate-pulse-slow shadow-glow-teal"></div>
           </div>
           
           {/* Experience cards */}

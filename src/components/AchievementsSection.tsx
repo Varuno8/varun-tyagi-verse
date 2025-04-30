@@ -2,7 +2,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Award, Code, Star, Award as AwardIcon } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Text3D, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface Achievement {
@@ -59,36 +58,24 @@ const AchievementBadge = ({ position, color, value }: { position: [number, numbe
   });
   
   return (
-    <Float
-      speed={2} 
-      rotationIntensity={0.5} 
-      floatIntensity={1}
-      position={position}
-    >
-      <mesh ref={mesh}>
-        <octahedronGeometry args={[0.8, 0]} />
-        <meshStandardMaterial 
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.5}
-          transparent
-          opacity={0.7}
-          wireframe={true}
-        />
-        
-        {/* Number display */}
-        <Text3D
-          font="/fonts/helvetiker_regular.typeface.json"
-          size={0.3}
-          height={0.05}
-          position={[-0.2, -0.15, 0.4]}
-          curveSegments={8}
-        >
-          {value}
-          <meshStandardMaterial color="white" />
-        </Text3D>
+    <mesh ref={mesh} position={position}>
+      <octahedronGeometry args={[0.8, 0]} />
+      <meshStandardMaterial wireframe={true}>
+        <color attach="color" args={[color]} />
+        <color attach="emissive" args={[color]} />
+        <float attach="emissiveIntensity" value={0.5} />
+        <float attach="opacity" value={0.7} />
+        <bool attach="transparent" value={true} />
+      </meshStandardMaterial>
+      
+      {/* Number display as basic geometry */}
+      <mesh position={[0, 0, 1]} scale={0.5}>
+        <planeGeometry args={[1, 0.3]} />
+        <meshBasicMaterial transparent opacity={0.9} depthWrite={false}>
+          <color attach="color" args={["white"]} />
+        </meshBasicMaterial>
       </mesh>
-    </Float>
+    </mesh>
   );
 };
 
@@ -104,15 +91,6 @@ const AchievementBackground = () => {
         <AchievementBadge position={[-1, 0, 0]} color="#8B5CF6" value="250+" />
         <AchievementBadge position={[1, 0, 0]} color="#06D6A0" value="1500" />
         <AchievementBadge position={[3, 0, 0]} color="#8B5CF6" value="98%" />
-        
-        <OrbitControls 
-          enableZoom={false}
-          autoRotate
-          autoRotateSpeed={0.5}
-          enablePan={false}
-          minPolarAngle={Math.PI / 2}
-          maxPolarAngle={Math.PI / 2}
-        />
       </Canvas>
     </div>
   );

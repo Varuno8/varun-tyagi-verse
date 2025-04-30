@@ -8,6 +8,7 @@ import SkillsSection from '@/components/SkillsSection';
 import AchievementsSection from '@/components/AchievementsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import ParticlesBackground from '@/components/ParticlesBackground';
 
 const Index: React.FC = () => {
   // Add smooth scroll behavior with offset for header
@@ -44,6 +45,7 @@ const Index: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
+      <ParticlesBackground />
       <Navbar />
       <HeroSection />
       <ProjectsSection />
