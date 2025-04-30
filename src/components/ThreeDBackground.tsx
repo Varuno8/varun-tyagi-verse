@@ -16,15 +16,17 @@ const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position
     mesh.current.position.y += Math.sin(state.clock.getElapsedTime() * speed) * 0.002;
   });
   
+  const colorObj = new THREE.Color(color);
+  
   return (
     <mesh ref={mesh} position={position}>
       <boxGeometry args={[size, size, size]} />
       <meshStandardMaterial 
-        wireframe={true}
-        transparent={true}
+        wireframe
+        transparent
         opacity={0.7}
-        color={new THREE.Color(color)}
-        emissive={new THREE.Color(color)}
+        color={colorObj}
+        emissive={colorObj}
         emissiveIntensity={0.3}
       />
     </mesh>
@@ -52,15 +54,16 @@ const Lines = ({ points }: { points: [number, number, number][] }) => {
   }
   
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+  const purpleColor = new THREE.Color("#8B5CF6");
   
   return (
     <lineSegments ref={lineRef}>
       <bufferGeometry attach="geometry" {...geometry} />
       <lineBasicMaterial 
         attach="material"
-        color={new THREE.Color("#8B5CF6")}
+        color={purpleColor}
         opacity={0.2}
-        transparent={true}
+        transparent
       />
     </lineSegments>
   );

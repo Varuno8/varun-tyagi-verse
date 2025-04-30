@@ -57,24 +57,27 @@ const AchievementBadge = ({ position, color, value }: { position: [number, numbe
     mesh.current.rotation.y = state.clock.getElapsedTime() * 0.5;
   });
   
+  const colorObj = new THREE.Color(color);
+  const whiteColor = new THREE.Color("white");
+  
   return (
     <mesh ref={mesh} position={position}>
       <octahedronGeometry args={[0.8, 0]} />
       <meshStandardMaterial 
-        wireframe={true}
-        color={new THREE.Color(color)}
-        emissive={new THREE.Color(color)}
+        wireframe
+        color={colorObj}
+        emissive={colorObj}
         emissiveIntensity={0.5}
         opacity={0.7}
-        transparent={true}
+        transparent
       />
       
       {/* Number display as basic geometry */}
       <mesh position={[0, 0, 1]} scale={0.5}>
         <planeGeometry args={[1, 0.3]} />
         <meshBasicMaterial 
-          color={new THREE.Color("white")}
-          transparent={true}
+          color={whiteColor}
+          transparent
           opacity={0.9} 
           depthWrite={false}
         />
