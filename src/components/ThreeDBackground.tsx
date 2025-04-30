@@ -19,17 +19,22 @@ const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position
   
   const colorObj = new THREE.Color(color);
   
+  // Setup material properties in useEffect to avoid TypeScript errors
+  React.useEffect(() => {
+    if (materialRef.current) {
+      materialRef.current.wireframe = true;
+      materialRef.current.transparent = true;
+      materialRef.current.opacity = 0.7;
+      materialRef.current.color = colorObj;
+      materialRef.current.emissive = colorObj;
+      materialRef.current.emissiveIntensity = 0.3;
+    }
+  }, [color]);
+  
   return (
     <mesh ref={mesh} position={position}>
       <boxGeometry args={[size, size, size]} />
-      <meshStandardMaterial ref={materialRef}>
-        <primitive object={colorObj} attach="color" />
-        <primitive object={colorObj} attach="emissive" />
-        <primitive object={0.3} attach="emissiveIntensity" />
-        <primitive object={true} attach="wireframe" />
-        <primitive object={true} attach="transparent" />
-        <primitive object={0.7} attach="opacity" />
-      </meshStandardMaterial>
+      <meshStandardMaterial ref={materialRef} />
     </mesh>
   );
 };
@@ -58,14 +63,19 @@ const Lines = ({ points }: { points: [number, number, number][] }) => {
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
   const purpleColor = new THREE.Color("#8B5CF6");
   
+  // Setup material properties in useEffect
+  React.useEffect(() => {
+    if (materialRef.current) {
+      materialRef.current.color = purpleColor;
+      materialRef.current.transparent = true;
+      materialRef.current.opacity = 0.2;
+    }
+  }, []);
+  
   return (
     <lineSegments ref={lineRef}>
       <bufferGeometry attach="geometry" {...geometry} />
-      <lineBasicMaterial ref={materialRef}>
-        <primitive object={purpleColor} attach="color" />
-        <primitive object={true} attach="transparent" />
-        <primitive object={0.2} attach="opacity" />
-      </lineBasicMaterial>
+      <lineBasicMaterial ref={materialRef} />
     </lineSegments>
   );
 };
