@@ -9,8 +9,7 @@ import AchievementsSection from '@/components/AchievementsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
-// We're temporarily commenting out ThreeDBackground while we fix the 3D components
-// import ThreeDBackground from '@/components/ThreeDBackground';
+import ThreeDBackground from '@/components/ThreeDBackground';
 
 const Index: React.FC = () => {
   // Add smooth scroll behavior with offset for header
@@ -48,7 +47,7 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
       <ParticlesBackground />
-      {/* <ThreeDBackground /> */}
+      <ThreeDBackground />
       <Navbar />
       <HeroSection />
       <ProjectsSection />
