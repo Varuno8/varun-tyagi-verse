@@ -21,14 +21,14 @@ const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position
   return (
     <mesh ref={mesh} position={position}>
       <boxGeometry args={[size, size, size]} />
-      <meshStandardMaterial 
-        wireframe={true}
-        transparent={true}
-        opacity={0.7}
-        color={colorObj}
-        emissive={colorObj}
-        emissiveIntensity={0.3}
-      />
+      <meshStandardMaterial>
+        <primitive object={true} attach="wireframe" />
+        <primitive object={true} attach="transparent" />
+        <primitive object={0.7} attach="opacity" />
+        <primitive object={colorObj} attach="color" />
+        <primitive object={colorObj} attach="emissive" />
+        <primitive object={0.3} attach="emissiveIntensity" />
+      </meshStandardMaterial>
     </mesh>
   );
 };
@@ -59,12 +59,11 @@ const Lines = ({ points }: { points: [number, number, number][] }) => {
   return (
     <lineSegments ref={lineRef}>
       <bufferGeometry attach="geometry" {...geometry} />
-      <lineBasicMaterial
-        attach="material"
-        color={purpleColor}
-        opacity={0.2}
-        transparent={true}
-      />
+      <lineBasicMaterial attach="material">
+        <primitive object={purpleColor} attach="color" />
+        <primitive object={0.2} attach="opacity" />
+        <primitive object={true} attach="transparent" />
+      </lineBasicMaterial>
     </lineSegments>
   );
 };
