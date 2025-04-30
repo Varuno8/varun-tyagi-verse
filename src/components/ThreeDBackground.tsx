@@ -6,6 +6,7 @@ import * as THREE from 'three';
 // 3D Code Cube component without using drei
 const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position: [number, number, number], size?: number, color?: string, speed?: number }) => {
   const mesh = useRef<THREE.Mesh>(null!);
+  const materialRef = useRef<THREE.MeshStandardMaterial>(null!);
   
   useFrame((state) => {
     if (!mesh.current) return;
@@ -21,14 +22,14 @@ const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position
   return (
     <mesh ref={mesh} position={position}>
       <boxGeometry args={[size, size, size]} />
-      <meshStandardMaterial 
-        wireframe
-        transparent
-        opacity={0.7}
-        color={colorObj}
-        emissive={colorObj}
-        emissiveIntensity={0.3}
-      />
+      <meshStandardMaterial ref={materialRef}>
+        <primitive object={colorObj} attach="color" />
+        <primitive object={colorObj} attach="emissive" />
+        <primitive object={0.3} attach="emissiveIntensity" />
+        <primitive object={true} attach="wireframe" />
+        <primitive object={true} attach="transparent" />
+        <primitive object={0.7} attach="opacity" />
+      </meshStandardMaterial>
     </mesh>
   );
 };
@@ -36,6 +37,7 @@ const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position
 // Connected lines between cubes
 const Lines = ({ points }: { points: [number, number, number][] }) => {
   const lineRef = useRef<THREE.LineSegments>(null!);
+  const materialRef = useRef<THREE.LineBasicMaterial>(null!);
   
   useFrame((state) => {
     if (!lineRef.current) return;
@@ -59,11 +61,11 @@ const Lines = ({ points }: { points: [number, number, number][] }) => {
   return (
     <lineSegments ref={lineRef}>
       <bufferGeometry attach="geometry" {...geometry} />
-      <lineBasicMaterial 
-        color={purpleColor}
-        opacity={0.2}
-        transparent
-      />
+      <lineBasicMaterial ref={materialRef}>
+        <primitive object={purpleColor} attach="color" />
+        <primitive object={true} attach="transparent" />
+        <primitive object={0.2} attach="opacity" />
+      </lineBasicMaterial>
     </lineSegments>
   );
 };

@@ -51,6 +51,8 @@ const achievements: Achievement[] = [
 // 3D Achievement Badge Component
 const AchievementBadge = ({ position, color, value }: { position: [number, number, number], color: string, value: string }) => {
   const mesh = useRef<THREE.Mesh>(null!);
+  const materialRef = useRef<THREE.MeshStandardMaterial>(null!);
+  const planeMaterialRef = useRef<THREE.MeshBasicMaterial>(null!);
   
   useFrame((state) => {
     if (!mesh.current) return;
@@ -63,24 +65,24 @@ const AchievementBadge = ({ position, color, value }: { position: [number, numbe
   return (
     <mesh ref={mesh} position={position}>
       <octahedronGeometry args={[0.8, 0]} />
-      <meshStandardMaterial 
-        wireframe
-        transparent
-        opacity={0.7}
-        color={colorObj}
-        emissive={colorObj}
-        emissiveIntensity={0.5}
-      />
+      <meshStandardMaterial ref={materialRef}>
+        <primitive object={true} attach="wireframe" />
+        <primitive object={true} attach="transparent" />
+        <primitive object={0.7} attach="opacity" />
+        <primitive object={colorObj} attach="color" />
+        <primitive object={colorObj} attach="emissive" />
+        <primitive object={0.5} attach="emissiveIntensity" />
+      </meshStandardMaterial>
       
       {/* Number display as basic geometry */}
       <mesh position={[0, 0, 1]} scale={0.5}>
         <planeGeometry args={[1, 0.3]} />
-        <meshBasicMaterial 
-          color={whiteColor}
-          transparent
-          opacity={0.9}
-          depthWrite={false}
-        />
+        <meshBasicMaterial ref={planeMaterialRef}>
+          <primitive object={whiteColor} attach="color" />
+          <primitive object={true} attach="transparent" />
+          <primitive object={0.9} attach="opacity" />
+          <primitive object={false} attach="depthWrite" />
+        </meshBasicMaterial>
       </mesh>
     </mesh>
   );
