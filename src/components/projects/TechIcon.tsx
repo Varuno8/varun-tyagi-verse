@@ -55,6 +55,17 @@ const iconColor: Record<string, string> = {
   'LeetCode': '#FFA116',
   'CodeChef': '#5B4638',
   'C': '#A8B9CC',
+  'CNN': '#FF6F00', // Using TensorFlow color
+  'RNN': '#EE4C2C', // Using PyTorch color
+  'LSTM': '#0052CC',
+  'Computer Vision': '#5C3EE8', // Using OpenCV color
+  'NLP': '#4B8BBE', // Using NLTK color
+  'Transformers': '#FFD21E', // Using HuggingFace color
+  'AWS EC2': '#FF9900',
+  'S3': '#569A31',
+  'Boto3': '#232F3E',
+  'MySQL': '#4479A1',
+  'Bootstrap': '#7952B3',
 };
 
 // Technology logos mapping
@@ -90,6 +101,10 @@ const techLogos: Record<string, string> = {
   'GraphQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg',
   'Kubernetes': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
   'C': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
+  'OpenCV': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',
+  'AWS EC2': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+  'S3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+  'Boto3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
 };
 
 interface TechIconProps {

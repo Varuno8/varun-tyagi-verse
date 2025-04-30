@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Code, Database, Globe, Monitor } from 'lucide-react';
+import { Code, Database, Globe, Monitor, Layers } from 'lucide-react';
 import TechIcon from './projects/TechIcon';
 
 interface SkillCategory {
@@ -13,21 +12,26 @@ const skillCategories: SkillCategory[] = [
   {
     name: "Languages",
     icon: <Code className="h-6 w-6 text-neon-purple" />,
-    skills: ["Python", "C++", "JavaScript", "TypeScript"]
+    skills: ["Python", "C++", "JavaScript", "TypeScript", "Java", "C"]
+  },
+  {
+    name: "Web Dev",
+    icon: <Globe className="h-6 w-6 text-neon-purple" />,
+    skills: ["Angular", "HTML", "CSS", "Bootstrap", "Express", "Node.js"]
   },
   {
     name: "Tools",
     icon: <Monitor className="h-6 w-6 text-neon-purple" />,
-    skills: ["Node.js", "MongoDB", "MySQL", "Docker", "Git"]
+    skills: ["Git", "Docker", "MongoDB", "PostgreSQL", "MySQL"]
   },
   {
     name: "ML/AI",
     icon: <Database className="h-6 w-6 text-neon-purple" />,
-    skills: ["PyTorch", "scikit-learn", "Transformers", "HuggingFace", "OpenCV", "FAISS"]
+    skills: ["PyTorch", "TensorFlow", "CNN", "RNN", "LSTM", "Computer Vision", "NLP", "OpenCV", "Transformers", "FAISS"]
   },
   {
     name: "Cloud",
-    icon: <Globe className="h-6 w-6 text-neon-purple" />,
+    icon: <Layers className="h-6 w-6 text-neon-purple" />,
     skills: ["AWS EC2", "S3", "Boto3"]
   }
 ];
@@ -60,15 +64,12 @@ const SkillsSection: React.FC = () => {
       const x = Math.cos(angle) * radius;
       const y = Math.sin(angle) * radius;
       
-      // Generate random rotation for the pill
-      const rotation = Math.floor(Math.random() * 20) - 10;
-      
       return (
         <div 
           key={skill}
           className="absolute skill-node transition-all duration-1000 flex items-center space-x-1"
           style={{
-            transform: `translate(${x}px, ${y}px) rotate(${rotation}deg)`,
+            transform: `translate(${x}px, ${y}px)`,
             opacity: animating ? 0 : 1,
           }}
         >

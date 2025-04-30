@@ -28,10 +28,17 @@ const Footer: React.FC = () => {
 
   const techLinks = [
     { name: 'Python', tech: 'Python' },
-    { name: 'TypeScript', tech: 'TypeScript' },
-    { name: 'React', tech: 'React' },
+    { name: 'Angular', tech: 'Angular' },
+    { name: 'TensorFlow', tech: 'TensorFlow' },
+    { name: 'PyTorch', tech: 'PyTorch' },
+    { name: 'C++', tech: 'C++' },
     { name: 'Node.js', tech: 'Node.js' },
   ];
+  
+  // Handle resume download
+  const handleResumeDownload = () => {
+    window.open('https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing', '_blank');
+  };
   
   return (
     <footer className="pt-16 pb-8 bg-dark relative">
@@ -87,6 +94,14 @@ const Footer: React.FC = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <button 
+                  onClick={handleResumeDownload}
+                  className="flex items-center text-gray-300 hover:text-neon-purple transition-colors"
+                >
+                  <Download className="h-4 w-4 mr-1" /> Resume
+                </button>
+              </li>
             </ul>
           </div>
           
