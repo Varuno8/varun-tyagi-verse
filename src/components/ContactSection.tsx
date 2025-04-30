@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Github, Linkedin, Mail, Send } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, Download } from 'lucide-react';
 import { toast } from 'sonner';
 
 const ContactSection: React.FC = () => {
@@ -32,6 +32,10 @@ const ContactSection: React.FC = () => {
     }, 1500);
   };
   
+  const handleResumeClick = () => {
+    window.open('https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing', '_blank');
+  };
+  
   // Social links with animations
   const socialLinks = [
     { 
@@ -43,8 +47,9 @@ const ContactSection: React.FC = () => {
     { 
       name: 'LinkedIn', 
       icon: <Linkedin className="h-6 w-6" />, 
-      url: 'https://linkedin.com/in/',
-      color: 'bg-[#0077B5] hover:bg-[#0077B5]/90'
+      url: 'https://www.linkedin.com/in/varun-tyagi-32bb281b9/',
+      color: 'bg-[#0077B5] hover:bg-[#0077B5]/90',
+      username: 'varun-tyagi-32bb281b9'
     },
     { 
       name: 'Email', 
@@ -167,12 +172,22 @@ const ContactSection: React.FC = () => {
                       <div>
                         <h4 className="font-medium">{social.name}</h4>
                         <p className="text-sm opacity-90">
-                          {social.name === 'Email' ? 'contact@example.com' : `@username`}
+                          {social.name === 'Email' ? 'contact@example.com' : 
+                           social.name === 'LinkedIn' ? social.username : '@username'}
                         </p>
                       </div>
                     </a>
                   ))}
                 </div>
+                
+                {/* Resume Download Button */}
+                <Button 
+                  onClick={handleResumeClick}
+                  className="w-full bg-gradient-to-r from-neon-purple to-neon-cyan flex items-center justify-center"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download Resume
+                </Button>
               </div>
             </div>
             

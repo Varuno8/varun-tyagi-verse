@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+import { Github, Linkedin, Mail, Menu, X, Download } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,9 +31,13 @@ const Navbar = () => {
   // Social links with icons
   const socialLinks = [
     { icon: <Github className="h-4 w-4" />, href: 'https://github.com/', label: 'GitHub' },
-    { icon: <Linkedin className="h-4 w-4" />, href: 'https://linkedin.com/in/', label: 'LinkedIn' },
+    { icon: <Linkedin className="h-4 w-4" />, href: 'https://www.linkedin.com/in/varun-tyagi-32bb281b9/', label: 'LinkedIn' },
     { icon: <Mail className="h-4 w-4" />, href: 'mailto:contact@example.com', label: 'Email' },
   ];
+  
+  const handleResumeClick = () => {
+    window.open('https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing', '_blank');
+  };
 
   return (
     <header 
@@ -80,7 +84,9 @@ const Navbar = () => {
               variant="default" 
               size="sm"
               className="bg-gradient-to-r from-neon-purple to-neon-cyan text-white"
+              onClick={handleResumeClick}
             >
+              <Download className="h-4 w-4 mr-1" />
               Resume
             </Button>
           </div>
@@ -132,7 +138,9 @@ const Navbar = () => {
                 variant="default" 
                 size="sm"
                 className="bg-gradient-to-r from-neon-purple to-neon-cyan text-white ml-auto"
+                onClick={handleResumeClick}
               >
+                <Download className="h-4 w-4 mr-1" />
                 Resume
               </Button>
             </div>
