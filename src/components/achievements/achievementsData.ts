@@ -1,5 +1,4 @@
 
-import { Code, Star, Award as AwardIcon } from 'lucide-react';
 import { Achievement } from './types';
 
 export const achievements: Achievement[] = [
@@ -7,7 +6,7 @@ export const achievements: Achievement[] = [
     id: 1,
     title: "GFG Problems",
     value: "320+",
-    icon: <Code />,
+    iconName: "Code",
     color: "neon-cyan",
     numericValue: 320,
     tech: "GeeksforGeeks",
@@ -17,7 +16,7 @@ export const achievements: Achievement[] = [
     id: 2,
     title: "LeetCode",
     value: "250+",
-    icon: <Star />,
+    iconName: "Star",
     color: "neon-purple",
     numericValue: 250,
     tech: "LeetCode",
@@ -27,7 +26,7 @@ export const achievements: Achievement[] = [
     id: 3,
     title: "CodeChef Rating",
     value: "1500",
-    icon: <Award />,
+    iconName: "Award",
     color: "neon-teal",
     numericValue: 1500,
     tech: "CodeChef",
@@ -37,7 +36,7 @@ export const achievements: Achievement[] = [
     id: 4,
     title: "JEE Mains",
     value: "98.2 percentile",
-    icon: <AwardIcon />,
+    iconName: "Award",
     color: "neon-purple",
     numericValue: 98
   }

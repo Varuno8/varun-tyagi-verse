@@ -1,11 +1,11 @@
 
-import { ReactElement } from 'react';
+import { LucideIcon } from 'lucide-react';
 
 export interface Achievement {
   id: number;
   title: string;
   value: string;
-  icon: ReactElement;
+  iconName: string;
   color: string;
   numericValue: number;
   tech?: string; // For TechIcon

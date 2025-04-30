@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import TechIcon from '../projects/TechIcon';
 import { Achievement } from './types';
+import * as LucideIcons from 'lucide-react';
 
 interface AchievementCardProps {
   achievement: Achievement;
@@ -60,6 +61,16 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ achievement, index })
     return () => observer.disconnect();
   }, []);
 
+  // Dynamically render the appropriate Lucide icon
+  const renderIcon = () => {
+    if (achievement.tech) {
+      return <TechIcon tech={achievement.tech} />;
+    } else {
+      const IconComponent = (LucideIcons as Record<string, React.FC<any>>)[achievement.iconName];
+      return IconComponent ? <IconComponent size={24} /> : null;
+    }
+  };
+
   return (
     <div 
       className="glass-card rounded-xl p-6 text-center transition-all duration-300 hover:shadow-xl"
@@ -92,7 +103,7 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ achievement, index })
           className={`h-16 w-16 rounded-full bg-${achievement.color}/20 flex items-center justify-center mx-auto mb-4 text-${achievement.color} shadow-lg`}
           style={{boxShadow: `0 0 15px var(--${achievement.color})`}}
         >
-          {achievement.tech ? <TechIcon tech={achievement.tech} /> : achievement.icon}
+          {renderIcon()}
         </div>
         
         <div className="mb-2">
