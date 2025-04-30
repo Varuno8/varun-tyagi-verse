@@ -47,6 +47,49 @@ const iconColor: Record<string, string> = {
   'NoSQL': '#13AA52',
   'UI/UX': '#FF4088',
   'Testing': '#F43F5E',
+  'JavaScript': '#F7DF1E',
+  'C++': '#00599C',
+  'Java': '#007396',
+  'HTML': '#E34F26',
+  'CSS': '#1572B6',
+  'LeetCode': '#FFA116',
+  'CodeChef': '#5B4638',
+  'C': '#A8B9CC',
+};
+
+// Technology logos mapping
+const techLogos: Record<string, string> = {
+  'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  'TypeScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+  'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  'C++': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+  'Java': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
+  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+  'MongoDB': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+  'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  'PostgreSQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+  'Docker': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+  'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+  'Redux': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg',
+  'HTML': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  'CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
+  'Bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
+  'Express': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+  'Django': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg',
+  'Flask': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
+  'Angular': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg',
+  'TensorFlow': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+  'PyTorch': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
+  'Pandas': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
+  'NumPy': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg',
+  'LeetCode': 'https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png',
+  'CodeChef': 'https://s3.amazonaws.com/codechef_shared/sites/all/themes/abessive/logo.svg',
+  'GraphQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg',
+  'Kubernetes': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
+  'C': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
 };
 
 interface TechIconProps {
@@ -54,12 +97,27 @@ interface TechIconProps {
 }
 
 const TechIcon: React.FC<TechIconProps> = ({ tech }) => {
+  // Check if we have a logo for this technology
+  const hasLogo = techLogos[tech] !== undefined;
+  
   return (
-    <span 
-      className="inline-flex items-center justify-center w-5 h-5 rounded-full mr-1"
-      style={{ backgroundColor: iconColor[tech] || '#6E6E6E' }}
-      title={tech}
-    />
+    <>
+      {hasLogo ? (
+        <img 
+          src={techLogos[tech]} 
+          alt={tech}
+          className="w-5 h-5 mr-1 rounded-sm"
+          style={{ backgroundColor: tech === 'LeetCode' ? '#FFFFFF' : 'transparent' }}
+        />
+      ) : (
+        // Fallback to colored circle if no logo is available
+        <span 
+          className="inline-flex items-center justify-center w-5 h-5 rounded-full mr-1"
+          style={{ backgroundColor: iconColor[tech] || '#6E6E6E' }}
+          title={tech}
+        />
+      )}
+    </>
   );
 };
 

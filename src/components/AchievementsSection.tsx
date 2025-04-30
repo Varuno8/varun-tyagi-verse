@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { Award, Code, Star, Award as AwardIcon } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import TechIcon from './projects/TechIcon';
 
 interface Achievement {
   id: number;
@@ -11,6 +12,7 @@ interface Achievement {
   icon: JSX.Element;
   color: string;
   numericValue: number;
+  tech?: string; // Add tech property for TechIcon
 }
 
 const achievements: Achievement[] = [
@@ -28,7 +30,8 @@ const achievements: Achievement[] = [
     value: "250+",
     icon: <Star />,
     color: "neon-purple",
-    numericValue: 250
+    numericValue: 250,
+    tech: "LeetCode"
   },
   {
     id: 3,
@@ -36,7 +39,8 @@ const achievements: Achievement[] = [
     value: "1500",
     icon: <Award />,
     color: "neon-teal",
-    numericValue: 1500
+    numericValue: 1500,
+    tech: "CodeChef"
   },
   {
     id: 4,
@@ -213,7 +217,7 @@ const AchievementsSection: React.FC = () => {
               <div className={`h-16 w-16 rounded-full bg-${achievement.color}/20 flex items-center justify-center mx-auto mb-4 text-${achievement.color} shadow-lg`}
                    style={{boxShadow: `0 0 15px var(--${achievement.color})`}}
               >
-                {achievement.icon}
+                {achievement.tech ? <TechIcon tech={achievement.tech} /> : achievement.icon}
               </div>
               
               <div className="mb-2">
@@ -260,10 +264,10 @@ const AchievementsSection: React.FC = () => {
                 Committed to staying at the forefront of technology trends and best practices.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="skill-tag">AWS Certification</span>
-                <span className="skill-tag">ML Specialization</span>
-                <span className="skill-tag">System Design</span>
-                <span className="skill-tag">Full-Stack Development</span>
+                <span className="skill-tag flex items-center"><TechIcon tech="Python" /> Python</span>
+                <span className="skill-tag flex items-center"><TechIcon tech="TypeScript" /> TypeScript</span>
+                <span className="skill-tag flex items-center"><TechIcon tech="React" /> Full-Stack Development</span>
+                <span className="skill-tag flex items-center"><TechIcon tech="TensorFlow" /> ML Development</span>
               </div>
             </div>
           </div>

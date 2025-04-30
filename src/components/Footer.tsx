@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Github, Linkedin, Mail, ArrowUp, Download } from 'lucide-react';
+import TechIcon from './projects/TechIcon';
 
 const Footer: React.FC = () => {
   const handleScrollToTop = () => {
@@ -22,6 +24,13 @@ const Footer: React.FC = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },
+  ];
+
+  const techLinks = [
+    { name: 'Python', tech: 'Python' },
+    { name: 'TypeScript', tech: 'TypeScript' },
+    { name: 'React', tech: 'React' },
+    { name: 'Node.js', tech: 'Node.js' },
   ];
   
   return (
@@ -81,11 +90,20 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           
-          {/* Contact info */}
+          {/* Technology stack */}
           <div>
-            <h3 className="font-display text-lg font-medium mb-4">Get In Touch</h3>
-            <p className="text-gray-300 mb-2">
-              Have a project in mind or want to collaborate? Feel free to reach out.
+            <h3 className="font-display text-lg font-medium mb-4">Tech Stack</h3>
+            <div className="flex flex-wrap gap-2">
+              {techLinks.map((tech) => (
+                <span key={tech.name} className="skill-tag flex items-center">
+                  <TechIcon tech={tech.tech} />
+                  <span className="ml-1">{tech.name}</span>
+                </span>
+              ))}
+            </div>
+            <h3 className="font-display text-lg font-medium mt-4 mb-2">Get In Touch</h3>
+            <p className="text-gray-300 mb-1">
+              Have a project in mind or want to collaborate?
             </p>
             <p className="text-neon-cyan mb-2">varun28082001@gmail.com</p>
           </div>

@@ -1,5 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { Code, Database, Globe, Monitor } from 'lucide-react';
+import TechIcon from './projects/TechIcon';
 
 interface SkillCategory {
   name: string;
@@ -64,13 +66,14 @@ const SkillsSection: React.FC = () => {
       return (
         <div 
           key={skill}
-          className="absolute skill-node transition-all duration-1000"
+          className="absolute skill-node transition-all duration-1000 flex items-center space-x-1"
           style={{
             transform: `translate(${x}px, ${y}px) rotate(${rotation}deg)`,
             opacity: animating ? 0 : 1,
           }}
         >
-          <div className="skill-tag whitespace-nowrap">
+          <div className="skill-tag whitespace-nowrap flex items-center">
+            <TechIcon tech={skill} />
             {skill}
           </div>
         </div>
