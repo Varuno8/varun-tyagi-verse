@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -57,7 +58,7 @@ const projects: Project[] = [
     technologies: ["React", "TypeScript", "Django", "JWT", "PostgreSQL", "Recharts"],
     image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=Eigengram",
     githubUrl: "https://github.com/",
-    demoUrl: "https://demo.com/",
+    demoUrl: "https://github.com/", // No actual URL provided for this project
   },
   {
     id: 2,
@@ -66,7 +67,7 @@ const projects: Project[] = [
     technologies: ["Next.js", "Clerk", "MongoDB", "Inngest", "Tailwind CSS"],
     image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=QuickCart+App",
     githubUrl: "https://github.com/",
-    demoUrl: "https://demo.com/",
+    demoUrl: "https://littlewisewesbite-ten.vercel.app/",
   },
   {
     id: 3,
@@ -75,7 +76,7 @@ const projects: Project[] = [
     technologies: ["LangChain", "Streamlit", "FAISS", "Ollama", "Python"],
     image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=PDF+RAG+App",
     githubUrl: "https://github.com/",
-    demoUrl: "https://demo.com/",
+    demoUrl: "https://drive.google.com/drive/folders/1rW2ufZNwpmeH1E4dX-JW1qkERoM-fH3P?usp=sharing",
   },
   {
     id: 4,
@@ -84,8 +85,17 @@ const projects: Project[] = [
     technologies: ["Google Vision API", "OpenCV", "HuggingFace", "Flask", "React"],
     image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=OCR+Analysis+Tool",
     githubUrl: "https://github.com/",
-    demoUrl: "https://demo.com/",
+    demoUrl: "https://drive.google.com/file/d/1Qw308EiVN0OMuQ0q1vvTgAgCuIXhLctP/view?usp=sharing",
   },
+  {
+    id: 5,
+    title: "Jobify - Job Seeking App",
+    description: "A comprehensive platform for job seekers to find and apply for opportunities.",
+    technologies: ["React", "MongoDB", "Express", "Node.js", "Tailwind CSS"],
+    image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=Jobify",
+    githubUrl: "https://github.com/",
+    demoUrl: "https://jobify-j55w.onrender.com/dashboard/profile",
+  }
 ];
 
 // Project Card component with CSS 3D effect instead of Three.js
@@ -201,6 +211,7 @@ const ProjectCard3D = ({ project, isHovered, onHover }: { project: Project, isHo
             size="sm" 
             className="group text-neon-cyan hover:text-neon-cyan hover:bg-neon-cyan/10"
             style={{ transform: isHovered ? 'translateZ(60px)' : 'translateZ(0)', transformStyle: 'preserve-3d' }}
+            onClick={() => window.open(project.demoUrl, '_blank')}
           >
             View Details
             <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
