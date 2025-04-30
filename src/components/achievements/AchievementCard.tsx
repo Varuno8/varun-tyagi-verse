@@ -1,8 +1,8 @@
-
 import React, { useRef, useEffect } from 'react';
 import TechIcon from '../projects/TechIcon';
 import { Achievement } from './types';
 import * as LucideIcons from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
 interface AchievementCardProps {
   achievement: Achievement;
@@ -66,7 +66,9 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ achievement, index })
     if (achievement.tech) {
       return <TechIcon tech={achievement.tech} />;
     } else {
-      const IconComponent = (LucideIcons as Record<string, React.FC<any>>)[achievement.iconName];
+      // Fixed: Using type assertion with proper typing
+      const icons = LucideIcons as unknown as Record<string, LucideIcon>;
+      const IconComponent = icons[achievement.iconName];
       return IconComponent ? <IconComponent size={24} /> : null;
     }
   };
