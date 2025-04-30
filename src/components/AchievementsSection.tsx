@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Award, Code, Star, Award as AwardIcon } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -63,24 +62,16 @@ const AchievementBadge = ({ position, color, value }: { position: [number, numbe
   return (
     <mesh ref={mesh} position={position}>
       <octahedronGeometry args={[0.8, 0]} />
-      <meshStandardMaterial>
-        <primitive object={true} attach="wireframe" />
-        <primitive object={colorObj} attach="color" />
-        <primitive object={colorObj} attach="emissive" />
-        <primitive object={0.5} attach="emissiveIntensity" />
-        <primitive object={0.7} attach="opacity" />
-        <primitive object={true} attach="transparent" />
-      </meshStandardMaterial>
+      <meshStandardMaterial wireframe={true} opacity={0.7} transparent={true} />
+      <primitive object={colorObj} attach="material.color" />
+      <primitive object={colorObj} attach="material.emissive" />
+      <primitive object={0.5} attach="material.emissiveIntensity" />
       
       {/* Number display as basic geometry */}
       <mesh position={[0, 0, 1]} scale={0.5}>
         <planeGeometry args={[1, 0.3]} />
-        <meshBasicMaterial>
-          <primitive object={whiteColor} attach="color" />
-          <primitive object={true} attach="transparent" />
-          <primitive object={0.9} attach="opacity" />
-          <primitive object={false} attach="depthWrite" />
-        </meshBasicMaterial>
+        <meshBasicMaterial transparent={true} opacity={0.9} depthWrite={false} />
+        <primitive object={whiteColor} attach="material.color" />
       </mesh>
     </mesh>
   );
