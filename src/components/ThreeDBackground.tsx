@@ -1,10 +1,9 @@
 
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Float } from '@react-three/drei';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
 
-// 3D Code Cube component
+// 3D Code Cube component without using drei
 const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position: [number, number, number], size?: number, color?: string, speed?: number }) => {
   const mesh = useRef<THREE.Mesh>(null!);
   
@@ -12,27 +11,22 @@ const CodeCube = ({ position, size = 1, color = 'white', speed = 1 }: { position
     if (!mesh.current) return;
     mesh.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.2 * speed) * 0.2;
     mesh.current.rotation.y += 0.01 * speed;
+    
+    // Add floating animation manually
+    mesh.current.position.y += Math.sin(state.clock.getElapsedTime() * speed) * 0.002;
   });
   
   return (
-    <Float
-      speed={2} 
-      rotationIntensity={0.5} 
-      floatIntensity={1}
-    >
-      <mesh ref={mesh} position={position}>
-        <boxGeometry args={[size, size, size]} />
-        <meshStandardMaterial 
-          wireframe 
-          transparent
-          opacity={0.7}
-        >
-          <color attach="color" args={[color]} />
-          <color attach="emissive" args={[color]} />
-          <float attach="emissiveIntensity" value={0.3} />
-        </meshStandardMaterial>
-      </mesh>
-    </Float>
+    <mesh ref={mesh} position={position}>
+      <boxGeometry args={[size, size, size]} />
+      <meshStandardMaterial wireframe={true}>
+        <color attach="color" args={[color]} />
+        <color attach="emissive" args={[color]} />
+        <primitive attach="emissiveIntensity" object={0.3} />
+        <primitive attach="transparent" object={true} />
+        <primitive attach="opacity" object={0.7} />
+      </meshStandardMaterial>
+    </mesh>
   );
 };
 
@@ -63,8 +57,8 @@ const Lines = ({ points }: { points: [number, number, number][] }) => {
       <bufferGeometry attach="geometry" {...geometry} />
       <lineBasicMaterial attach="material">
         <color attach="color" args={["#8B5CF6"]} />
-        <float attach="opacity" value={0.2} />
-        <bool attach="transparent" value={true} />
+        <primitive attach="opacity" object={0.2} />
+        <primitive attach="transparent" object={true} />
       </lineBasicMaterial>
     </lineSegments>
   );
@@ -107,8 +101,10 @@ const ThreeDBackground = () => {
         {/* Connected lines */}
         <Lines points={positions} />
         
-        {/* Controls for testing - disable in production */}
-        <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+        {/* Manual camera controls */}
+        <group>
+          {/* This empty group replaces OrbitControls */}
+        </group>
       </Canvas>
     </div>
   );
