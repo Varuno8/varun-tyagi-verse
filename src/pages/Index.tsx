@@ -9,6 +9,7 @@ import AchievementsSection from '@/components/AchievementsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
+import ThreeDBackground from '@/components/ThreeDBackground';
 
 const Index: React.FC = () => {
   // Add smooth scroll behavior with offset for header
