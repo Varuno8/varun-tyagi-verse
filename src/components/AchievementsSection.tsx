@@ -13,6 +13,7 @@ interface Achievement {
   color: string;
   numericValue: number;
   tech?: string; // Add tech property for TechIcon
+  url?: string; // Add URL to link to profile
 }
 
 const achievements: Achievement[] = [
@@ -22,7 +23,9 @@ const achievements: Achievement[] = [
     value: "320+",
     icon: <Code />,
     color: "neon-cyan",
-    numericValue: 320
+    numericValue: 320,
+    tech: "GeeksforGeeks",
+    url: "https://www.geeksforgeeks.org/user/varun28y2a4/"
   },
   {
     id: 2,
@@ -31,7 +34,8 @@ const achievements: Achievement[] = [
     icon: <Star />,
     color: "neon-purple",
     numericValue: 250,
-    tech: "LeetCode"
+    tech: "LeetCode",
+    url: "https://leetcode.com/u/Varun_2/"
   },
   {
     id: 3,
@@ -40,7 +44,8 @@ const achievements: Achievement[] = [
     icon: <Award />,
     color: "neon-teal",
     numericValue: 1500,
-    tech: "CodeChef"
+    tech: "CodeChef",
+    url: "https://www.codechef.com/users/varun28082001"
   },
   {
     id: 4,
@@ -214,31 +219,38 @@ const AchievementsSection: React.FC = () => {
                 e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
               }}
             >
-              <div className={`h-16 w-16 rounded-full bg-${achievement.color}/20 flex items-center justify-center mx-auto mb-4 text-${achievement.color} shadow-lg`}
-                   style={{boxShadow: `0 0 15px var(--${achievement.color})`}}
+              <a 
+                href={achievement.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={achievement.url ? "block" : ""}
               >
-                {achievement.tech ? <TechIcon tech={achievement.tech} /> : achievement.icon}
-              </div>
-              
-              <div className="mb-2">
-                <span 
-                  ref={el => counterRefs.current[index] = el} 
-                  className={`text-3xl font-display font-bold text-${achievement.color}`}
-                  data-target={achievement.numericValue}
+                <div className={`h-16 w-16 rounded-full bg-${achievement.color}/20 flex items-center justify-center mx-auto mb-4 text-${achievement.color} shadow-lg`}
+                    style={{boxShadow: `0 0 15px var(--${achievement.color})`}}
                 >
-                  0
-                </span>
-                <span className={`text-3xl font-display font-bold text-${achievement.color}`}>
-                  {achievement.value.includes('+') ? '+' : achievement.value.includes('%') ? '%' : ''}
-                </span>
-                {achievement.id === 4 && 
-                  <span className={`text-3xl font-display font-bold text-${achievement.color}`}>
-                    {' percentile'}
+                  {achievement.tech ? <TechIcon tech={achievement.tech} /> : achievement.icon}
+                </div>
+                
+                <div className="mb-2">
+                  <span 
+                    ref={el => counterRefs.current[index] = el} 
+                    className={`text-3xl font-display font-bold text-${achievement.color}`}
+                    data-target={achievement.numericValue}
+                  >
+                    0
                   </span>
-                }
-              </div>
-              
-              <h3 className="text-lg font-medium">{achievement.title}</h3>
+                  <span className={`text-3xl font-display font-bold text-${achievement.color}`}>
+                    {achievement.value.includes('+') ? '+' : achievement.value.includes('%') ? '%' : ''}
+                  </span>
+                  {achievement.id === 4 && 
+                    <span className={`text-3xl font-display font-bold text-${achievement.color}`}>
+                      {' percentile'}
+                    </span>
+                  }
+                </div>
+                
+                <h3 className="text-lg font-medium">{achievement.title}</h3>
+              </a>
             </div>
           ))}
         </div>
@@ -266,7 +278,7 @@ const AchievementsSection: React.FC = () => {
               <div className="flex flex-wrap gap-2">
                 <span className="skill-tag flex items-center"><TechIcon tech="Python" /> Python</span>
                 <span className="skill-tag flex items-center"><TechIcon tech="TypeScript" /> TypeScript</span>
-                <span className="skill-tag flex items-center"><TechIcon tech="React" /> Full-Stack Development</span>
+                <span className="skill-tag flex items-center"><TechIcon tech="Angular" /> Angular</span>
                 <span className="skill-tag flex items-center"><TechIcon tech="TensorFlow" /> ML Development</span>
               </div>
             </div>

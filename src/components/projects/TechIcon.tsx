@@ -49,23 +49,37 @@ const iconColor: Record<string, string> = {
   'Testing': '#F43F5E',
   'JavaScript': '#F7DF1E',
   'C++': '#00599C',
-  'Java': '#007396',
   'HTML': '#E34F26',
   'CSS': '#1572B6',
   'LeetCode': '#FFA116',
   'CodeChef': '#5B4638',
+  'GeeksforGeeks': '#2F8D46',
   'C': '#A8B9CC',
-  'CNN': '#FF6F00', // Using TensorFlow color
-  'RNN': '#EE4C2C', // Using PyTorch color
+  'CNN': '#FF6F00',
+  'RNN': '#EE4C2C',
   'LSTM': '#0052CC',
-  'Computer Vision': '#5C3EE8', // Using OpenCV color
-  'NLP': '#4B8BBE', // Using NLTK color
-  'Transformers': '#FFD21E', // Using HuggingFace color
+  'Computer Vision': '#5C3EE8',
+  'NLP': '#4B8BBE',
+  'Transformers': '#FFD21E',
   'AWS EC2': '#FF9900',
   'S3': '#569A31',
   'Boto3': '#232F3E',
   'MySQL': '#4479A1',
   'Bootstrap': '#7952B3',
+  'XGBoost': '#0073B7',
+  'SVM': '#6F42C1',
+  'Random Forest': '#20C997',
+  'KNN': '#E83E8C',
+  'Naive Bayes': '#FD7E14',
+  'Linear Regression': '#17A2B8',
+  'VGG': '#007BFF',
+  'ResNet': '#28A745',
+  'EfficientNet': '#DC3545',
+  'LLaMA': '#6F42C1',
+  'Gemma': '#20C997',
+  'Qwen2-VL-2B': '#0DCAF0',
+  'RAG': '#6610F2',
+  'Document AI': '#D63384',
 };
 
 // Technology logos mapping
@@ -75,7 +89,6 @@ const techLogos: Record<string, string> = {
   'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
   'C++': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
-  'Java': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
   'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
   'MongoDB': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
   'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
@@ -98,6 +111,7 @@ const techLogos: Record<string, string> = {
   'NumPy': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg',
   'LeetCode': 'https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png',
   'CodeChef': 'https://s3.amazonaws.com/codechef_shared/sites/all/themes/abessive/logo.svg',
+  'GeeksforGeeks': 'https://media.geeksforgeeks.org/gfg-gg-logo.svg',
   'GraphQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg',
   'Kubernetes': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
   'C': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
@@ -105,6 +119,8 @@ const techLogos: Record<string, string> = {
   'AWS EC2': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
   'S3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
   'Boto3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+  'Scikit-learn': 'https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg',
+  'XGBoost': 'https://raw.githubusercontent.com/dmlc/dmlc.github.io/master/img/logo-m/xgboost.png',
 };
 
 interface TechIconProps {

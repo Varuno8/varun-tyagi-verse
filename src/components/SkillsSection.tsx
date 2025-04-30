@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Code, Database, Globe, Monitor, Layers } from 'lucide-react';
 import TechIcon from './projects/TechIcon';
@@ -12,7 +13,7 @@ const skillCategories: SkillCategory[] = [
   {
     name: "Languages",
     icon: <Code className="h-6 w-6 text-neon-purple" />,
-    skills: ["Python", "C++", "JavaScript", "TypeScript", "Java", "C"]
+    skills: ["Python", "C++", "JavaScript", "TypeScript", "C"]
   },
   {
     name: "Web Dev",
@@ -27,7 +28,13 @@ const skillCategories: SkillCategory[] = [
   {
     name: "ML/AI",
     icon: <Database className="h-6 w-6 text-neon-purple" />,
-    skills: ["PyTorch", "TensorFlow", "CNN", "RNN", "LSTM", "Computer Vision", "NLP", "OpenCV", "Transformers", "FAISS"]
+    skills: [
+      "PyTorch", "TensorFlow", "Scikit-learn", "XGBoost", "SVM", 
+      "Random Forest", "KNN", "CNN", "VGG", "ResNet", 
+      "EfficientNet", "LLaMA", "Gemma", "Qwen2-VL-2B", 
+      "RAG", "LangChain", "FAISS", "Ollama", "Computer Vision", 
+      "NLP", "OpenCV", "Document AI", "Transformers"
+    ]
   },
   {
     name: "Cloud",
