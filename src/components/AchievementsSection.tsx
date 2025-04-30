@@ -60,24 +60,24 @@ const AchievementBadge = ({ position, color, value }: { position: [number, numbe
   return (
     <mesh ref={mesh} position={position}>
       <octahedronGeometry args={[0.8, 0]} />
-      <meshStandardMaterial 
-        wireframe
-        color={color}
-        emissive={color}
-        emissiveIntensity={0.5}
-        opacity={0.7}
-        transparent
-      />
+      <meshStandardMaterial>
+        <primitive attach="wireframe" object={true} />
+        <color attach="color" args={[color]} />
+        <color attach="emissive" args={[color]} />
+        <primitive attach="emissiveIntensity" object={0.5} />
+        <primitive attach="opacity" object={0.7} />
+        <primitive attach="transparent" object={true} />
+      </meshStandardMaterial>
       
       {/* Number display as basic geometry */}
       <mesh position={[0, 0, 1]} scale={0.5}>
         <planeGeometry args={[1, 0.3]} />
-        <meshBasicMaterial 
-          color="white"
-          transparent
-          opacity={0.9} 
-          depthWrite={false}
-        />
+        <meshBasicMaterial>
+          <color attach="color" args={["white"]} />
+          <primitive attach="transparent" object={true} />
+          <primitive attach="opacity" object={0.9} />
+          <primitive attach="depthWrite" object={false} />
+        </meshBasicMaterial>
       </mesh>
     </mesh>
   );
