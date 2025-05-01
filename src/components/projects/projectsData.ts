@@ -12,10 +12,10 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Eigengram Healthcare Platform",
+    title: "VitalCarePlatform",
     description: "A healthcare SaaS platform connecting users to AI-powered medical services through subscriptions.",
     technologies: ["React", "Next.js", "PostgreSQL", "JWT", "REST API", "Tailwind CSS"],
-    image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=Eigengram",
+    image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=VitalCarePlatform",
     githubUrl: "https://github.com/",
     demoUrl: "https://nextjs-login-sooty.vercel.app/",
   },
