@@ -7,12 +7,19 @@ import { Github, Linkedin, Mail, Send, Download } from 'lucide-react';
 import { toast } from 'sonner';
 import emailjs from 'emailjs-com';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const ContactSection: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    subject: '',
+    subject: 'Job Opportunity',
     message: '',
   });
   
@@ -23,30 +30,35 @@ const ContactSection: React.FC = () => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
   };
+
+  const handleSubjectChange = (value: string) => {
+    setFormState(prev => ({ ...prev, subject: value }));
+  };
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     // EmailJS configuration
-    // These would be your actual EmailJS credentials
-    const serviceId = 'YOUR_EMAILJS_SERVICE_ID'; // Replace with your ServiceID from EmailJS
-    const templateId = 'YOUR_EMAILJS_TEMPLATE_ID'; // Replace with your TemplateID from EmailJS
-    const userId = 'YOUR_EMAILJS_USER_ID'; // Replace with your UserID from EmailJS
+    const serviceId = 'service_973giwu'; // Replace with your actual ServiceID from EmailJS
+    const templateId = 'template_8isd4m9'; // Replace with your actual TemplateID from EmailJS
+    const userId = 'XlZ_vL_8VkTu68fIe'; // Replace with your actual UserID from EmailJS
     
     try {
       const templateParams = {
-        name: formState.name,
-        email: formState.email,
-        subject: formState.subject || 'Portfolio Contact Form',
+        from_name: formState.name,
+        from_email: formState.email,
+        subject: formState.subject,
         message: formState.message,
         to_email: 'varun28082001@gmail.com',
       };
       
+      console.log("Attempting to send email with params:", templateParams);
+      
       await emailjs.send(serviceId, templateId, templateParams, userId);
       
-      toast.success("Message sent successfully! I'll get back to you soon.");
-      setFormState({ name: '', email: '', subject: '', message: '' });
+      toast.success("Message sent successfully! I'll get back to you within 24 hours.");
+      setFormState({ name: '', email: '', subject: 'Job Opportunity', message: '' });
     } catch (error) {
       console.error('Email sending failed:', error);
       toast.error("Failed to send message. Please try again or email me directly.");
@@ -91,6 +103,13 @@ const ContactSection: React.FC = () => {
     },
   ];
   
+  const subjectOptions = [
+    { value: 'Job Opportunity', label: 'Job Opportunity' },
+    { value: 'Freelance', label: 'Freelance' },
+    { value: 'Collaboration', label: 'Collaboration' },
+    { value: 'Other', label: 'Other' }
+  ];
+
   return (
     <section id="contact" className="section-padding relative">
       {/* Background gradient */}
@@ -148,14 +167,21 @@ const ContactSection: React.FC = () => {
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">
                   Subject
                 </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  value={formState.subject}
-                  onChange={handleInputChange}
-                  placeholder="What is this regarding?"
-                  className="bg-white/5 border-white/20"
-                />
+                <Select 
+                  value={formState.subject} 
+                  onValueChange={handleSubjectChange}
+                >
+                  <SelectTrigger className="bg-white/5 border-white/20">
+                    <SelectValue placeholder="Select a subject" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {subjectOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               
               <div>
@@ -251,6 +277,14 @@ const ContactSection: React.FC = () => {
                 <span className="skill-tag">Contract</span>
                 <span className="skill-tag">Full-time</span>
               </div>
+              
+              <h3 className="font-display text-lg font-medium mt-6 mb-3">Get In Touch</h3>
+              <a 
+                href="mailto:varun28082001@gmail.com"
+                className="text-neon-cyan hover:underline block mb-3"
+              >
+                varun28082001@gmail.com
+              </a>
             </div>
           </div>
         </div>

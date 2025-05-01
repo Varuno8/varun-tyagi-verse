@@ -26,11 +26,21 @@ const Index: React.FC = () => {
     // Initial check
     checkScreenSize();
     
-    // Listen for resize events
-    window.addEventListener('resize', checkScreenSize);
+    // Debounce resize events for better performance
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        checkScreenSize();
+      }, 100);
+    };
+    
+    window.addEventListener('resize', handleResize);
     
     return () => {
-      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
     };
   }, []);
   

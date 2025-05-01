@@ -120,7 +120,12 @@ const Footer: React.FC = () => {
             <p className="text-gray-300 mb-1">
               Have a project in mind or want to collaborate?
             </p>
-            <p className="text-neon-cyan mb-2">varun28082001@gmail.com</p>
+            <a 
+              href="mailto:varun28082001@gmail.com" 
+              className="text-neon-cyan hover:underline mb-2 inline-block"
+            >
+              varun28082001@gmail.com
+            </a>
           </div>
         </div>
         
