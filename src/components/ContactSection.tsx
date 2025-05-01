@@ -39,12 +39,15 @@ const ContactSection: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // EmailJS configuration
-    const serviceId = 'service_973giwu'; // Replace with your actual ServiceID from EmailJS
-    const templateId = 'template_8isd4m9'; // Replace with your actual TemplateID from EmailJS
-    const userId = 'XlZ_vL_8VkTu68fIe'; // Replace with your actual UserID from EmailJS
-    
     try {
+      // Send to email directly as fallback if EmailJS fails
+      const mailToLink = `https://mail.google.com/mail/u/0/?fs=1&to=varun28082001@gmail.com&su=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`From: ${formState.name} (${formState.email})\n\n${formState.message}`)}`;
+      
+      // Try EmailJS first
+      const serviceId = 'service_973giwu'; 
+      const templateId = 'template_8isd4m9';
+      const userId = 'XlZ_vL_8VkTu68fIe';
+      
       const templateParams = {
         from_name: formState.name,
         from_email: formState.email,
@@ -53,22 +56,27 @@ const ContactSection: React.FC = () => {
         to_email: 'varun28082001@gmail.com',
       };
       
-      console.log("Attempting to send email with params:", templateParams);
+      try {
+        console.log("Attempting to send email with params:", templateParams);
+        await emailjs.send(serviceId, templateId, templateParams, userId);
+        toast.success("Message sent successfully! I'll get back to you within 24 hours.");
+      } catch (emailjsError) {
+        console.error('Email sending failed:', emailjsError);
+        // If EmailJS fails, open mailto link as fallback
+        window.open(mailToLink, '_blank');
+        toast.success("Opening email client with your message. If it doesn't open, please email me directly.");
+      }
       
-      await emailjs.send(serviceId, templateId, templateParams, userId);
-      
-      toast.success("Message sent successfully! I'll get back to you within 24 hours.");
       setFormState({ name: '', email: '', subject: 'Job Opportunity', message: '' });
     } catch (error) {
-      console.error('Email sending failed:', error);
-      toast.error("Failed to send message. Please try again or email me directly.");
+      console.error('Message sending failed:', error);
+      toast.error("Failed to send message. Please try emailing me directly at varun28082001@gmail.com");
     } finally {
       setIsSubmitting(false);
     }
   };
   
   const handleResumeClick = () => {
-    // Direct download link approach
     const link = document.createElement('a');
     link.href = 'https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing';
     link.target = '_blank';
@@ -97,7 +105,7 @@ const ContactSection: React.FC = () => {
     { 
       name: 'Email', 
       icon: <Mail className="h-6 w-6" />, 
-      url: 'mailto:varun28082001@gmail.com',
+      url: 'https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello',
       color: 'bg-neon-purple hover:bg-neon-purple/90',
       username: 'varun28082001@gmail.com'
     },
@@ -247,8 +255,7 @@ const ContactSection: React.FC = () => {
                       <div>
                         <h4 className="font-medium">{social.name}</h4>
                         <p className="text-sm opacity-90">
-                          {social.name === 'Email' ? 'varun28082001@gmail.com' : 
-                           social.name === 'LinkedIn' ? social.username : '@' + social.username}
+                          {social.username}
                         </p>
                       </div>
                     </a>
@@ -280,8 +287,10 @@ const ContactSection: React.FC = () => {
               
               <h3 className="font-display text-lg font-medium mt-6 mb-3">Get In Touch</h3>
               <a 
-                href="mailto:varun28082001@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello"
                 className="text-neon-cyan hover:underline block mb-3"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 varun28082001@gmail.com
               </a>
