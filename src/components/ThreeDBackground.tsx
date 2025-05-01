@@ -1,8 +1,9 @@
 
-import React, { useRef, useMemo, useEffect } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
+// Remove the import that's causing issues
+// import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 // Enhanced 3D Code Cube component 
 const CodeCube = ({ position, size = 1, color = 'white', speed = 1, wireframe = true }: { 
@@ -196,14 +197,14 @@ const TechParticles = ({ count = 50 }: { count?: number }) => {
   );
 };
 
-// Post-processing effects wrapper
-const Effects = () => {
-  return (
-    <EffectComposer>
-      <Bloom luminanceThreshold={0.2} intensity={0.5} levels={9} mipmapBlur />
-    </EffectComposer>
-  );
-};
+// Remove the post-processing effects wrapper since it's causing issues
+// const Effects = () => {
+//   return (
+//     <EffectComposer>
+//       <Bloom luminanceThreshold={0.2} intensity={0.5} levels={9} mipmapBlur />
+//     </EffectComposer>
+//   );
+// };
 
 const ThreeDBackground = () => {
   // Define positions for cubes in more interesting geometric patterns
@@ -276,8 +277,8 @@ const ThreeDBackground = () => {
         {/* Tech particles in background */}
         <TechParticles count={70} />
         
-        {/* Visual effects */}
-        <Effects />
+        {/* Remove the Effects component since it's causing issues */}
+        {/* <Effects /> */}
       </Canvas>
     </div>
   );

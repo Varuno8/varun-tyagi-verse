@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
@@ -43,7 +43,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({ position, color, va
   const lightColorObj = new THREE.Color(color).multiplyScalar(1.5);
   
   // Set material properties
-  useEffect(() => {
+  React.useEffect(() => {
     if (materialRef.current) {
       materialRef.current.wireframe = true;
       materialRef.current.transparent = true;
@@ -77,7 +77,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({ position, color, va
         anchorX="center"
         anchorY="middle"
         fontSize={0.4}
-        font="/fonts/Inter-Bold.woff"
+        // Remove font property that's causing issues
         outlineColor={color}
         outlineWidth={0.02}
       >
