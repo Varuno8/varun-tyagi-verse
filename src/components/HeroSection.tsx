@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Download, ArrowRight, Github, ExternalLink, Linkedin } from 'lucide-react';
+import { Download, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import ThreeDBackground from './ThreeDBackground';
 
 const HeroSection: React.FC = () => {
@@ -36,6 +36,10 @@ const HeroSection: React.FC = () => {
     
     return () => clearInterval(typeEffect);
   }, []);
+  
+  const handleResumeClick = () => {
+    window.open('https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing', '_blank');
+  };
   
   return (
     <section id="home" className="relative flex flex-col justify-center min-h-screen py-20 overflow-hidden">
@@ -92,6 +96,7 @@ const HeroSection: React.FC = () => {
               variant="default" 
               size="lg" 
               className="group bg-gradient-to-r from-neon-purple to-neon-cyan text-white transition-all duration-300 shadow-md hover:shadow-glow-purple"
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Projects
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -101,6 +106,7 @@ const HeroSection: React.FC = () => {
               variant="outline" 
               size="lg" 
               className="group border-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300"
+              onClick={handleResumeClick}
             >
               Download Resume
               <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
@@ -127,13 +133,13 @@ const HeroSection: React.FC = () => {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a 
-                href="https://portfolio-website.com" 
+                href="mailto:varun28082001@gmail.com" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors border border-white/10 hover:border-white/20"
-                aria-label="Portfolio Website"
+                aria-label="Email"
               >
-                <ExternalLink className="h-5 w-5" />
+                <Mail className="h-5 w-5" />
               </a>
             </div>
           </div>

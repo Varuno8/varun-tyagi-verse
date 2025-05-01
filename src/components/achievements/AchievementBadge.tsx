@@ -77,7 +77,6 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({ position, color, va
         anchorX="center"
         anchorY="middle"
         fontSize={0.4}
-        // Remove font property that's causing issues
         outlineColor={color}
         outlineWidth={0.02}
       >
