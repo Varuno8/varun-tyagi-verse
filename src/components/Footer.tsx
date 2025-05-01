@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Github, Linkedin, Mail, ArrowUp, Download } from 'lucide-react';
 import TechIcon from './projects/TechIcon';
@@ -41,9 +42,9 @@ const Footer: React.FC = () => {
   
   return (
     <footer className="pt-16 pb-8 bg-dark relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Back to top button */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8 sm:mb-12">
           <button 
             onClick={handleScrollToTop} 
             className="p-3 rounded-full bg-neon-purple text-white hover:bg-neon-purple/90 transition-all hover:scale-110"
@@ -53,7 +54,7 @@ const Footer: React.FC = () => {
           </button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Logo/Brand */}
           <div>
             <h2 className="font-display text-2xl font-bold text-gradient mb-4">Varun Tyagi</h2>
@@ -79,10 +80,10 @@ const Footer: React.FC = () => {
             </div>
           </div>
           
-          {/* Quick links */}
-          <div>
+          {/* Quick links - Display in 2 columns on mobile */}
+          <div className="md:col-span-1">
             <h3 className="font-display text-lg font-medium mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <a 
@@ -93,7 +94,7 @@ const Footer: React.FC = () => {
                   </a>
                 </li>
               ))}
-              <li>
+              <li className="col-span-2 sm:col-span-1 mt-2 sm:mt-0">
                 <button 
                   onClick={handleResumeDownload}
                   className="flex items-center text-gray-300 hover:text-neon-purple transition-colors"
@@ -104,8 +105,8 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           
-          {/* Technology stack */}
-          <div>
+          {/* Technology stack - Improved flex layout for mobile */}
+          <div className="md:col-span-full lg:col-span-1">
             <h3 className="font-display text-lg font-medium mb-4">Tech Stack</h3>
             <div className="flex flex-wrap gap-2">
               {techLinks.map((tech) => (
@@ -115,13 +116,13 @@ const Footer: React.FC = () => {
                 </span>
               ))}
             </div>
-            <h3 className="font-display text-lg font-medium mt-4 mb-2">Get In Touch</h3>
+            <h3 className="font-display text-lg font-medium mt-6 mb-2">Get In Touch</h3>
             <p className="text-gray-300 mb-1">
               Have a project in mind or want to collaborate?
             </p>
             <a 
               href="https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello" 
-              className="text-neon-cyan hover:underline mb-2 inline-block"
+              className="text-neon-cyan hover:underline mb-2 inline-block break-words"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -43,9 +43,9 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <section id="projects" ref={sectionRef} className="section-padding relative bg-gradient-to-b from-dark to-dark-lighter">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Section title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
             Featured <span className="text-gradient">Projects</span>
           </h2>
@@ -54,8 +54,8 @@ const ProjectsSection: React.FC = () => {
           </p>
         </div>
         
-        {/* 3D Project cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Project cards with better spacing on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.slice(0, visibleProjects).map((project, index) => (
             <div key={project.id} className="project-card" style={{ animationDelay: `${index * 150}ms` }}>
               <ProjectCard 
@@ -69,7 +69,7 @@ const ProjectsSection: React.FC = () => {
         
         {/* Load more button */}
         {visibleProjects < projects.length && (
-          <div className="text-center mt-12">
+          <div className="text-center mt-10 sm:mt-12">
             <Button 
               onClick={handleLoadMore}
               variant="outline" 
@@ -84,8 +84,8 @@ const ProjectsSection: React.FC = () => {
       </div>
       
       {/* Background glow effects */}
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-neon-purple/20 rounded-full filter blur-3xl"></div>
-      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-neon-cyan/10 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-0 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-neon-purple/20 rounded-full filter blur-3xl"></div>
+      <div className="absolute top-1/3 right-1/4 w-48 sm:w-64 h-48 sm:h-64 bg-neon-cyan/10 rounded-full filter blur-3xl"></div>
     </section>
   );
 };
