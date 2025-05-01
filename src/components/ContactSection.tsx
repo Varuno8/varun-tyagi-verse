@@ -5,31 +5,54 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Github, Linkedin, Mail, Send, Download } from 'lucide-react';
 import { toast } from 'sonner';
+import emailjs from 'emailjs-com';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ContactSection: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const isMobile = useIsMobile();
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    // EmailJS configuration
+    // These would be your actual EmailJS credentials
+    const serviceId = 'YOUR_EMAILJS_SERVICE_ID'; // Replace with your ServiceID from EmailJS
+    const templateId = 'YOUR_EMAILJS_TEMPLATE_ID'; // Replace with your TemplateID from EmailJS
+    const userId = 'YOUR_EMAILJS_USER_ID'; // Replace with your UserID from EmailJS
+    
+    try {
+      const templateParams = {
+        name: formState.name,
+        email: formState.email,
+        subject: formState.subject || 'Portfolio Contact Form',
+        message: formState.message,
+        to_email: 'varun28082001@gmail.com',
+      };
+      
+      await emailjs.send(serviceId, templateId, templateParams, userId);
+      
       toast.success("Message sent successfully! I'll get back to you soon.");
-      setFormState({ name: '', email: '', message: '' });
-    }, 1500);
+      setFormState({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      toast.error("Failed to send message. Please try again or email me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   const handleResumeClick = () => {
@@ -75,21 +98,21 @@ const ContactSection: React.FC = () => {
       
       <div className="container mx-auto">
         {/* Section title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
             Let's <span className="text-gradient">Build Together</span>
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto px-4">
             Have a project in mind or want to collaborate? Reach out and let's create something amazing.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 md:px-6 lg:px-0">
           {/* Contact form */}
-          <div className="glass-card rounded-xl p-8">
+          <div className="glass-card rounded-xl p-6 md:p-8">
             <h3 className="text-2xl font-display font-semibold mb-6">Send a Message</h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Name
@@ -122,6 +145,20 @@ const ContactSection: React.FC = () => {
               </div>
               
               <div>
+                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  Subject
+                </label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  value={formState.subject}
+                  onChange={handleInputChange}
+                  placeholder="What is this regarding?"
+                  className="bg-white/5 border-white/20"
+                />
+              </div>
+              
+              <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
                   Message
                 </label>
@@ -131,7 +168,7 @@ const ContactSection: React.FC = () => {
                   value={formState.message}
                   onChange={handleInputChange}
                   placeholder="How can I help you?"
-                  className="bg-white/5 border-white/20 min-h-[150px]"
+                  className="bg-white/5 border-white/20 min-h-[120px]"
                   required
                 />
               </div>
@@ -156,33 +193,36 @@ const ContactSection: React.FC = () => {
                   </span>
                 )}
               </Button>
+              <p className="text-xs text-center text-gray-400 mt-2">
+                Your message will be sent directly to my inbox
+              </p>
             </form>
           </div>
           
           {/* Connect section */}
           <div>
-            <div className="glass-card rounded-xl p-8 mb-8">
+            <div className="glass-card rounded-xl p-6 md:p-8 mb-6 md:mb-8">
               <h3 className="text-2xl font-display font-semibold mb-6">Connect With Me</h3>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {/* Social links */}
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-3">
                   {socialLinks.map((social) => (
                     <a 
                       key={social.name} 
                       href={social.url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className={`flex items-center p-4 rounded-lg ${social.color} text-white transition-transform hover:scale-105`}
+                      className={`flex items-center p-3 rounded-lg ${social.color} text-white transition-transform hover:scale-102`}
                     >
-                      <div className="mr-4">
+                      <div className="mr-3">
                         {social.icon}
                       </div>
                       <div>
                         <h4 className="font-medium">{social.name}</h4>
                         <p className="text-sm opacity-90">
-                          {social.name === 'Email' ? 'contact@example.com' : 
-                           social.name === 'LinkedIn' ? social.username : '@username'}
+                          {social.name === 'Email' ? 'varun28082001@gmail.com' : 
+                           social.name === 'LinkedIn' ? social.username : '@' + social.username}
                         </p>
                       </div>
                     </a>
@@ -201,8 +241,8 @@ const ContactSection: React.FC = () => {
             </div>
             
             {/* Location */}
-            <div className="glass-card rounded-xl p-8">
-              <h3 className="text-2xl font-display font-semibold mb-6">Availability</h3>
+            <div className="glass-card rounded-xl p-6 md:p-8">
+              <h3 className="text-2xl font-display font-semibold mb-5">Availability</h3>
               <p className="text-gray-300 mb-4">
                 Currently available for freelance projects, collaborations, and full-time opportunities.
               </p>

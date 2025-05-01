@@ -10,10 +10,12 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
 import ThreeDBackground from '@/components/ThreeDBackground';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index: React.FC = () => {
   // Only show 3D background for larger screens
   const [showThreeD, setShowThreeD] = React.useState(false);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     // Check if screen is large enough for ThreeDBackground
@@ -43,7 +45,7 @@ const Index: React.FC = () => {
         const targetElement = document.getElementById(targetId || '');
         
         if (targetElement) {
-          const headerHeight = 80; // Approximate header height
+          const headerHeight = isMobile ? 60 : 80; // Smaller offset for mobile
           const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
           
           window.scrollTo({
@@ -62,12 +64,12 @@ const Index: React.FC = () => {
     return () => {
       document.removeEventListener('click', handleHashLinkClick);
     };
-  }, []);
+  }, [isMobile]);
   
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
       <ParticlesBackground />
-      {showThreeD && <ThreeDBackground />}
+      {showThreeD && !isMobile && <ThreeDBackground />}
       <Navbar />
       <HeroSection />
       <ProjectsSection />
