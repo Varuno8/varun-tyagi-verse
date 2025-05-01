@@ -9,6 +9,35 @@ interface AchievementBadgeProps {
   value: string;
 }
 
+// Small particles orbiting around the achievement
+const ParticlesRing = ({ count, radius, color }: { count: number; radius: number; color: string }) => {
+  const particles = useRef<THREE.Group>(null!);
+  
+  useFrame((state) => {
+    if (!particles.current) return;
+    particles.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+  });
+  
+  // Create particles at regular intervals around a circle
+  const items = Array.from({ length: count }).map((_, i) => {
+    const angle = (i / count) * Math.PI * 2;
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+    return { position: [x, 0, z] as [number, number, number], size: 0.06 };
+  });
+  
+  return (
+    <group ref={particles}>
+      {items.map((item, i) => (
+        <mesh key={i} position={item.position}>
+          <sphereGeometry args={[item.size, 8, 8]} />
+          <meshBasicMaterial color={color} transparent opacity={0.8} />
+        </mesh>
+      ))}
+    </group>
+  );
+};
+
 const AchievementBadge: React.FC<AchievementBadgeProps> = ({ position, color, value }) => {
   const badgeGroup = useRef<THREE.Group>(null!);
   const octahedronRef = useRef<THREE.Mesh>(null!);
@@ -53,8 +82,6 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({ position, color, va
     }
   }, [color]);
   
-  const numericValue = parseInt(value.replace(/\D/g, '')) || 0;
-  
   return (
     <group ref={badgeGroup} position={position}>
       {/* Main badge geometry */}
@@ -76,36 +103,7 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({ position, color, va
       </mesh>
       
       {/* Particles around the badge */}
-      <ParticlesRing count={8} radius={1.1} color={color} />
-    </group>
-  );
-};
-
-// Small particles orbiting around the achievement
-const ParticlesRing = ({ count, radius, color }: { count: number; radius: number; color: string }) => {
-  const particles = useRef<THREE.Group>(null!);
-  
-  useFrame((state) => {
-    if (!particles.current) return;
-    particles.current.rotation.y = state.clock.getElapsedTime() * 0.2;
-  });
-  
-  // Create particles at regular intervals around a circle
-  const items = Array.from({ length: count }).map((_, i) => {
-    const angle = (i / count) * Math.PI * 2;
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius;
-    return { position: [x, 0, z] as [number, number, number], size: 0.06 };
-  });
-  
-  return (
-    <group ref={particles}>
-      {items.map((item, i) => (
-        <mesh key={i} position={item.position}>
-          <sphereGeometry args={[item.size, 8, 8]} />
-          <meshBasicMaterial color={color} transparent opacity={0.8} />
-        </mesh>
-      ))}
+      <ParticlesRing count={6} radius={1.1} color={color} />
     </group>
   );
 };
