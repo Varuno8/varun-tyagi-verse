@@ -13,11 +13,11 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "Eigengram Healthcare Platform",
-    description: "Full-stack AI service marketplace for medical professionals with subscription flows and admin analytics.",
-    technologies: ["React", "TypeScript", "Django", "JWT", "PostgreSQL", "Recharts"],
+    description: "A healthcare SaaS platform connecting users to AI-powered medical services through subscriptions.",
+    technologies: ["React", "Next.js", "PostgreSQL", "JWT", "REST API", "Tailwind CSS"],
     image: "https://placehold.co/600x400/1A1F2C/FFFFFF?text=Eigengram",
     githubUrl: "https://github.com/",
-    demoUrl: "https://github.com/", // No actual URL provided for this project
+    demoUrl: "https://nextjs-login-sooty.vercel.app/",
   },
   {
     id: 2,
