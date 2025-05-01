@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -83,6 +82,40 @@
   .skill-tag {
     @apply px-3 py-1 rounded-full text-sm bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-neon-purple hover:bg-opacity-20 transition-all duration-300;
   }
+  
+  /* Typing cursor animation */
+  .typing-cursor {
+    @apply inline-block animate-blink;
+  }
+  
+  /* Advanced 3D button effect */
+  .btn-3d {
+    @apply relative transition-all duration-300 shadow-lg active:translate-y-1 active:shadow-md;
+  }
+  
+  .btn-3d::before {
+    content: '';
+    @apply absolute inset-0 w-full h-full bg-current opacity-20 blur transition-all duration-300;
+    transform: translateY(5px) scale(0.95);
+    z-index: -1;
+  }
+  
+  .btn-3d:hover::before {
+    transform: translateY(8px) scale(0.95);
+    @apply opacity-30 blur-lg;
+  }
+  
+  /* Professional card styles */
+  .pro-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg rounded-xl transition-all duration-300;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .pro-card:hover {
+    @apply border-white/20 shadow-xl;
+    transform: translateY(-5px);
+  }
 }
 
 /* Enhanced 3D animations */
@@ -151,6 +184,57 @@
   }
 }
 
+/* New professional animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(139, 92, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @layer utilities {
   .animate-float-3d {
     animation: float-3d 5s ease-in-out infinite;
@@ -182,6 +266,39 @@
   
   .perspective-1000 {
     perspective: 1000px;
+  }
+  
+  .animate-blink {
+    animation: blink 1s infinite;
+  }
+  
+  .animate-float-horizontal {
+    animation: float-horizontal 3s ease-in-out infinite;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+  
+  .animate-ripple {
+    animation: ripple 3s infinite;
+  }
+  
+  .animate-gradient-shift {
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  /* Professional shadow styles */
+  .shadow-glow-purple {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  }
+  
+  .shadow-glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+  }
+  
+  .shadow-glow-teal {
+    box-shadow: 0 0 15px rgba(6, 214, 160, 0.5);
   }
 }
 
