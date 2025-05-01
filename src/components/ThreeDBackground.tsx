@@ -1,8 +1,7 @@
 
 import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 // Enhanced 3D Code Cube component 
 const CodeCube = ({ position, size = 1, color = 'white', speed = 1, wireframe = true }: { 
@@ -98,9 +97,8 @@ const Lines = ({ points, colorA = "#8B5CF6", colorB = "#00E5FF" }: {
   colorB?: string 
 }) => {
   const lineRef = useRef<THREE.LineSegments>(null!);
-  const { clock } = useThree();
   
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (!lineRef.current) return;
     const t = clock.getElapsedTime() * 0.2;
     lineRef.current.rotation.y = Math.sin(t) * 0.2;
@@ -152,8 +150,8 @@ const Lines = ({ points, colorA = "#8B5CF6", colorB = "#00E5FF" }: {
   );
 };
 
-// Floating tech particles in 3D space
-const TechParticles = ({ count = 50 }: { count?: number }) => {
+// Floating tech particles in 3D space - simplified for better compatibility
+const TechParticles = ({ count = 30 }: { count?: number }) => {
   const group = useRef<THREE.Group>(null!);
   const particles = useMemo(() => {
     const temp = [];
@@ -196,17 +194,8 @@ const TechParticles = ({ count = 50 }: { count?: number }) => {
   );
 };
 
-// Simplified effects for better compatibility
-const Effects = () => {
-  return (
-    <EffectComposer>
-      <Bloom luminanceThreshold={0.2} intensity={0.3} levels={6} mipmapBlur />
-    </EffectComposer>
-  );
-};
-
 const ThreeDBackground = () => {
-  // Define positions for cubes in more interesting geometric patterns
+  // Define positions for cubes in more interesting geometric patterns - reduced count
   const cubePositions: [number, number, number][] = [
     [-5, 1, -3],
     [5, -1.5, 2],
@@ -215,18 +204,13 @@ const ThreeDBackground = () => {
     [-4, 0.5, 3],
     [4.5, -0.5, -3.5],
     [0.5, 3.5, 4],
-    [-3, -3, 0],
-    [2, 1, -6],
-    [-1, 4, -2],
-    [6, 2, 1],
   ];
   
-  // Add spherical objects for enhanced visual interest
+  // Add spherical objects for enhanced visual interest - reduced count
   const spherePositions: [number, number, number][] = [
     [-7, 3, 5],
     [6, 4, -1],
     [-2, -4, 3],
-    [4, -2, -5],
   ];
 
   return (
@@ -241,7 +225,7 @@ const ThreeDBackground = () => {
         <pointLight position={[-10, -10, -10]} color="#8B5CF6" intensity={0.3} />
         <pointLight position={[0, 5, 5]} color="#00E5FF" intensity={0.3} />
         
-        {/* 3D cubes */}
+        {/* 3D cubes - reduced count for better performance */}
         {cubePositions.map((position, idx) => (
           <CodeCube 
             key={idx} 
@@ -273,11 +257,8 @@ const ThreeDBackground = () => {
         {/* Connected lines */}
         <Lines points={[...cubePositions, ...spherePositions]} colorA="#8B5CF6" colorB="#00E5FF" />
         
-        {/* Tech particles in background */}
-        <TechParticles count={50} />
-        
-        {/* Add simplified effects */}
-        <Effects />
+        {/* Tech particles in background - reduced count */}
+        <TechParticles count={30} />
       </Canvas>
     </div>
   );

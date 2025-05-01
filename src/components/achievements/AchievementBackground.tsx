@@ -14,10 +14,11 @@ const AchievementBackground: React.FC = () => {
         <ambientLight intensity={0.2} />
         <pointLight position={[10, 10, 10]} intensity={0.5} />
         
-        {achievements.slice(0, 4).map((achievement, index) => (
+        {/* Only render 2 achievements to reduce complexity */}
+        {achievements.slice(0, 2).map((achievement, index) => (
           <AchievementBadge 
             key={achievement.id}
-            position={[-3 + index * 2, 0, 0]} 
+            position={[-2 + index * 4, 0, 0]} 
             color={achievement.color === "neon-cyan" ? "#00E5FF" : 
                   achievement.color === "neon-purple" ? "#8B5CF6" : 
                   achievement.color === "neon-teal" ? "#06D6A0" : "#8B5CF6"} 

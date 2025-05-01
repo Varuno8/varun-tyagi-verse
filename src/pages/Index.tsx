@@ -12,6 +12,26 @@ import ParticlesBackground from '@/components/ParticlesBackground';
 import ThreeDBackground from '@/components/ThreeDBackground';
 
 const Index: React.FC = () => {
+  // Only show 3D background for larger screens
+  const [showThreeD, setShowThreeD] = React.useState(false);
+  
+  useEffect(() => {
+    // Check if screen is large enough for ThreeDBackground
+    const checkScreenSize = () => {
+      setShowThreeD(window.innerWidth > 1024);
+    };
+    
+    // Initial check
+    checkScreenSize();
+    
+    // Listen for resize events
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
+  
   // Add smooth scroll behavior with offset for header
   useEffect(() => {
     const handleHashLinkClick = (e: MouseEvent) => {
@@ -47,7 +67,7 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
       <ParticlesBackground />
-      <ThreeDBackground />
+      {showThreeD && <ThreeDBackground />}
       <Navbar />
       <HeroSection />
       <ProjectsSection />

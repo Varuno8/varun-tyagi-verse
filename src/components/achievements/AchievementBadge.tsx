@@ -2,7 +2,6 @@
 import React, { useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
 
 interface AchievementBadgeProps {
   position: [number, number, number];
@@ -70,18 +69,11 @@ const AchievementBadge: React.FC<AchievementBadgeProps> = ({ position, color, va
         <meshStandardMaterial color={lightColorObj} emissive={lightColorObj} emissiveIntensity={0.3} transparent opacity={0.6} />
       </mesh>
       
-      {/* Value display as 3D text */}
-      <Text
-        position={[0, 0, 1]}
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-        fontSize={0.4}
-        outlineColor={color}
-        outlineWidth={0.02}
-      >
-        {numericValue}
-      </Text>
+      {/* Simple number display - using mesh instead of Text */}
+      <mesh position={[0, 0, 1]} scale={0.5}>
+        <boxGeometry args={[0.8, 0.8, 0.05]} />
+        <meshStandardMaterial color="white" emissive="white" emissiveIntensity={0.5} />
+      </mesh>
       
       {/* Particles around the badge */}
       <ParticlesRing count={8} radius={1.1} color={color} />
