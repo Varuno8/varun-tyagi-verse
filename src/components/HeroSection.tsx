@@ -142,10 +142,9 @@ const HeroSection: React.FC = () => {
             </a>
           </div>
           
-          {/* Enhanced scroll indicator - adjusted positioning */}
+          {/* Enhanced scroll indicator - removed the EXPLORE text */}
           <div className="absolute bottom-8 sm:bottom-16 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in" style={{animationDelay: '2s'}}>
             <div className="flex flex-col items-center">
-              <span className="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 tracking-widest uppercase">Explore</span>
               <div className="relative h-12 sm:h-16 w-1">
                 <div className="absolute w-[3px] h-12 sm:h-16 rounded-full bg-gradient-to-b from-neon-purple to-transparent"></div>
                 <div className="absolute w-[3px] h-4 sm:h-5 bg-neon-purple rounded-full animate-bounce-slow"></div>
