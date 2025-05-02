@@ -24,7 +24,7 @@ export const spherePositions: [number, number, number][] = [
 // Network particle config
 export const networkConfig = {
   particleCount: 90,          // Increased for more density
-  particleSizeRange: [0.05, 0.2], // Larger size range for better hierarchy
+  particleSizeRange: [0.05, 0.2] as [number, number], // Larger size range for better hierarchy
   connectionDistance: 8,      // Maximum distance for particle connections
   connectionOpacity: 0.6,     // Stronger connections
   movementSpeed: 0.08,        // Slightly faster movement
@@ -36,8 +36,8 @@ export const networkConfig = {
   },
   // Z-depth layers for parallax effect
   depthLayers: {
-    foreground: [-10, 0],     // Closer to camera
-    midground: [-25, -10],    // Middle distance
-    background: [-40, -25]    // Far distance
+    foreground: [-10, 0] as [number, number],     // Closer to camera
+    midground: [-25, -10] as [number, number],    // Middle distance
+    background: [-40, -25] as [number, number]    // Far distance
   }
 };
