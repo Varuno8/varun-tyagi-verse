@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { AdaptiveDpr, EffectComposer, Bloom } from '@react-three/postprocessing';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
+import { AdaptiveDpr } from '@react-three/drei';
 import NetworkParticles from './three/NetworkParticles';
 import { colors } from './three/SceneConfig';
 

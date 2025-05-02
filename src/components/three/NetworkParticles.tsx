@@ -5,6 +5,22 @@ import * as THREE from 'three';
 import { colors } from './SceneConfig';
 import { Line } from '@react-three/drei';
 
+interface Particle {
+  position: THREE.Vector3;
+  originalPosition: THREE.Vector3;
+  size: number;
+  color: string;
+  speedFactor: number;
+  phaseOffset: number;
+}
+
+interface Connection {
+  points: THREE.Vector3[];
+  colorA: THREE.Color;
+  colorB: THREE.Color;
+  opacity: number;
+}
+
 const NetworkParticles: React.FC = () => {
   const groupRef = useRef<THREE.Group>(null!);
   const linesRef = useRef<THREE.Group>(null!);
@@ -14,7 +30,7 @@ const NetworkParticles: React.FC = () => {
   const maxDistance = 8;
   
   const particles = useMemo(() => {
-    const temp = [];
+    const temp: Particle[] = [];
     
     // Create particles in a 3D space
     for (let i = 0; i < particleCount; i++) {
@@ -55,7 +71,7 @@ const NetworkParticles: React.FC = () => {
   
   // Create connections between particles
   const connections = useMemo(() => {
-    const lines = [];
+    const lines: Connection[] = [];
     
     // Create connections between particles that are close enough
     for (let i = 0; i < particles.length; i++) {
@@ -105,24 +121,29 @@ const NetworkParticles: React.FC = () => {
     
     // Force the lines to update with new particle positions
     if (linesRef.current) {
-      linesRef.current.children.forEach((line, i) => {
+      linesRef.current.children.forEach((child, i) => {
         if (i < connections.length) {
           const connection = connections[i];
-          const lineGeometry = line.geometry as THREE.BufferGeometry;
-          const positions = lineGeometry.attributes.position.array as Float32Array;
+          const line = child as THREE.Line;
           
-          // Update line endpoints to match particle positions
-          const pointA = connection.points[0];
-          const pointB = connection.points[1];
-          
-          positions[0] = pointA.x;
-          positions[1] = pointA.y;
-          positions[2] = pointA.z;
-          positions[3] = pointB.x;
-          positions[4] = pointB.y;
-          positions[5] = pointB.z;
-          
-          lineGeometry.attributes.position.needsUpdate = true;
+          if (line.geometry && line.geometry.attributes.position) {
+            const positions = line.geometry.attributes.position.array as Float32Array;
+            
+            // Update line endpoints to match particle positions
+            const pointA = connection.points[0];
+            const pointB = connection.points[1];
+            
+            if (positions.length >= 6) {
+              positions[0] = pointA.x;
+              positions[1] = pointA.y;
+              positions[2] = pointA.z;
+              positions[3] = pointB.x;
+              positions[4] = pointB.y;
+              positions[5] = pointB.z;
+              
+              line.geometry.attributes.position.needsUpdate = true;
+            }
+          }
         }
       });
     }
