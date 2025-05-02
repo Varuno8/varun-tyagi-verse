@@ -11,20 +11,38 @@ import Footer from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
 import ThreeDBackground from '@/components/ThreeDBackground';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { toast } from "sonner";
 
 const Index: React.FC = () => {
   const isMobile = useIsMobile();
   const [use3DBackground, setUse3DBackground] = useState(true);
+  const [loadingBackground, setLoadingBackground] = useState(true);
   
-  // Error handler for 3D background
+  // Enhanced error handler for 3D background
   useEffect(() => {
-    const handleError = () => {
-      console.log("3D background failed, falling back to 2D");
-      setUse3DBackground(false);
+    const handleError = (event: ErrorEvent) => {
+      // Check if the error is related to Three.js or WebGL
+      if (
+        event.message.includes('three') || 
+        event.message.includes('webgl') || 
+        event.message.includes('canvas') ||
+        event.message.includes('lov') // This was the specific error in your case
+      ) {
+        console.warn("3D background failed, falling back to 2D:", event.message);
+        setUse3DBackground(false);
+        toast.error("Using simplified background due to graphics limitations", {
+          description: "Your device may not support 3D graphics fully"
+        });
+      }
     };
     
     window.addEventListener('error', handleError);
-    return () => window.removeEventListener('error', handleError);
+    const timeout = setTimeout(() => setLoadingBackground(false), 1000);
+    
+    return () => {
+      window.removeEventListener('error', handleError);
+      clearTimeout(timeout);
+    };
   }, []);
   
   // Add smooth scroll behavior with offset for header
@@ -61,7 +79,15 @@ const Index: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
-      {use3DBackground ? <ThreeDBackground /> : <ParticlesBackground />}
+      {loadingBackground ? (
+        <div className="absolute inset-0 -z-10 bg-dark flex items-center justify-center">
+          <div className="w-10 h-10 border-4 border-t-neon-cyan border-r-neon-purple border-b-neon-teal border-l-transparent rounded-full animate-spin" />
+        </div>
+      ) : use3DBackground ? (
+        <ThreeDBackground />
+      ) : (
+        <ParticlesBackground />
+      )}
       <Navbar />
       <HeroSection />
       <ProjectsSection />
