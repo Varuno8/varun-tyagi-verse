@@ -15,7 +15,8 @@ export const spherePositions: [number, number, number][] = [
 
 // Color constants for consistent styling
 export const colors = {
-  purple: "#8B5CF6",
-  cyan: "#00E5FF",
-  teal: "#06D6A0"
+  purple: "#8B5CF6", // Neon purple
+  cyan: "#00E5FF",   // Electric blue
+  teal: "#06D6A0",   // Teal accent
+  darkBlue: "#1A1F2C" // Dark space background
 };

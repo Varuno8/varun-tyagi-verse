@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ProjectsSection from '@/components/ProjectsSection';
@@ -13,39 +13,10 @@ import ThreeDBackground from '@/components/ThreeDBackground';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index: React.FC = () => {
-  // Only show 3D background for larger screens
-  const [showThreeD, setShowThreeD] = React.useState(false);
   const isMobile = useIsMobile();
   
-  useEffect(() => {
-    // Check if screen is large enough for ThreeDBackground
-    const checkScreenSize = () => {
-      setShowThreeD(window.innerWidth > 1024);
-    };
-    
-    // Initial check
-    checkScreenSize();
-    
-    // Debounce resize events for better performance
-    let resizeTimer: ReturnType<typeof setTimeout>;
-    
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        checkScreenSize();
-      }, 100);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(resizeTimer);
-    };
-  }, []);
-  
   // Add smooth scroll behavior with offset for header
-  useEffect(() => {
+  React.useEffect(() => {
     const handleHashLinkClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
@@ -79,7 +50,7 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
       <ParticlesBackground />
-      {showThreeD && !isMobile && <ThreeDBackground />}
+      <ThreeDBackground />
       <Navbar />
       <HeroSection />
       <ProjectsSection />
