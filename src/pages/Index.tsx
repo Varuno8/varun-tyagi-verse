@@ -18,15 +18,19 @@ const Index: React.FC = () => {
   const [use3DBackground, setUse3DBackground] = useState(true);
   const [loadingBackground, setLoadingBackground] = useState(true);
   
-  // Enhanced error handler for 3D background
+  // Enhanced error handler for 3D background with debugging
   useEffect(() => {
     const handleError = (event: ErrorEvent) => {
-      // Check if the error is related to Three.js or WebGL
+      console.log("Error detected:", event.message);
+      
+      // Check if the error is related to Three.js, WebGL, or other known issues
       if (
         event.message.includes('three') || 
         event.message.includes('webgl') || 
         event.message.includes('canvas') ||
-        event.message.includes('lov') // This was the specific error in your case
+        event.message.includes('lov') ||
+        event.message.includes('Cannot read properties of undefined') ||
+        event.message.includes('context lost')
       ) {
         console.warn("3D background failed, falling back to 2D:", event.message);
         setUse3DBackground(false);
@@ -36,11 +40,31 @@ const Index: React.FC = () => {
       }
     };
     
+    // Listen for errors at window level
     window.addEventListener('error', handleError);
+    
+    // Listen for unhandled promise rejections
+    window.addEventListener('unhandledrejection', (event) => {
+      console.warn("Unhandled promise rejection:", event.reason);
+      if (typeof event.reason === 'object' && event.reason !== null) {
+        const errorMsg = String(event.reason);
+        if (
+          errorMsg.includes('three') ||
+          errorMsg.includes('webgl') ||
+          errorMsg.includes('lov') ||
+          errorMsg.includes('Cannot read properties of undefined')
+        ) {
+          console.warn("3D background failed due to promise rejection, falling back to 2D");
+          setUse3DBackground(false);
+        }
+      }
+    });
+    
     const timeout = setTimeout(() => setLoadingBackground(false), 1000);
     
     return () => {
       window.removeEventListener('error', handleError);
+      window.removeEventListener('unhandledrejection', (event) => {});
       clearTimeout(timeout);
     };
   }, []);

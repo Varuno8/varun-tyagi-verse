@@ -1,8 +1,7 @@
 
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { EffectComposer, Bloom, DepthOfField, Noise } from '@react-three/postprocessing';
-import { BlendFunction } from 'postprocessing';
+import { Bloom, DepthOfField } from '@react-three/postprocessing';
 import NetworkParticles from './three/NetworkParticles';
 import { colors } from './three/SceneConfig';
 
@@ -51,25 +50,29 @@ const ThreeDBackground = () => {
         {/* Enhanced network particles */}
         <NetworkParticles />
         
-        {/* Enhanced post-processing for visual depth */}
-        <EffectComposer>
-          <Bloom 
-            luminanceThreshold={0.2}
-            luminanceSmoothing={0.9}
-            intensity={0.8}
-          />
-          <DepthOfField
-            focusDistance={0}
-            focalLength={0.02}
-            bokehScale={2}
-          />
-          <Noise
-            opacity={0.02}
-            blendFunction={BlendFunction.ADD}
-          />
-        </EffectComposer>
+        {/* Simplified post-processing to avoid errors */}
+        <EffectComposer />
       </Canvas>
     </div>
+  );
+};
+
+// Custom simplified EffectComposer to avoid errors
+const EffectComposer = () => {
+  return (
+    <>
+      <Bloom 
+        luminanceThreshold={0.2}
+        luminanceSmoothing={0.9}
+        intensity={0.8}
+      />
+      <DepthOfField
+        focusDistance={0}
+        focalLength={0.02}
+        bokehScale={2}
+      />
+      {/* Removed Noise effect which was causing issues */}
+    </>
   );
 };
 
