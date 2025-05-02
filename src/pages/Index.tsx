@@ -18,53 +18,74 @@ const Index: React.FC = () => {
   const [use3DBackground, setUse3DBackground] = useState(true);
   const [loadingBackground, setLoadingBackground] = useState(true);
   
-  // Enhanced error handler for 3D background with debugging
+  // Super robust error handling for 3D background
   useEffect(() => {
+    const knownErrorPatterns = [
+      'three',
+      'webgl',
+      'canvas', 
+      'lov',
+      'Cannot read properties of undefined',
+      'Cannot destructure property',
+      'camera',
+      'useContext',
+      'context lost',
+      'null',
+      'glerror'
+    ];
+    
+    // Centralized error check function
+    const isThreeJsError = (errorMessage: string): boolean => {
+      return knownErrorPatterns.some(pattern => 
+        errorMessage.toLowerCase().includes(pattern.toLowerCase())
+      );
+    };
+    
+    // Window error handler
     const handleError = (event: ErrorEvent) => {
       console.log("Error detected:", event.message);
       
-      // Check if the error is related to Three.js, WebGL, or other known issues
-      if (
-        event.message.includes('three') || 
-        event.message.includes('webgl') || 
-        event.message.includes('canvas') ||
-        event.message.includes('lov') ||
-        event.message.includes('Cannot read properties of undefined') ||
-        event.message.includes('context lost')
-      ) {
+      if (isThreeJsError(event.message)) {
         console.warn("3D background failed, falling back to 2D:", event.message);
         setUse3DBackground(false);
         toast.error("Using simplified background due to graphics limitations", {
-          description: "Your device may not support 3D graphics fully"
+          description: "Your device may not fully support 3D graphics"
         });
       }
     };
     
-    // Listen for errors at window level
-    window.addEventListener('error', handleError);
-    
-    // Listen for unhandled promise rejections
-    window.addEventListener('unhandledrejection', (event) => {
+    // Promise rejection handler
+    const handleRejection = (event: PromiseRejectionEvent) => {
       console.warn("Unhandled promise rejection:", event.reason);
-      if (typeof event.reason === 'object' && event.reason !== null) {
-        const errorMsg = String(event.reason);
-        if (
-          errorMsg.includes('three') ||
-          errorMsg.includes('webgl') ||
-          errorMsg.includes('lov') ||
-          errorMsg.includes('Cannot read properties of undefined')
-        ) {
-          console.warn("3D background failed due to promise rejection, falling back to 2D");
-          setUse3DBackground(false);
-        }
+      
+      const errorMsg = String(event.reason || '');
+      if (isThreeJsError(errorMsg)) {
+        console.warn("3D background failed due to promise rejection, falling back to 2D");
+        setUse3DBackground(false);
       }
-    });
+    };
     
+    // React error boundary alternative for non-component errors
+    const originalConsoleError = console.error;
+    console.error = (...args) => {
+      const errorText = args.join(' ');
+      if (isThreeJsError(errorText)) {
+        console.warn("React error detected in Three.js, falling back to 2D");
+        setUse3DBackground(false);
+      }
+      originalConsoleError.apply(console, args);
+    };
+    
+    window.addEventListener('error', handleError);
+    window.addEventListener('unhandledrejection', handleRejection);
+    
+    // Add short timeout to allow for background loading
     const timeout = setTimeout(() => setLoadingBackground(false), 1000);
     
     return () => {
       window.removeEventListener('error', handleError);
-      window.removeEventListener('unhandledrejection', (event) => {});
+      window.removeEventListener('unhandledrejection', handleRejection);
+      console.error = originalConsoleError;
       clearTimeout(timeout);
     };
   }, []);
