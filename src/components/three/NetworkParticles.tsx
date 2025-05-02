@@ -118,35 +118,6 @@ const NetworkParticles: React.FC = () => {
       particle.position.y = originalPosition.y + Math.cos(t * speedFactor + phaseOffset) * 0.5;
       particle.position.z = originalPosition.z + Math.sin(t * speedFactor * 0.8 + phaseOffset) * 0.5;
     });
-    
-    // Force the lines to update with new particle positions
-    if (linesRef.current) {
-      linesRef.current.children.forEach((child, i) => {
-        if (i < connections.length) {
-          const connection = connections[i];
-          const line = child as THREE.Line;
-          
-          if (line.geometry && line.geometry.attributes.position) {
-            const positions = line.geometry.attributes.position.array as Float32Array;
-            
-            // Update line endpoints to match particle positions
-            const pointA = connection.points[0];
-            const pointB = connection.points[1];
-            
-            if (positions.length >= 6) {
-              positions[0] = pointA.x;
-              positions[1] = pointA.y;
-              positions[2] = pointA.z;
-              positions[3] = pointB.x;
-              positions[4] = pointB.y;
-              positions[5] = pointB.z;
-              
-              line.geometry.attributes.position.needsUpdate = true;
-            }
-          }
-        }
-      });
-    }
   });
   
   return (
@@ -154,7 +125,7 @@ const NetworkParticles: React.FC = () => {
       {/* Render particles */}
       {particles.map((particle, i) => (
         <mesh key={`particle-${i}`} position={[particle.position.x, particle.position.y, particle.position.z]}>
-          <sphereGeometry args={[particle.size, 16, 16]} />
+          <sphereGeometry args={[particle.size, 8, 8]} />
           <meshBasicMaterial color={particle.color} transparent opacity={0.8} />
         </mesh>
       ))}
@@ -170,7 +141,7 @@ const NetworkParticles: React.FC = () => {
             ]}
             color={connection.colorA.getStyle()}
             lineWidth={1}
-            transparent
+            transparent={true}
             opacity={connection.opacity * 0.5}
           />
         ))}

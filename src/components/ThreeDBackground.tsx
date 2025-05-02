@@ -14,6 +14,7 @@ const ThreeDBackground = () => {
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]} // Responsive pixel ratio
       >
+        <color attach="background" args={['#070b11']} />
         <fog attach="fog" args={['#070b11', 20, 40]} />
         <ambientLight intensity={0.15} />
         <pointLight position={[10, 10, 10]} intensity={0.5} />

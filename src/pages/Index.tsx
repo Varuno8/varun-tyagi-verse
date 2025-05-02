@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ProjectsSection from '@/components/ProjectsSection';
@@ -14,6 +14,18 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index: React.FC = () => {
   const isMobile = useIsMobile();
+  const [use3DBackground, setUse3DBackground] = useState(true);
+  
+  // Error handler for 3D background
+  useEffect(() => {
+    const handleError = () => {
+      console.log("3D background failed, falling back to 2D");
+      setUse3DBackground(false);
+    };
+    
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  }, []);
   
   // Add smooth scroll behavior with offset for header
   React.useEffect(() => {
@@ -49,8 +61,7 @@ const Index: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-dark text-white overflow-x-hidden">
-      <ParticlesBackground />
-      <ThreeDBackground />
+      {use3DBackground ? <ThreeDBackground /> : <ParticlesBackground />}
       <Navbar />
       <HeroSection />
       <ProjectsSection />
