@@ -116,18 +116,30 @@ const Footer: React.FC = () => {
                 </span>
               ))}
             </div>
-            <h3 className="font-display text-lg font-medium mt-6 mb-2">Get In Touch</h3>
-            <p className="text-gray-300 mb-1">
-              Have a project in mind or want to collaborate?
-            </p>
-            <a 
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello" 
-              className="text-neon-cyan hover:underline mb-2 inline-block break-words"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              varun28082001@gmail.com
-            </a>
+            <h3 className="font-display text-lg font-medium mt-6 mb-2">Connect With Me</h3>
+            <div className="flex flex-col space-y-2">
+              <a 
+                href="https://github.com/Varuno8" 
+                className="text-neon-cyan hover:text-neon-purple transition-colors flex items-center"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4 mr-2" />
+                <span className="font-medium">GitHub</span>
+                <span className="text-gray-400 ml-2">Varuno8</span>
+              </a>
+              <p className="text-gray-300 mt-2">
+                Have a project in mind or want to collaborate?
+              </p>
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello" 
+                className="text-neon-cyan hover:underline mb-2 inline-block break-words"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                varun28082001@gmail.com
+              </a>
+            </div>
           </div>
         </div>
         
