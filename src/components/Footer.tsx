@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
               and delightful user experiences.
             </p>
             
-            {/* Social links */}
+            {/* Social links - Updated with better visibility */}
             <div className="flex space-x-4">
               {socialLinks.map((link) => (
                 <a
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                  className="p-2 rounded-full bg-dark-lighter text-neon-cyan hover:bg-neon-purple/20 transition-colors"
                 >
                   {link.icon}
                 </a>
