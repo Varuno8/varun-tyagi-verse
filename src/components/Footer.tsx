@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-col space-y-2">
               <a 
                 href="https://github.com/Varuno8" 
-                className="bg-dark-lighter hover:bg-neon-purple/20 rounded-md px-3 py-2 transition-colors flex items-center"
+                className="bg-[#1A1F2C] hover:bg-neon-purple/20 rounded-md px-3 py-2 transition-colors flex items-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
