@@ -21,10 +21,10 @@ type FormState = {
   message: string;
 };
 
-// Replace these with your actual EmailJS credentials
-const EMAILJS_SERVICE_ID = 'your_service_id';
-const EMAILJS_TEMPLATE_ID = 'your_template_id';
-const EMAILJS_PUBLIC_KEY = 'your_public_key';
+// EmailJS credentials
+const EMAILJS_SERVICE_ID = 'service_73rdyye';
+const EMAILJS_TEMPLATE_ID = 'template_23txxnb'; // Note: You'll need to create a template in EmailJS
+const EMAILJS_PUBLIC_KEY = 'aFogwa3XEk2l6FHDg';
 
 const ContactForm: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
