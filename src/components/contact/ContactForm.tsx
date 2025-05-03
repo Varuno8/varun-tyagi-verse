@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,7 +22,7 @@ type FormState = {
 
 // EmailJS credentials
 const EMAILJS_SERVICE_ID = 'service_73rdyye';
-const EMAILJS_TEMPLATE_ID = 'template_23txxnb';
+const EMAILJS_TEMPLATE_ID = 'template_zrozi0g'; 
 const EMAILJS_PUBLIC_KEY = 'aFogwa3XEk2l6FHDg';
 
 const ContactForm: React.FC = () => {
