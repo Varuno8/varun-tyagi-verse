@@ -92,7 +92,7 @@ const ContactSection: React.FC = () => {
       name: 'GitHub', 
       icon: <Github className="h-6 w-6" />, 
       url: 'https://github.com/Varuno8',
-      color: 'bg-white text-dark hover:bg-white/90',
+      color: 'bg-[#24292e] hover:bg-[#2b3137]', // Updated GitHub color to official GitHub darker color
       username: 'Varuno8'
     },
     { 
