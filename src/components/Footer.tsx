@@ -120,13 +120,13 @@ const Footer: React.FC = () => {
             <div className="flex flex-col space-y-2">
               <a 
                 href="https://github.com/Varuno8" 
-                className="text-neon-cyan hover:text-neon-purple transition-colors flex items-center"
+                className="bg-dark-lighter hover:bg-neon-purple/20 rounded-md px-3 py-2 transition-colors flex items-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4 mr-2" />
-                <span className="font-medium">GitHub</span>
-                <span className="text-gray-400 ml-2">Varuno8</span>
+                <Github className="h-5 w-5 mr-2 text-neon-cyan" />
+                <span className="font-medium text-white">GitHub</span>
+                <span className="text-gray-300 ml-2">Varuno8</span>
               </a>
               <p className="text-gray-300 mt-2">
                 Have a project in mind or want to collaborate?
