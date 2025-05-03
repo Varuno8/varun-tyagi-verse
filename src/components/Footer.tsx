@@ -119,26 +119,51 @@ const Footer: React.FC = () => {
             <h3 className="font-display text-lg font-medium mt-6 mb-2">Connect With Me</h3>
             <div className="flex flex-col space-y-2">
               <a 
-                href="https://github.com/Varuno8" 
-                className="bg-[#1A1F2C] hover:bg-neon-purple/20 rounded-md px-3 py-2 transition-colors flex items-center"
+                href="https://www.linkedin.com/in/varun-tyagi-32bb281b9/"
+                className="bg-[#0077B5] hover:bg-[#0077B5]/90 rounded-md px-4 py-3 transition-colors flex items-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-5 w-5 mr-2 text-neon-cyan" />
-                <span className="font-medium text-white">GitHub</span>
-                <span className="text-gray-300 ml-2">Varuno8</span>
+                <Linkedin className="h-5 w-5 text-white mr-3" />
+                <div>
+                  <span className="font-medium text-white block">LinkedIn</span>
+                  <span className="text-white/80 text-sm">varun-tyagi-32bb281b9</span>
+                </div>
               </a>
-              <p className="text-gray-300 mt-2">
-                Have a project in mind or want to collaborate?
-              </p>
+              
               <a 
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello" 
-                className="text-neon-cyan hover:underline mb-2 inline-block break-words"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello"
+                className="bg-[#8B5CF6] hover:bg-[#8B5CF6]/90 rounded-md px-4 py-3 transition-colors flex items-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                varun28082001@gmail.com
+                <Mail className="h-5 w-5 text-white mr-3" />
+                <div>
+                  <span className="font-medium text-white block">Email</span>
+                  <span className="text-white/80 text-sm">varun28082001@gmail.com</span>
+                </div>
               </a>
+              
+              <a 
+                href="https://github.com/Varuno8"
+                className="bg-[#333333] hover:bg-[#333333]/90 rounded-md px-4 py-3 transition-colors flex items-center"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-5 w-5 text-white mr-3" />
+                <div>
+                  <span className="font-medium text-white block">GitHub</span>
+                  <span className="text-white/80 text-sm">Varuno8</span>
+                </div>
+              </a>
+              
+              <button
+                onClick={handleResumeDownload}
+                className="bg-gradient-to-r from-[#8B5CF6] to-[#06D6A0] hover:opacity-90 rounded-md px-4 py-3 transition-colors flex items-center justify-center"
+              >
+                <Download className="h-5 w-5 text-white mr-2" />
+                <span className="font-medium text-white">Download Resume</span>
+              </button>
             </div>
           </div>
         </div>
