@@ -13,6 +13,11 @@ import ThreeDBackground from '@/components/ThreeDBackground';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { toast } from "sonner";
 
+// Type definition for WebGL context
+interface WebGLRenderingContext extends WebGLRenderingContextBase {
+  getSupportedExtensions(): string[] | null;
+}
+
 const Index: React.FC = () => {
   const isMobile = useIsMobile();
   const [use3DBackground, setUse3DBackground] = useState(true);
@@ -100,8 +105,9 @@ const Index: React.FC = () => {
           return;
         }
         
-        // Check for minimum capabilities
-        const extensions = gl.getSupportedExtensions();
+        // Check for minimum capabilities - type assertion for WebGL context
+        const webGL = gl as WebGLRenderingContext;
+        const extensions = webGL.getSupportedExtensions();
         const requiredExtensions = ['OES_texture_float', 'WEBGL_depth_texture'];
         const hasRequiredExtensions = requiredExtensions.every(ext => 
           extensions?.includes(ext)

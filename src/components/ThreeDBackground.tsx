@@ -43,7 +43,7 @@ const ThreeDBackground = () => {
         onCreated={({ gl }) => {
           // Add additional WebGL context attributes for stability
           gl.localClippingEnabled = true;
-          gl.outputEncoding = 3000; // sRGB encoding
+          // Removed outputEncoding as it's not recognized in the current Three.js type
         }}
       >
         {/* Dark space background */}
