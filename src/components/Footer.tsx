@@ -146,7 +146,7 @@ const Footer: React.FC = () => {
               
               <a 
                 href="https://github.com/Varuno8"
-                className="bg-[#333333] hover:bg-[#333333]/90 rounded-md px-4 py-3 transition-colors flex items-center"
+                className="bg-[#24292e] hover:bg-[#2b3137] rounded-md px-4 py-3 transition-colors flex items-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
