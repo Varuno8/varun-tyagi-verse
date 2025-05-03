@@ -51,26 +51,24 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Initialize EmailJS if not done elsewhere
+      // Initialize EmailJS with public key
       emailjs.init(EMAILJS_PUBLIC_KEY);
       
-      console.log('Attempting to send email with params:', {
-        name: formState.name,
-        email: formState.email,
+      // Prepare template parameters according to your EmailJS template variables
+      const templateParams = {
+        from_name: formState.name,
+        from_email: formState.email,
         subject: formState.subject,
-        message: formState.message
-      });
+        message: formState.message,
+      };
       
-      // Send email using EmailJS with simplified parameters
+      console.log('Sending email with params:', templateParams);
+      
+      // Send email using EmailJS
       const result = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        {
-          name: formState.name,
-          email: formState.email,
-          subject: formState.subject,
-          message: formState.message
-        }
+        templateParams
       );
       
       console.log('Email sent successfully:', result);
