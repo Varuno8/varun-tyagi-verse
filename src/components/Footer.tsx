@@ -116,55 +116,15 @@ const Footer: React.FC = () => {
                 </span>
               ))}
             </div>
-            <h3 className="font-display text-lg font-medium mt-6 mb-2">Connect With Me</h3>
-            <div className="flex flex-col space-y-2">
-              <a 
-                href="https://www.linkedin.com/in/varun-tyagi-32bb281b9/"
-                className="bg-[#0077B5] hover:bg-[#0077B5]/90 rounded-md px-4 py-3 transition-colors flex items-center"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Linkedin className="h-5 w-5 text-white mr-3" />
-                <div>
-                  <span className="font-medium text-white block">LinkedIn</span>
-                  <span className="text-white/80 text-sm">varun-tyagi-32bb281b9</span>
-                </div>
-              </a>
-              
-              <a 
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=varun28082001@gmail.com&su=Hello"
-                className="bg-[#8B5CF6] hover:bg-[#8B5CF6]/90 rounded-md px-4 py-3 transition-colors flex items-center"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Mail className="h-5 w-5 text-white mr-3" />
-                <div>
-                  <span className="font-medium text-white block">Email</span>
-                  <span className="text-white/80 text-sm">varun28082001@gmail.com</span>
-                </div>
-              </a>
-              
-              <a 
-                href="https://github.com/Varuno8"
-                className="bg-[#24292e] hover:bg-[#2b3137] rounded-md px-4 py-3 transition-colors flex items-center"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-5 w-5 text-white mr-3" />
-                <div>
-                  <span className="font-medium text-white block">GitHub</span>
-                  <span className="text-white/80 text-sm">Varuno8</span>
-                </div>
-              </a>
-              
-              <button
-                onClick={handleResumeDownload}
-                className="bg-gradient-to-r from-[#8B5CF6] to-[#06D6A0] hover:opacity-90 rounded-md px-4 py-3 transition-colors flex items-center justify-center"
-              >
-                <Download className="h-5 w-5 text-white mr-2" />
-                <span className="font-medium text-white">Download Resume</span>
-              </button>
-            </div>
+            
+            {/* Resume Download Button */}
+            <button
+              onClick={handleResumeDownload}
+              className="mt-6 bg-gradient-to-r from-[#8B5CF6] to-[#06D6A0] hover:opacity-90 rounded-md px-4 py-3 transition-colors flex items-center justify-center w-full"
+            >
+              <Download className="h-5 w-5 text-white mr-2" />
+              <span className="font-medium text-white">Download Resume</span>
+            </button>
           </div>
         </div>
         
