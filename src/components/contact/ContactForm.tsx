@@ -59,6 +59,7 @@ const ContactForm: React.FC = () => {
         to_email: 'varun28082001@gmail.com'
       });
       
+      // Send email using EmailJS - with correctly formatted template parameters
       const result = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -66,12 +67,12 @@ const ContactForm: React.FC = () => {
           from_name: formState.name,
           from_email: formState.email,
           subject: formState.subject,
-          message: formState.message,
-          to_email: 'varun28082001@gmail.com'
+          message: formState.message
         },
         EMAILJS_PUBLIC_KEY
       );
       
+      console.log('Email sent successfully:', result);
       toast.success("Message sent successfully! I'll get back to you soon.");
       setFormState({ name: '', email: '', subject: 'Job Opportunity', message: '' });
     } catch (error) {
