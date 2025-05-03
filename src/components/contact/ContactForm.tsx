@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Send } from 'lucide-react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
 import { 
   Select,
   SelectContent,
@@ -20,7 +21,13 @@ type FormState = {
   message: string;
 };
 
+// Replace these with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = 'your_service_id';
+const EMAILJS_TEMPLATE_ID = 'your_template_id';
+const EMAILJS_PUBLIC_KEY = 'your_public_key';
+
 const ContactForm: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState<FormState>({
     name: '',
     email: '',
@@ -44,17 +51,37 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Create mailto link as a direct fallback
-      const mailToLink = `https://mail.google.com/mail/u/0/?fs=1&to=varun28082001@gmail.com&su=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`From: ${formState.name} (${formState.email})\n\n${formState.message}`)}`;
+      console.log('Attempting to send email with params:', {
+        from_name: formState.name,
+        from_email: formState.email,
+        subject: formState.subject,
+        message: formState.message,
+        to_email: 'varun28082001@gmail.com'
+      });
       
-      // Since EmailJS is having issues, let's use the mailto approach directly
-      window.open(mailToLink, '_blank');
-      toast.success("Opening email client with your message. Please send the email to complete your message.");
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formState.name,
+          from_email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          to_email: 'varun28082001@gmail.com'
+        },
+        EMAILJS_PUBLIC_KEY
+      );
       
+      toast.success("Message sent successfully! I'll get back to you soon.");
       setFormState({ name: '', email: '', subject: 'Job Opportunity', message: '' });
     } catch (error) {
-      console.error('Message sending failed:', error);
-      toast.error("Failed to send message. Please try emailing me directly at varun28082001@gmail.com");
+      console.error('Email sending failed:', error);
+      
+      // Create mailto link as a fallback when EmailJS fails
+      const mailToLink = `https://mail.google.com/mail/u/0/?fs=1&to=varun28082001@gmail.com&su=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`From: ${formState.name} (${formState.email})\n\n${formState.message}`)}`;
+      
+      window.open(mailToLink, '_blank');
+      toast.error("Failed to send message directly. Opening email client as a fallback.");
     } finally {
       setIsSubmitting(false);
     }
@@ -71,7 +98,7 @@ const ContactForm: React.FC = () => {
     <div className="glass-card rounded-xl p-6 md:p-8">
       <h3 className="text-2xl font-display font-semibold mb-6">Send a Message</h3>
       
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-2">
             Name
@@ -160,7 +187,7 @@ const ContactForm: React.FC = () => {
           )}
         </Button>
         <p className="text-xs text-center text-gray-400 mt-2">
-          Your message will open in your email client
+          Direct email sending powered by EmailJS
         </p>
       </form>
     </div>
