@@ -31,13 +31,24 @@ const Index: React.FC = () => {
       'useContext',
       'context lost',
       'null',
-      'glerror'
+      'glerror',
+      'suspend',
+      'fiber'
     ];
     
-    // Centralized error check function
+    // Centralized error check function with more specific checks
     const isThreeJsError = (errorMessage: string): boolean => {
+      errorMessage = errorMessage.toLowerCase();
+      
+      // If the error specifically mentions 'lov'
+      if (errorMessage.includes('lov')) {
+        console.warn("Specific 'lov' error detected, definitely related to Three.js");
+        return true;
+      }
+      
+      // Check for other patterns
       return knownErrorPatterns.some(pattern => 
-        errorMessage.toLowerCase().includes(pattern.toLowerCase())
+        errorMessage.includes(pattern.toLowerCase())
       );
     };
     
@@ -54,7 +65,7 @@ const Index: React.FC = () => {
       }
     };
     
-    // Promise rejection handler
+    // Promise rejection handler with improved error detection
     const handleRejection = (event: PromiseRejectionEvent) => {
       console.warn("Unhandled promise rejection:", event.reason);
       
@@ -75,6 +86,39 @@ const Index: React.FC = () => {
       }
       originalConsoleError.apply(console, args);
     };
+    
+    // Preemptive WebGL detection to avoid rendering 3D on unsupported devices
+    const detectWebGLSupport = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
+        // If no WebGL, fall back to 2D immediately
+        if (!gl) {
+          console.warn("WebGL not supported by browser, using 2D background");
+          setUse3DBackground(false);
+          return;
+        }
+        
+        // Check for minimum capabilities
+        const extensions = gl.getSupportedExtensions();
+        const requiredExtensions = ['OES_texture_float', 'WEBGL_depth_texture'];
+        const hasRequiredExtensions = requiredExtensions.every(ext => 
+          extensions?.includes(ext)
+        );
+        
+        if (!hasRequiredExtensions) {
+          console.warn("WebGL supported but missing required extensions, using 2D background");
+          setUse3DBackground(false);
+        }
+      } catch (e) {
+        console.warn("Error detecting WebGL support:", e);
+        setUse3DBackground(false);
+      }
+    };
+    
+    // Run WebGL detection immediately
+    detectWebGLSupport();
     
     window.addEventListener('error', handleError);
     window.addEventListener('unhandledrejection', handleRejection);

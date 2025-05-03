@@ -1,7 +1,6 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-// Removed postprocessing imports that were causing issues
 import NetworkParticles from './three/NetworkParticles';
 import { colors } from './three/SceneConfig';
 
@@ -9,16 +8,24 @@ import { colors } from './three/SceneConfig';
 const CameraControl = () => {
   const cameraRef = useRef<any>();
   
-  useFrame(({ clock, mouse }) => {
-    if (cameraRef.current) {
-      // Very subtle camera movement based on mouse
-      cameraRef.current.position.x = Math.sin(mouse.x * 0.5) * 2;
-      cameraRef.current.position.y = Math.sin(mouse.y * 0.5) * 2;
+  useFrame(({ clock, mouse, camera }) => {
+    // Very subtle camera movement based on mouse
+    if (camera && typeof camera.position !== 'undefined') {
+      camera.position.x = Math.sin(mouse.x * 0.5) * 2;
+      camera.position.y = Math.sin(mouse.y * 0.5) * 2;
     }
   });
   
   return null;
 };
+
+// Fallback component for loading/error state
+const Fallback = () => (
+  <mesh position={[0, 0, 0]}>
+    <sphereGeometry args={[1, 16, 16]} />
+    <meshBasicMaterial color={colors.cyan} wireframe />
+  </mesh>
+);
 
 const ThreeDBackground = () => {
   return (
@@ -28,9 +35,16 @@ const ThreeDBackground = () => {
         gl={{ 
           antialias: true, 
           alpha: true,
-          powerPreference: "high-performance"
+          powerPreference: "high-performance",
+          failIfMajorPerformanceCaveat: true
         }}
-        dpr={[1, 1.5]} // Lower DPR for better performance
+        dpr={[0.8, 1.2]} // Even lower DPR for better performance
+        style={{ background: colors.darkBlue }}
+        onCreated={({ gl }) => {
+          // Add additional WebGL context attributes for stability
+          gl.localClippingEnabled = true;
+          gl.outputEncoding = 3000; // sRGB encoding
+        }}
       >
         {/* Dark space background */}
         <color attach="background" args={[colors.darkBlue]} />
@@ -47,10 +61,10 @@ const ThreeDBackground = () => {
         {/* Camera control for subtle movement */}
         <CameraControl />
         
-        {/* Enhanced network particles */}
-        <NetworkParticles />
-        
-        {/* Removed all postprocessing effects that were causing issues */}
+        {/* Enhanced network particles with error handling */}
+        <Suspense fallback={<Fallback />}>
+          <NetworkParticles />
+        </Suspense>
       </Canvas>
     </div>
   );
