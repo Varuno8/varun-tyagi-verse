@@ -23,7 +23,7 @@ type FormState = {
 
 // EmailJS credentials
 const EMAILJS_SERVICE_ID = 'service_73rdyye';
-const EMAILJS_TEMPLATE_ID = 'template_23txxnb'; // Note: You'll need to create a template in EmailJS
+const EMAILJS_TEMPLATE_ID = 'template_23txxnb';
 const EMAILJS_PUBLIC_KEY = 'aFogwa3XEk2l6FHDg';
 
 const ContactForm: React.FC = () => {
@@ -51,25 +51,26 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
+      // Initialize EmailJS if not done elsewhere
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      
       console.log('Attempting to send email with params:', {
-        from_name: formState.name,
-        from_email: formState.email,
+        name: formState.name,
+        email: formState.email,
         subject: formState.subject,
-        message: formState.message,
-        to_email: 'varun28082001@gmail.com'
+        message: formState.message
       });
       
-      // Send email using EmailJS - with correctly formatted template parameters
+      // Send email using EmailJS with simplified parameters
       const result = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          from_name: formState.name,
-          from_email: formState.email,
+          name: formState.name,
+          email: formState.email,
           subject: formState.subject,
           message: formState.message
-        },
-        EMAILJS_PUBLIC_KEY
+        }
       );
       
       console.log('Email sent successfully:', result);
