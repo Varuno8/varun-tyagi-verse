@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp, Download } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 import TechIcon from './projects/TechIcon';
 
 const Footer: React.FC = () => {
@@ -25,20 +25,6 @@ const Footer: React.FC = () => {
     { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },
   ];
-
-  const techLinks = [
-    { name: 'Python', tech: 'Python' },
-    { name: 'Angular', tech: 'Angular' },
-    { name: 'TensorFlow', tech: 'TensorFlow' },
-    { name: 'PyTorch', tech: 'PyTorch' },
-    { name: 'C++', tech: 'C++' },
-    { name: 'Node.js', tech: 'Node.js' },
-  ];
-  
-  // Handle resume download
-  const handleResumeDownload = () => {
-    window.open('https://drive.google.com/file/d/1f4QU-YjlKnyKrluhPGdv-AMZqQhQMCp2/view?usp=sharing', '_blank');
-  };
   
   return (
     <footer className="pt-16 pb-8 bg-dark relative">
@@ -54,7 +40,7 @@ const Footer: React.FC = () => {
           </button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Logo/Brand */}
           <div>
             <h2 className="font-display text-2xl font-bold text-gradient mb-4">Varun Tyagi</h2>
@@ -94,37 +80,7 @@ const Footer: React.FC = () => {
                   </a>
                 </li>
               ))}
-              <li className="col-span-2 sm:col-span-1 mt-2 sm:mt-0">
-                <button 
-                  onClick={handleResumeDownload}
-                  className="flex items-center text-gray-300 hover:text-neon-purple transition-colors"
-                >
-                  <Download className="h-4 w-4 mr-1" /> Resume
-                </button>
-              </li>
             </ul>
-          </div>
-          
-          {/* Technology stack - Improved flex layout for mobile */}
-          <div className="md:col-span-full lg:col-span-1">
-            <h3 className="font-display text-lg font-medium mb-4">Tech Stack</h3>
-            <div className="flex flex-wrap gap-2">
-              {techLinks.map((tech) => (
-                <span key={tech.name} className="skill-tag flex items-center">
-                  <TechIcon tech={tech.tech} />
-                  <span className="ml-1">{tech.name}</span>
-                </span>
-              ))}
-            </div>
-            
-            {/* Resume Download Button */}
-            <button
-              onClick={handleResumeDownload}
-              className="mt-6 bg-gradient-to-r from-[#8B5CF6] to-[#06D6A0] hover:opacity-90 rounded-md px-4 py-3 transition-colors flex items-center justify-center w-full"
-            >
-              <Download className="h-5 w-5 text-white mr-2" />
-              <span className="font-medium text-white">Download Resume</span>
-            </button>
           </div>
         </div>
         
