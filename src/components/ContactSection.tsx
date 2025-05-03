@@ -1,11 +1,9 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Github, Linkedin, Mail, Send, Download } from 'lucide-react';
 import { toast } from 'sonner';
-import emailjs from 'emailjs-com';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { 
   Select,
@@ -40,32 +38,12 @@ const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Send to email directly as fallback if EmailJS fails
+      // Create mailto link as a direct fallback
       const mailToLink = `https://mail.google.com/mail/u/0/?fs=1&to=varun28082001@gmail.com&su=${encodeURIComponent(formState.subject)}&body=${encodeURIComponent(`From: ${formState.name} (${formState.email})\n\n${formState.message}`)}`;
       
-      // Try EmailJS first
-      const serviceId = 'service_973giwu'; 
-      const templateId = 'template_8isd4m9';
-      const userId = 'XlZ_vL_8VkTu68fIe';
-      
-      const templateParams = {
-        from_name: formState.name,
-        from_email: formState.email,
-        subject: formState.subject,
-        message: formState.message,
-        to_email: 'varun28082001@gmail.com',
-      };
-      
-      try {
-        console.log("Attempting to send email with params:", templateParams);
-        await emailjs.send(serviceId, templateId, templateParams, userId);
-        toast.success("Message sent successfully! I'll get back to you within 24 hours.");
-      } catch (emailjsError) {
-        console.error('Email sending failed:', emailjsError);
-        // If EmailJS fails, open mailto link as fallback
-        window.open(mailToLink, '_blank');
-        toast.success("Opening email client with your message. If it doesn't open, please email me directly.");
-      }
+      // Since EmailJS is having issues, let's use the mailto approach directly
+      window.open(mailToLink, '_blank');
+      toast.success("Opening email client with your message. Please send the email to complete your message.");
       
       setFormState({ name: '', email: '', subject: 'Job Opportunity', message: '' });
     } catch (error) {
@@ -92,7 +70,7 @@ const ContactSection: React.FC = () => {
       name: 'GitHub', 
       icon: <Github className="h-6 w-6" />, 
       url: 'https://github.com/Varuno8',
-      color: 'bg-[#24292e] hover:bg-[#2b3137]', // Updated GitHub color to official GitHub darker color
+      color: 'bg-[#24292e] hover:bg-[#2b3137]',
       username: 'Varuno8'
     },
     { 
@@ -228,7 +206,7 @@ const ContactSection: React.FC = () => {
                 )}
               </Button>
               <p className="text-xs text-center text-gray-400 mt-2">
-                Your message will be sent directly to my inbox
+                Your message will open in your email client
               </p>
             </form>
           </div>
