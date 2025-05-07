@@ -1,73 +1,95 @@
-# Welcome to your Lovable project
 
-## Project info
+# Varun Tyagi - Portfolio Website
 
-**URL**: https://lovable.dev/projects/2f32ef9e-7d47-498d-999e-48a4bdad0226
+A modern, interactive portfolio website built with React, TypeScript, and Three.js.
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+This portfolio website showcases my skills, projects, experience, and achievements in an engaging and interactive way. The website features a modern design with 3D elements, particle effects, and smooth animations.
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2f32ef9e-7d47-498d-999e-48a4bdad0226) and start prompting.
+- **Responsive Design**: Fully responsive layout that works on mobile, tablet, and desktop devices
+- **Interactive 3D Background**: Dynamic 3D elements using Three.js for larger screens
+- **Particle Effects**: Beautiful particle animations that respond to user interaction
+- **Modern UI**: Clean, modern interface with smooth animations and transitions
+- **Contact Form**: EmailJS integration for sending messages directly from the website
+- **Project Showcase**: Highlight of key projects with detailed information
+- **Experience Timeline**: Visual representation of professional experience
+- **Skills Section**: Overview of technical skills and expertise
+- **Achievements Display**: Showcase of certifications and notable accomplishments
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technologies Used
 
-**Use your preferred IDE**
+- **Frontend**: React, TypeScript, Vite
+- **Styling**: Tailwind CSS, shadcn/ui component library
+- **3D Graphics**: Three.js, React Three Fiber, React Three Drei
+- **Animations**: React Spring
+- **Form Handling**: EmailJS for contact form submission
+- **Routing**: React Router for navigation
+- **Deployment**: Vercel
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js 16+ and npm installed
 
+### Installation
+
+1. Clone the repository
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Install NPM packages
+```sh
+npm install --legacy-peer-deps
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open [http://localhost:8080](http://localhost:8080) to view it in the browser
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Building for Production
 
-**Use GitHub Codespaces**
+```sh
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/        # UI components
+│   ├── ui/            # Base UI components from shadcn
+│   ├── three/         # 3D related components
+│   ├── projects/      # Projects section components
+│   ├── contact/       # Contact section components
+│   └── achievements/  # Achievements section components
+├── hooks/             # Custom React hooks
+├── lib/               # Utility functions
+├── pages/             # Page components
+└── main.tsx           # Application entry point
+```
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This site is configured for deployment on Vercel. When deploying, make sure to:
 
-## How can I deploy this project?
+1. Add the environment variable `NPM_FLAGS` with the value `--legacy-peer-deps` in your Vercel project settings
+2. Connect your repository to Vercel for automatic deployments
 
-Simply open [Lovable](https://lovable.dev/projects/2f32ef9e-7d47-498d-999e-48a4bdad0226) and click on Share -> Publish.
+## Contact
 
-## Can I connect a custom domain to my Lovable project?
+Varun Tyagi - [varun28082001@gmail.com](mailto:varun28082001@gmail.com)
 
-Yes, you can!
+Project Link: [https://github.com/yourusername/portfolio](https://github.com/yourusername/portfolio)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## License
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Distributed under the MIT License. See `LICENSE` for more information.
