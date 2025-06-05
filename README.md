@@ -50,12 +50,25 @@ cd portfolio
 npm install --legacy-peer-deps
 ```
 
-3. Start the development server
+3. In one terminal, start the Ollama server **(do not use `ollama run`)** so that it exposes
+   the HTTP API used by the chat backend:
+```sh
+ollama serve
+```
+
+4. In **another terminal**, pull a model (if you haven't already) and run the chat API
+   which proxies to your local Llama model:
+```sh
+ollama pull llama3.2:latest
+npm run server
+```
+
+5. Finally, start the Vite dev server
 ```sh
 npm run dev
 ```
 
-4. Open [http://localhost:8080](http://localhost:8080) to view it in the browser
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ### Building for Production
 
@@ -85,6 +98,14 @@ This site is configured for deployment on Vercel. When deploying, make sure to:
 
 1. Add the environment variable `NPM_FLAGS` with the value `--legacy-peer-deps` in your Vercel project settings
 2. Connect your repository to Vercel for automatic deployments
+
+## Troubleshooting
+
+If you see an `ECONNREFUSED` error when chatting with the avatar, ensure that:
+
+1. The Ollama server is running (`ollama serve`).
+2. You have started the API server with `npm run server`.
+3. You can verify the Llama API is reachable with `curl http://localhost:11434/api/generate`.
 
 ## Contact
 
