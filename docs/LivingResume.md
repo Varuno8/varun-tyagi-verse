@@ -31,6 +31,14 @@ The repository now includes a small Express server that proxies requests to a lo
 
    This starts an API on `http://localhost:3001/api/chat`.
 
+   You can test it with:
+
+   ```sh
+   curl -X POST http://localhost:3001/api/chat \
+     -H 'Content-Type: application/json' \
+     -d '{"message":"ping"}'
+   ```
+
 3. Finally, start the Vite dev server:
 
    ```sh

@@ -63,6 +63,13 @@ ollama pull llama3.2:latest
 npm run server
 ```
 
+   Verify the API is responding:
+   ```sh
+   curl -X POST http://localhost:3001/api/chat \
+     -H 'Content-Type: application/json' \
+     -d '{"message":"ping"}'
+   ```
+
 5. Finally, start the Vite dev server
 ```sh
 npm run dev
