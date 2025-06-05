@@ -25,6 +25,7 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },
+    { name: 'AI Chat', href: '/living-resume' },
   ];
 
   // Social links with icons

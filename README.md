@@ -2,6 +2,7 @@
 # Varun Tyagi - Portfolio Website
 
 A modern, interactive portfolio website built with React, TypeScript, and Three.js.
+It now includes an experimental [Living Resume](docs/LivingResume.md) page powered by a conversational AI avatar.
 
 ## Overview
 
@@ -18,6 +19,7 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Experience Timeline**: Visual representation of professional experience
 - **Skills Section**: Overview of technical skills and expertise
 - **Achievements Display**: Showcase of certifications and notable accomplishments
+- **Living Resume**: Conversational AI avatar that answers questions about my experience
 
 ## Technologies Used
 
