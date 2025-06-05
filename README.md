@@ -55,7 +55,14 @@ npm install --legacy-peer-deps
 npm run dev
 ```
 
-4. Open [http://localhost:8080](http://localhost:8080) to view it in the browser
+4. In another terminal, start the chat API which proxies to your local Llama model
+```sh
+npm run server
+```
+
+Make sure the Ollama server is running and serving a model such as `llama3.2:latest`.
+
+5. Open [http://localhost:8080](http://localhost:8080) to view it in the browser
 
 ### Building for Production
 
