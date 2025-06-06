@@ -13,7 +13,8 @@ The AI avatar should be trained on your resume, project descriptions, and blog p
 
 This feature showcases skills in NLP, LLMs, and front-end integration.  
 The backend also knows about the portfolio projects listed in `server/projects.json`. If the user asks about "projects" in chat, the server will respond with a short list instead of forwarding the question to the LLM.  
-It can also summarize my work experience and education from `server/profile.json`.
+It can also summarize my work experience and education from `server/profile.json`.  
+It will even introduce me if you ask "Who is Varun?" using the brief bio stored in that file.
 
 ### Voice Controls
 
@@ -29,7 +30,7 @@ The repository now includes a small Express server that proxies requests to a lo
    ollama serve
 ````
 
-2. **In a second terminal**, pull the desired model (only needed the first time) and then start the chat server. Leave this terminal running so the front end can reach it:
+2. **In a second terminal**, pull the desired model (only needed the first time) and start the chat server. Leave this terminal running so the front end can reach it:
 
    ```sh
    ollama pull llama3.2:latest

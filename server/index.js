@@ -31,10 +31,15 @@ app.post('/api/chat', async (req, res) => {
     const projectKeywords = /\bprojects?\b|portfolio/;
     const experienceKeywords = /\bexperience\b|work history|background/;
     const educationKeywords = /\beducation\b|degree|studies/;
+    const bioKeywords = /who\s+is\s+varun|who\s+are\s+you|tell me about (?:yourself|varun)/;
 
     if (projectKeywords.test(lower)) {
       const list = projects.map((p) => p.title).join(', ');
       return res.json({ reply: `Here are some of my projects: ${list}.` });
+    }
+
+    if (bioKeywords.test(lower)) {
+      return res.json({ reply: profile.bio });
     }
 
     if (experienceKeywords.test(lower)) {

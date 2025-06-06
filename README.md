@@ -26,7 +26,8 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Living Resume**: Conversational AI avatar that answers questions about my experience  
 - **Project List via Chat**: Ask the avatar for my portfolio projects and it will list them  
 - **Experience & Education via Chat**: Ask about my background and the avatar shares a quick summary  
-- **Voice Controls**: Pause, resume, or stop the avatar's speech while chatting  
+- **Personal Bio via Chat**: Ask “Who is Varun?” and the avatar responds with a short introduction  
+- **Voice Controls**: Pause, resume, or stop the avatar’s speech while chatting  
 
 ---
 
@@ -62,24 +63,26 @@ This portfolio website showcases my skills, projects, experience, and achievemen
    npm install --legacy-peer-deps
    ```
 
-   If you update the repository later and new dependencies were added, run `npm install` again so the server has everything it needs.
+   If you update the repository later and new dependencies were added, run `npm install` again.
 
-3. **In one terminal**, start the Ollama server so that it exposes the HTTP API used by the chat backend. Be sure to use `ollama serve` (not `ollama run`):
+3. **Start the Ollama server**
 
    ```sh
    ollama serve
    ```
 
-4. **In a second terminal**, pull the model (only needed the first time) and then run the chat API which proxies to your local Llama model. Leave this terminal running:
+   (*Be sure to use `ollama serve`, not `ollama run`.*)
+
+4. **Run the chat API** (in a second terminal)
 
    ```sh
    ollama pull llama3.2:latest
    npm run server
    ```
 
-   The server should log `Chat server listening on 3001`. Keep this terminal running so the frontend can talk to it.
+   The server should log `Chat server listening on 3001`. Keep this terminal open.
 
-   Verify the API is responding:
+5. **Verify the chat endpoint**
 
    ```sh
    curl -X POST http://localhost:3001/api/chat \
@@ -87,15 +90,13 @@ This portfolio website showcases my skills, projects, experience, and achievemen
      -d '{"message":"ping"}'
    ```
 
-   Make sure the Ollama server is running and serving a model such as `llama3.2:latest`.
-
-5. **Start the Vite dev server**
+6. **Start the Vite dev server**
 
    ```sh
    npm run dev
    ```
 
-6. **Open in your browser**
+7. **Open in your browser**
    Navigate to [http://localhost:8080](http://localhost:8080) to view the portfolio locally.
 
 ---
@@ -122,7 +123,7 @@ src/
 │   └── achievements/  # Achievements display components
 ├── hooks/             # Custom React hooks
 ├── lib/               # Utility functions
-├── pages/             # Top-level page components (Home, About, Living Resume, etc.)
+├── pages/             # Page components (Home, About, Living Resume, etc.)
 └── main.tsx           # Application entry point
 ```
 
@@ -132,40 +133,34 @@ src/
 
 This site is configured for deployment on Vercel.
 
-1. In your Vercel dashboard, add an environment variable called `NPM_FLAGS` with the value `--legacy-peer-deps`.
-2. Connect your GitHub repository to Vercel and let it automatically build on each push to the `main` branch.
+1. In your Vercel dashboard, add an environment variable `NPM_FLAGS` with the value `--legacy-peer-deps`.
+2. Connect your GitHub repository to Vercel for automatic deployments.
 
 ---
 
 ## Troubleshooting
 
-If you encounter an `ECONNREFUSED` error when trying to chat with the avatar, check the following:
+If you encounter an `ECONNREFUSED` error when chatting with the avatar, check:
 
-1. **Ollama server**
-   Make sure you ran:
+1. **Ollama server**:
 
    ```sh
    ollama serve
    ```
 
-2. **Chat API server**
-   Ensure that in another terminal you ran:
+2. **Chat API server**:
 
    ```sh
    npm run server
    ```
 
-3. **Llama API connectivity**
-   Verify that the Llama API is reachable by calling:
+3. **Ollama API connectivity**:
 
    ```sh
    curl http://localhost:11434/api/generate
    ```
 
-   (Adjust the port if you have changed the default Ollama port.)
-
-4. **Chat endpoint**
-   Test the chat endpoint directly:
+4. **Chat endpoint**:
 
    ```sh
    curl -X POST http://localhost:3001/api/chat \
