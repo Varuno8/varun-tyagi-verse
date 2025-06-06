@@ -5,6 +5,9 @@ import fs from 'node:fs';
 const projects = JSON.parse(
   fs.readFileSync(new URL('./projects.json', import.meta.url))
 );
+const profile = JSON.parse(
+  fs.readFileSync(new URL('./profile.json', import.meta.url))
+);
 
 const app = express();
 app.use(express.json());
@@ -24,15 +27,30 @@ app.post('/api/chat', async (req, res) => {
   }
 
   try {
-    // Check if user is asking about projects
     const lower = message.toLowerCase();
     const projectKeywords = /\bprojects?\b|portfolio/;
+    const experienceKeywords = /\bexperience\b|work history|background/;
+    const educationKeywords = /\beducation\b|degree|studies/;
+
     if (projectKeywords.test(lower)) {
       const list = projects.map((p) => p.title).join(', ');
       return res.json({ reply: `Here are some of my projects: ${list}.` });
     }
 
-    // Forward to Ollama otherwise
+    if (experienceKeywords.test(lower)) {
+      const summary = profile.experience
+        .map((e) => `${e.position} at ${e.company} (${e.period})`)
+        .join('; ');
+      return res.json({ reply: `Here's a summary of my experience: ${summary}.` });
+    }
+
+    if (educationKeywords.test(lower)) {
+      const summary = profile.education
+        .map((e) => `${e.degree} from ${e.school} (${e.period})`)
+        .join('; ');
+      return res.json({ reply: `Here's my education: ${summary}.` });
+    }
+
     console.log(`→ Forwarding to Ollama at: ${OLLAMA_URL}`);
     console.log('  Payload =', { model: MODEL, prompt: message, stream: false });
 

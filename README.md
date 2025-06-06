@@ -25,6 +25,8 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Achievements Display**: Showcase of certifications and notable accomplishments  
 - **Living Resume**: Conversational AI avatar that answers questions about my experience  
 - **Project List via Chat**: Ask the avatar for my portfolio projects and it will list them  
+- **Experience & Education via Chat**: Ask about my background and the avatar shares a quick summary  
+- **Voice Controls**: Pause, resume, or stop the avatar's speech while chatting  
 
 ---
 

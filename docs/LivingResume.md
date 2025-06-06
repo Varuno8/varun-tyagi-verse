@@ -12,7 +12,12 @@ This portfolio includes an experimental "Living Resume" page that exposes a conv
 The AI avatar should be trained on your resume, project descriptions, and blog posts so it can respond in your voice and style. You can fine-tune a model or create embeddings for retrieval-augmented generation.
 
 This feature showcases skills in NLP, LLMs, and front-end integration.  
-The backend also knows about the portfolio projects listed in `server/projects.json`. If the user asks about "projects" in chat, the server will respond with a short list instead of forwarding the question to the LLM.
+The backend also knows about the portfolio projects listed in `server/projects.json`. If the user asks about "projects" in chat, the server will respond with a short list instead of forwarding the question to the LLM.  
+It can also summarize my work experience and education from `server/profile.json`.
+
+### Voice Controls
+
+Speech output supports pause/resume. Use the buttons below the chat input to pause or resume the spoken reply. Sending a new message automatically stops any previous speech.
 
 ## Local Llama Setup
 
@@ -64,6 +69,8 @@ curl -X POST http://localhost:3001/api/chat \
   -H 'Content-Type: application/json' \
   -d '{"message":"ping"}'
 ```
+
+If the chat interface reports an `ECONNREFUSED` error, double-check that both `ollama serve` and `npm run server` are running in their own terminals.
 
 ```
 ```
