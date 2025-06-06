@@ -113,6 +113,7 @@ If you see an `ECONNREFUSED` error when chatting with the avatar, ensure that:
 1. The Ollama server is running (`ollama serve`).
 2. You have started the API server with `npm run server`.
 3. You can verify the Llama API is reachable with `curl http://localhost:11434/api/generate`.
+4. Test the chat endpoint itself: `curl -X POST http://localhost:3001/api/chat -H 'Content-Type: application/json' -d '{"message":"ping"}'`.
 
 ## Contact
 

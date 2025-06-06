@@ -51,3 +51,9 @@ If you see connection errors, confirm the Ollama API is reachable:
 ```sh
 curl http://localhost:11434/api/generate
 ```
+You can also test the chat server directly:
+```sh
+curl -X POST http://localhost:3001/api/chat \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"ping"}'
+```
