@@ -1,3 +1,5 @@
+Here is the resolved version with the conflicts removed and the code properly aligned:
+
 ````markdown
 # Living Resume
 
@@ -55,7 +57,8 @@ The repository now includes a small Express server that proxies requests to a lo
    npm run dev
    ```
 
-Navigate to `http://localhost:8080/living-resume` to chat with your AI avatar powered by the local model.
+5. **Open in your browser**
+   Navigate to [http://localhost:8080/living-resume](http://localhost:8080/living-resume) to chat with your AI avatar powered by the local model.
 
 If you see connection errors, confirm the Ollama API is reachable:
 

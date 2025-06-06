@@ -28,6 +28,7 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Experience & Education via Chat**: Ask about my background and the avatar shares a quick summary  
 - **Personal Bio via Chat**: Ask “Who is Varun?” and the avatar responds with a short introduction  
 - **Voice Controls**: Pause, resume, or stop the avatar’s speech while chatting  
+- **Conversational Memory**: The chat server includes recent messages when querying the model so the avatar remembers context  
 
 ---
 
@@ -71,7 +72,7 @@ This portfolio website showcases my skills, projects, experience, and achievemen
    ollama serve
    ```
 
-   (*Be sure to use `ollama serve`, not `ollama run`.*)
+   *(Be sure to use `ollama serve`, not `ollama run`.)*
 
 4. **Run the chat API** (in a second terminal)
 
@@ -142,25 +143,25 @@ This site is configured for deployment on Vercel.
 
 If you encounter an `ECONNREFUSED` error when chatting with the avatar, check:
 
-1. **Ollama server**:
+1. **Ollama server**
 
    ```sh
    ollama serve
    ```
 
-2. **Chat API server**:
+2. **Chat API server**
 
    ```sh
    npm run server
    ```
 
-3. **Ollama API connectivity**:
+3. **Ollama API connectivity**
 
    ```sh
    curl http://localhost:11434/api/generate
    ```
 
-4. **Chat endpoint**:
+4. **Chat endpoint**
 
    ```sh
    curl -X POST http://localhost:3001/api/chat \

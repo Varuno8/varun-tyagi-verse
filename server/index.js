@@ -2,12 +2,8 @@ import express from 'express';
 import axios from 'axios';
 import fs from 'node:fs';
 
-const projects = JSON.parse(
-  fs.readFileSync(new URL('./projects.json', import.meta.url))
-);
-const profile = JSON.parse(
-  fs.readFileSync(new URL('./profile.json', import.meta.url))
-);
+const projects = JSON.parse(fs.readFileSync(new URL('./projects.json', import.meta.url)));
+const profile = JSON.parse(fs.readFileSync(new URL('./profile.json', import.meta.url)));
 
 const app = express();
 app.use(express.json());
