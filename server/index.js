@@ -1,4 +1,5 @@
 import express from 'express';
+import axios from 'axios';
 
 const app = express();
 app.use(express.json());
@@ -12,20 +13,14 @@ app.post('/api/chat', async (req, res) => {
     return res.status(400).json({ reply: 'No message provided' });
   }
   try {
-    const resp = await fetch(OLLAMA_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: MODEL,
-        prompt: message,
-        stream: false,
-      }),
+    const resp = await axios.post(OLLAMA_URL, {
+      model: MODEL,
+      prompt: message,
+      stream: false,
     });
-    const data = await resp.json();
-    res.json({ reply: data.response.trim() });
+    res.json({ reply: resp.data.response.trim() });
   } catch (err) {
     console.error('LLM error:', err.message);
-    console.error('Is the Ollama server running on', OLLAMA_URL, '?');
     res.status(500).json({ reply: 'Oops! Something went wrong.' });
   }
 });
