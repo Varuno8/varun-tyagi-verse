@@ -1,0 +1,64 @@
+{
+  "bio": "I'm Varun Tyagi, a full‑stack developer and machine learning engineer passionate about shipping real‑world products using modern web technologies and AI.",
+  "experience": [
+    {
+      "company": "Eigengram",
+      "position": "Software Engineer Intern",
+      "period": "Nov 2024 – Apr 2025",
+      "highlights": [
+        "Built image classification pipelines with VGG, ResNet and EfficientNet",
+        "Created automated data scraping and processing pipelines for ML tasks",
+        "Deployed scalable AWS infrastructure (EC2 + S3)",
+        "Implemented a latent diffusion based text‑to‑image model"
+      ]
+    },
+    {
+      "company": "Rovisor Research",
+      "position": "Software Development Intern",
+      "period": "Jun 2024 – Aug 2024",
+      "highlights": [
+        "Enhanced frontend UX with Angular and integrated new APIs",
+        "Optimized load times by 20%",
+        "Collaborated closely with the UX team on user flows"
+      ]
+    },
+    {
+      "company": "Business Web Solutions",
+      "position": "Web Developer Intern",
+      "period": "May 2024 – Jun 2024",
+      "highlights": [
+        "Designed responsive interfaces with HTML/CSS/JS",
+        "Optimized web assets and performance",
+        "Created cross‑browser compatible solutions"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Netaji Subhas University of Technology (NSUT), New Delhi",
+      "degree": "B.Tech in Electronics and Technology (IoT)",
+      "period": "2020 – 2024"
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "JavaScript", "TypeScript", "C++", "C", "SQL", "Node.js"],
+    "frameworks": ["Next.js", "React", "Express.js", "Tailwind CSS", "Streamlit", "Docker"],
+    "ml": ["LangChain", "Hugging Face Transformers", "FAISS", "scikit-learn", "PyTorch", "OpenCV"],
+    "cloud": ["AWS", "Google Cloud Vision", "Document AI", "Boto3", "Supabase", "Vercel"],
+    "databases": ["MongoDB", "PostgreSQL", "MySQL"]
+  },
+  "achievements": [
+    "Solved 320+ questions on GeeksforGeeks and 250+ on LeetCode",
+    "CodeChef rating of 1500",
+    "Scored 98.2 percentile in JEE Mains",
+    "Built and deployed multiple production ready AI-powered tools"
+  ],
+  "links": {
+    "portfolio": "https://portfolios-lovat.vercel.app/",
+    "github": "https://github.com/Varuno8",
+    "resume": "https://drive.google.com/file/d/1zVTN-6JsKmaaIU5qM1okq3pL0qSDCi4N/view",
+    "linkedin": "https://www.linkedin.com/in/varun-tyagi-32bb281b9/",
+    "email": "varun28082001@gmail.com",
+    "phone": "+91 7011793823"
+  }
+}
