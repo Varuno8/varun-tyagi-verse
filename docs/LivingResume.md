@@ -1,3 +1,4 @@
+````markdown
 # Living Resume
 
 This portfolio includes an experimental "Living Resume" page that exposes a conversational AI avatar. You can access it at `/living-resume` once the project is running.
@@ -10,20 +11,24 @@ This portfolio includes an experimental "Living Resume" page that exposes a conv
 
 The AI avatar should be trained on your resume, project descriptions, and blog posts so it can respond in your voice and style. You can fine-tune a model or create embeddings for retrieval-augmented generation.
 
-This feature showcases skills in NLP, LLMs, and front‑end integration.
+This feature showcases skills in NLP, LLMs, and front-end integration.
 
 ## Local Llama Setup
 
 The repository now includes a small Express server that proxies requests to a local Llama model served by [Ollama](https://ollama.ai/).
 
-1. Start the Ollama server and pull the desired model, for example:
+1. Start the Ollama server:
+   ```sh
+   ollama serve
+````
+
+2. In a separate terminal, pull the desired model (if needed):
 
    ```sh
-   ollama serve &
    ollama pull llama3.2:latest
    ```
 
-2. In a separate terminal, run the chat server:
+3. Still in that second terminal, run the chat server:
 
    ```sh
    npm run server
@@ -31,10 +36,35 @@ The repository now includes a small Express server that proxies requests to a lo
 
    This starts an API on `http://localhost:3001/api/chat`.
 
-3. Finally, start the Vite dev server:
+4. Verify the chat endpoint is responding:
+
+   ```sh
+   curl -X POST http://localhost:3001/api/chat \
+     -H 'Content-Type: application/json' \
+     -d '{"message":"ping"}'
+   ```
+
+5. Finally, start the Vite dev server:
 
    ```sh
    npm run dev
    ```
 
 Navigate to `http://localhost:8080/living-resume` to chat with your AI avatar powered by the local model.
+
+If you see connection errors, confirm the Ollama API is reachable:
+
+```sh
+curl http://localhost:11434/api/generate
+```
+
+You can also test the chat server directly again:
+
+```sh
+curl -X POST http://localhost:3001/api/chat \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"ping"}'
+```
+
+```
+```
