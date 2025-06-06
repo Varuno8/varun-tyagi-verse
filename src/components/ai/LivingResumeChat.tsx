@@ -16,6 +16,14 @@ const LivingResumeChat: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
   const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [sessionId] = useState(() => {
+    if (typeof window === 'undefined') return 'default';
+    const saved = localStorage.getItem('lr-session');
+    if (saved) return saved;
+    const id = Math.random().toString(36).slice(2);
+    localStorage.setItem('lr-session', id);
+    return id;
+  });
 
   const togglePause = () => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
@@ -53,7 +61,7 @@ const LivingResumeChat: React.FC = () => {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: trimmed, history: messages }),
+        body: JSON.stringify({ message: trimmed, sessionId, history: messages }),
       });
       const data = await res.json();
       const reply = data.reply || 'Sorry, I had trouble answering that.';

@@ -143,25 +143,25 @@ This site is configured for deployment on Vercel.
 
 If you encounter an `ECONNREFUSED` error when chatting with the avatar, check:
 
-1. **Ollama server**
+1. **Ollama server**:
 
    ```sh
    ollama serve
    ```
 
-2. **Chat API server**
+2. **Chat API server**:
 
    ```sh
    npm run server
    ```
 
-3. **Ollama API connectivity**
+3. **Ollama API connectivity**:
 
    ```sh
    curl http://localhost:11434/api/generate
    ```
 
-4. **Chat endpoint**
+4. **Chat endpoint**:
 
    ```sh
    curl -X POST http://localhost:3001/api/chat \
@@ -183,4 +183,5 @@ Project Link: [https://github.com/yourusername/portfolio](https://github.com/you
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ```
+This version is now free of conflicts and is ready for use.
 ```
