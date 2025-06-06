@@ -26,6 +26,8 @@ The repository now includes a small Express server that proxies requests to a lo
 
    ```sh
    ollama pull llama3.2:latest
+   # install dependencies if you haven't already
+   npm install --legacy-peer-deps
    npm run server
 
    The server should print `Chat server listening on 3001` when it starts.

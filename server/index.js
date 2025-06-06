@@ -40,6 +40,7 @@ app.post('/api/chat', async (req, res) => {
     res.json({ reply: resp.data.response.trim() });
   } catch (err) {
     console.error('LLM error (full error object):', err);
+    console.error('Is the Ollama server running on', OLLAMA_URL, '?');
     res.status(500).json({ reply: 'Oops! Something went wrong.' });
   }
 });

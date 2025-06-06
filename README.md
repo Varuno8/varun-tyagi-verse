@@ -49,6 +49,8 @@ cd portfolio
 ```sh
 npm install --legacy-peer-deps
 ```
+   If you update the repository later and new dependencies were added,
+   run `npm install` again so the server has everything it needs.
 
 3. In **one terminal**, start the Ollama server so that it exposes the HTTP API used by the chat backend. Be sure to use `ollama serve` (not `ollama run`):
 ```sh
