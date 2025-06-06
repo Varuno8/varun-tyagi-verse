@@ -20,6 +20,11 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Skills Section**: Overview of technical skills and expertise
 - **Achievements Display**: Showcase of certifications and notable accomplishments
 - **Living Resume**: Conversational AI avatar that answers questions about my experience
+- **Project List via Chat**: Ask the avatar for my portfolio projects and it will list them
+- **Experience & Education via Chat**: Ask about my background and the avatar shares a quick summary
+- **Personal Bio via Chat**: Ask "Who is Varun?" and the avatar responds with a short introduction
+- **Voice Controls**: Pause, resume, or stop the avatar's speech while chatting
+- **Conversational Memory**: The chat server includes recent messages when querying the model so the avatar remembers context
 
 ## Technologies Used
 
@@ -49,13 +54,36 @@ cd portfolio
 ```sh
 npm install --legacy-peer-deps
 ```
+   If you update the repository later and new dependencies were added,
+   run `npm install` again so the server has everything it needs.
 
-3. Start the development server
+3. In **one terminal**, start the Ollama server so that it exposes the HTTP API used by the chat backend. Be sure to use `ollama serve` (not `ollama run`):
+```sh
+ollama serve
+```
+
+4. In a **second terminal**, pull the model (only needed the first time) and then run the chat API which proxies to your local Llama model. Leave this terminal running:
+```sh
+ollama pull llama3.2:latest
+npm run server
+```
+
+   The server should log `Chat server listening on 3001`. Keep this terminal running so the frontend can talk to it.
+
+   Verify the API is responding:
+   ```sh
+   curl -X POST http://localhost:3001/api/chat \
+     -H 'Content-Type: application/json' \
+     -d '{"message":"ping"}'
+   ```
+Make sure the Ollama server is running and serving a model such as `llama3.2:latest`.
+
+5. Start the Vite dev server
 ```sh
 npm run dev
 ```
 
-4. Open [http://localhost:8080](http://localhost:8080) to view it in the browser
+6. Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ### Building for Production
 
@@ -85,6 +113,15 @@ This site is configured for deployment on Vercel. When deploying, make sure to:
 
 1. Add the environment variable `NPM_FLAGS` with the value `--legacy-peer-deps` in your Vercel project settings
 2. Connect your repository to Vercel for automatic deployments
+
+## Troubleshooting
+
+If you see an `ECONNREFUSED` error when chatting with the avatar, ensure that:
+
+1. The Ollama server is running (`ollama serve`).
+2. You have started the API server with `npm run server`.
+3. You can verify the Llama API is reachable with `curl http://localhost:11434/api/generate`.
+4. Test the chat endpoint itself: `curl -X POST http://localhost:3001/api/chat -H 'Content-Type: application/json' -d '{"message":"ping"}'`.
 
 ## Contact
 
