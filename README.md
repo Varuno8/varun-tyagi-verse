@@ -24,6 +24,7 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Skills Section**: Overview of technical skills and expertise  
 - **Achievements Display**: Showcase of certifications and notable accomplishments  
 - **Living Resume**: Conversational AI avatar that answers questions about my experience  
+- **Project List via Chat**: Ask the avatar for my portfolio projects and it will list them  
 
 ---
 
@@ -59,29 +60,32 @@ This portfolio website showcases my skills, projects, experience, and achievemen
    npm install --legacy-peer-deps
    ```
 
-3. **In one terminal**, start the Ollama server so that it exposes the HTTP API used by the chat backend.
+   If you update the repository later and new dependencies were added, run `npm install` again so the server has everything it needs.
 
-   > *Do not use `ollama run` here; we want the server mode.*
+3. **In one terminal**, start the Ollama server so that it exposes the HTTP API used by the chat backend. Be sure to use `ollama serve` (not `ollama run`):
 
    ```sh
    ollama serve
    ```
 
-4. **In another terminal**, pull a model (if you haven’t already) and run the chat API, which proxies to your local Llama model:
+4. **In a second terminal**, pull the model (only needed the first time) and then run the chat API which proxies to your local Llama model. Leave this terminal running:
 
    ```sh
    ollama pull llama3.2:latest
    npm run server
    ```
 
-   * Verify the API is responding:
+   The server should log `Chat server listening on 3001`. Keep this terminal running so the frontend can talk to it.
 
-     ```sh
-     curl -X POST http://localhost:3001/api/chat \
-       -H 'Content-Type: application/json' \
-       -d '{"message":"ping"}'
-     ```
-   * Make sure the Ollama server is running and serving a model such as `llama3.2:latest`.
+   Verify the API is responding:
+
+   ```sh
+   curl -X POST http://localhost:3001/api/chat \
+     -H 'Content-Type: application/json' \
+     -d '{"message":"ping"}'
+   ```
+
+   Make sure the Ollama server is running and serving a model such as `llama3.2:latest`.
 
 5. **Start the Vite dev server**
 
@@ -163,8 +167,8 @@ If you encounter an `ECONNREFUSED` error when trying to chat with the avatar, ch
 
    ```sh
    curl -X POST http://localhost:3001/api/chat \
-       -H 'Content-Type: application/json' \
-       -d '{"message":"ping"}'
+     -H 'Content-Type: application/json' \
+     -d '{"message":"ping"}'
    ```
 
 ---
