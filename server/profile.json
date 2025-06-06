@@ -1,0 +1,46 @@
+{
+  "experience": [
+    {
+      "company": "Eigengram",
+      "position": "Software Engineer Intern",
+      "period": "Nov 2024 – Apr 2025",
+      "highlights": [
+        "Built a full-stack healthcare AI marketplace platform using React and Django",
+        "Implemented secure subscription and analytics features",
+        "Integrated JWT authentication with Google OAuth"
+      ]
+    },
+    {
+      "company": "Rovisor Research",
+      "position": "Software Development Intern",
+      "period": "Jun 2024 – Aug 2024",
+      "highlights": [
+        "Enhanced frontend UX using Angular and integrated APIs",
+        "Optimized load times by 20%",
+        "Collaborated with UX team on user flows"
+      ]
+    },
+    {
+      "company": "Business Web Solutions",
+      "position": "Web Developer Intern",
+      "period": "May 2024 – Jun 2024",
+      "highlights": [
+        "Designed responsive interfaces with HTML/CSS/JS",
+        "Optimized web assets and performance",
+        "Created cross-browser compatible solutions"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Delhi Technological University",
+      "degree": "B.Tech. in Computer Science",
+      "period": "2021 – 2025"
+    },
+    {
+      "school": "XYZ Senior Secondary School",
+      "degree": "High School Diploma",
+      "period": "2019 – 2021"
+    }
+  ]
+}
