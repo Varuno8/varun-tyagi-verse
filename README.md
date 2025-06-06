@@ -70,12 +70,12 @@ npm run server
      -d '{"message":"ping"}'
    ```
 
-5. Finally, start the Vite dev server
+5. Start the Vite dev server
 ```sh
 npm run dev
 ```
 
-Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+6. Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ### Building for Production
 
