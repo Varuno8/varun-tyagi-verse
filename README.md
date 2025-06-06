@@ -69,6 +69,7 @@ npm run server
      -H 'Content-Type: application/json' \
      -d '{"message":"ping"}'
    ```
+Make sure the Ollama server is running and serving a model such as `llama3.2:latest`.
 
 5. Start the Vite dev server
 ```sh
