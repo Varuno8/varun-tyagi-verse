@@ -1,5 +1,5 @@
 {
-  "bio": "I'm Varun Tyagi, a full‑stack developer and machine learning engineer passionate about shipping real‑world products using modern web technologies and AI.",
+  "bio": "I'm Varun Tyagi, a full-stack developer and machine learning engineer passionate about shipping real-world products using modern web technologies and AI.",
   "experience": [
     {
       "company": "Eigengram",
@@ -9,7 +9,7 @@
         "Built image classification pipelines with VGG, ResNet and EfficientNet",
         "Created automated data scraping and processing pipelines for ML tasks",
         "Deployed scalable AWS infrastructure (EC2 + S3)",
-        "Implemented a latent diffusion based text‑to‑image model"
+        "Implemented a latent diffusion based text-to-image model"
       ]
     },
     {
@@ -29,7 +29,7 @@
       "highlights": [
         "Designed responsive interfaces with HTML/CSS/JS",
         "Optimized web assets and performance",
-        "Created cross‑browser compatible solutions"
+        "Created cross-browser compatible solutions"
       ]
     }
   ],
@@ -51,7 +51,7 @@
     "Solved 320+ questions on GeeksforGeeks and 250+ on LeetCode",
     "CodeChef rating of 1500",
     "Scored 98.2 percentile in JEE Mains",
-    "Built and deployed multiple production ready AI-powered tools"
+    "Built and deployed multiple production-ready AI-powered tools"
   ],
   "links": {
     "portfolio": "https://portfolios-lovat.vercel.app/",

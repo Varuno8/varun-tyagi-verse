@@ -8,23 +8,20 @@ const profile = JSON.parse(fs.readFileSync(new URL('./profile.json', import.meta
 const app = express();
 app.use(express.json());
 
-// Keep chat history in memory for each session ID
-const sessions = new Map();
-
 const MODEL = process.env.LLAMA_MODEL || 'llama3.2:latest';
 const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434/api/generate';
 
-console.log('\u25B6\uFE0E Using MODEL =', MODEL);
-console.log('\u25B6\uFE0E Using OLLAMA_URL =', `'${OLLAMA_URL}'`);
+console.log('▶︎ Using MODEL =', MODEL);
+console.log('▶︎ Using OLLAMA_URL =', `'${OLLAMA_URL}'`);
 
 app.post('/api/chat', async (req, res) => {
-  const { message, sessionId = 'default' } = req.body;
-  const history = sessions.get(sessionId) || [];
+  const { message } = req.body;
   console.log('• Received POST /api/chat with body:', req.body);
 
   if (!message) {
     return res.status(400).json({ reply: 'No message provided' });
   }
+
   try {
     const lower = message.toLowerCase();
     const projectKeywords = /\bprojects?\b|portfolio/;
@@ -55,35 +52,21 @@ app.post('/api/chat', async (req, res) => {
       return res.json({ reply: `Here's my education: ${summary}.` });
     }
 
-    // Build a conversation prompt using the previous messages.
-    const contextLines = history
-      .slice(-10)
-      .map((m) => `${m.sender === 'user' ? 'User' : 'Assistant'}: ${m.text}`)
-      .join('\n');
-    const prompt = `${contextLines}\nUser: ${message}\nAssistant:`.trim();
-
     console.log(`→ Forwarding to Ollama at: ${OLLAMA_URL}`);
-    console.log('  Payload =', { model: MODEL, prompt, stream: false });
+    console.log('  Payload =', { model: MODEL, prompt: message, stream: false });
 
     const resp = await axios.post(OLLAMA_URL, {
       model: MODEL,
-      prompt,
+      prompt: message,
       stream: false,
     });
 
-    const reply = resp.data.response.trim();
     console.log('← Ollama replied:', resp.data);
-
-    // save conversation history for this session
-    history.push({ sender: 'user', text: message });
-    history.push({ sender: 'bot', text: reply });
-    sessions.set(sessionId, history);
-
-    res.json({ reply });
+    return res.json({ reply: resp.data.response.trim() });
   } catch (err) {
     console.error('LLM error (full error object):', err);
     console.error('Is the Ollama server running on', OLLAMA_URL, '?');
-    res.status(500).json({ reply: 'Oops! Something went wrong.' });
+    return res.status(500).json({ reply: 'Oops! Something went wrong.' });
   }
 });
 
