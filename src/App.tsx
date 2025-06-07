@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LivingResume from "./pages/LivingResume";
 import Timeline from "./pages/Timeline";
+import LivingBackground from "./components/LivingBackground";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/living-resume" element={<LivingResume />} />
           <Route path="/timeline" element={<Timeline />} />
+          <Route path="/living-bg" element={<LivingBackground />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
