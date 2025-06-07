@@ -317,3 +317,13 @@ html {
 html {
   scrollbar-width: none;
 }
+
+@keyframes sunrise {
+  0%   { background: #FF5F6D; }
+  50%  { background: #FFC371; }
+  100% { background: #FF5F6D; }
+}
+.bg-fallback {
+  animation: sunrise 30s ease infinite alternate;
+}
+

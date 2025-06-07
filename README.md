@@ -66,7 +66,15 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 
    If you update the repository later and new dependencies were added, run `npm install` again.
 
-3. **Start the Ollama server**
+3. **Create a `.env` file**
+
+   Copy the provided `.env.example` to `.env` and add your OpenWeatherMap API key:
+
+   ```sh
+   cp .env.example .env
+   # then edit .env and set VITE_OPENWEATHER_KEY=YOUR_KEY
+   ```
+4. **Start the Ollama server**
 
    ```sh
    ollama serve

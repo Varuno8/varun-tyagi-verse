@@ -26,6 +26,7 @@ const Navbar = () => {
     { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },
     { name: 'AI Chat', href: '/living-resume' },
+    { name: 'Living Background', href: '/living-bg' },
     { name: 'Watch Me Learn', href: '/timeline' },
   ];
 
