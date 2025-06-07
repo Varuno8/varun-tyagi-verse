@@ -6,331 +6,74 @@
     "status": "actively_seeking_opportunities"
   },
   "biographical_information": {
+    "full_name": "Varun Tyagi",
+    "title": "Full-Stack Developer & Machine Learning Engineer",
+    "location": "India",
     "professional_summary": {
-      "headline": "Full-Stack Developer & Machine Learning Engineer | AI Solutions Architect | Cloud Computing Enthusiast",
+      "headline": "Engineering AI-Powered Solutions for the Real World",
       "detailed_description": [
-        "Highly skilled software engineer with demonstrated expertise in developing and deploying cutting-edge web applications infused with artificial intelligence capabilities.",
-        "Specializes in creating robust, scalable solutions that bridge the gap between academic machine learning concepts and production-grade software systems.",
-        "Passionate about implementing modern web technologies to solve real-world business problems through innovative technical approaches."
-      ],
-      "technical_philosophy": [
-        "Believes in the 'full-stack ownership' model - taking projects from initial concept through architecture design to final deployment and monitoring.",
-        "Advocate for clean code principles combined with pragmatic development practices that balance technical debt with business requirements.",
-        "Strong focus on performance optimization, both in frontend user experience and backend processing efficiency."
+        "Varun Tyagi is a versatile full-stack developer and machine learning engineer with strong experience building end-to-end digital products and AI-driven platforms. He thrives in fast-paced environments where creative problem-solving and technical depth are both essential.",
+        "His background spans AI/ML, modern web development (MERN stack, Next.js, Tailwind), cloud deployment (AWS, GCP), and developer tooling (Docker, GitHub Actions, Inngest).",
+        "Varun is especially passionate about integrating AI seamlessly into consumer applications\u2014delivering real-world value via robust, intelligent systems."
       ]
     },
-    "technical_identity": {
-      "primary_roles": [
-        "Full-Stack JavaScript/TypeScript Developer",
-        "Machine Learning Engineer",
-        "Cloud Solutions Developer"
-      ],
-      "secondary_roles": [
-        "Technical Architect",
-        "DevOps Practitioner",
-        "AI Solutions Consultant"
-      ]
+    "contact": {
+      "email": "varuntyagi@example.com",
+      "linkedin": "https://linkedin.com/in/varun-tyagi-dev",
+      "github": "https://github.com/Varuno8",
+      "portfolio": "https://varuntyagi.dev"
     }
   },
   "professional_experience": {
     "timeline": [
       {
-        "company": {
-          "name": "Eigengram",
-          "industry": "Artificial Intelligence",
-          "company_size": "Series A Startup"
-        },
         "position": {
           "title": "Software Engineer Intern",
-          "level": "Advanced Internship",
-          "employment_type": "Full-time",
           "period": {
-            "start": "November 2024",
-            "end": "April 2025",
-            "duration": "6 months"
-          },
-          "location": "Remote (India)"
+            "start": "Nov 2024",
+            "end": "Apr 2025"
+          }
         },
-        "responsibilities": {
-          "core_duties": [
-            {
-              "title": "Computer Vision Pipeline Development",
-              "details": [
-                "Designed and implemented end-to-end image classification systems utilizing state-of-the-art convolutional neural network architectures including VGG, ResNet, and EfficientNet variants.",
-                "Optimized model performance through systematic hyperparameter tuning, achieving consistent accuracy improvements across multiple benchmark datasets.",
-                "Developed custom data augmentation pipelines to enhance model generalization capabilities while preventing overfitting."
-              ],
-              "technologies": ["PyTorch", "OpenCV", "NumPy", "Pillow"]
-            },
-            {
-              "title": "Data Acquisition Infrastructure",
-              "details": [
-                "Built distributed web scraping systems capable of collecting and processing structured and unstructured data at scale for machine learning training purposes.",
-                "Implemented automated data validation and cleaning workflows to ensure high-quality training datasets.",
-                "Created efficient storage solutions leveraging AWS S3 with proper versioning and access control mechanisms."
-              ],
-              "technologies": ["Scrapy", "BeautifulSoup", "AWS S3", "Pydantic"]
-            },
-            {
-              "title": "Cloud Infrastructure Deployment",
-              "details": [
-                "Architected and deployed scalable AWS infrastructure utilizing EC2 instances for model serving and S3 buckets for data storage.",
-                "Implemented cost optimization strategies through spot instance utilization and auto-scaling configurations.",
-                "Set up comprehensive monitoring systems to track resource utilization and model performance metrics."
-              ],
-              "technologies": ["AWS EC2", "AWS S3", "CloudWatch", "Boto3"]
-            },
-            {
-              "title": "Generative AI Implementation",
-              "details": [
-                "Researched and implemented latent diffusion models for text-to-image generation tasks.",
-                "Fine-tuned pre-trained Stable Diffusion models on domain-specific datasets to enhance output quality.",
-                "Developed API endpoints for model inference with appropriate rate limiting and caching mechanisms."
-              ],
-              "technologies": ["Diffusers", "HuggingFace", "ONNX", "TensorRT"]
-            }
-          ],
-          "collaboration": [
-            "Worked closely with research scientists to productionize experimental models",
-            "Participated in daily standups and bi-weekly sprint planning sessions",
-            "Conducted knowledge sharing sessions on MLOps best practices"
-          ]
+        "company": {
+          "name": "Eigengram"
         },
-        "achievements": {
-          "quantifiable": [
-            "Reduced model inference latency by 35% through quantization techniques",
-            "Decreased cloud infrastructure costs by $380/month through optimization",
-            "Shipped 3 production-ready ML models during internship period"
-          ],
-          "qualitative": [
-            "Received exceptional performance review from engineering manager",
-            "Contributed to internal technical documentation standards",
-            "Mentored new interns on computer vision fundamentals"
-          ]
-        }
+        "summary": [
+          "Developed advanced AI workflows including text-to-image pipelines using latent diffusion models and EfficientNet classifiers for image-based labeling.",
+          "Built scalable data scraping pipelines, automated annotation tools, and deployed models using EC2 and S3 for storage and inference.",
+          "Worked on LLM infrastructure and generative applications."
+        ]
       },
       {
-        "company": {
-          "name": "Rovisor Research",
-          "industry": "Technology Research",
-          "company_size": "Mid-sized Enterprise"
-        },
         "position": {
-          "title": "Software Development Intern",
-          "level": "Intermediate Internship",
-          "employment_type": "Full-time",
-          "period": {
-            "start": "June 2024",
-            "end": "August 2024",
-            "duration": "3 months"
-          },
-          "location": "Gurgaon, India"
-        },
-        "responsibilities": {
-          "core_duties": [
-            {
-              "title": "Frontend Performance Optimization",
-              "details": [
-                "Diagnosed and resolved critical performance bottlenecks in Angular-based enterprise application.",
-                "Implemented advanced techniques including lazy loading, route pre-fetching, and virtual scrolling.",
-                "Redesigned data flow architecture to minimize unnecessary re-renders and state updates."
-              ],
-              "technologies": ["Angular", "RxJS", "Webpack", "Lighthouse"]
-            },
-            {
-              "title": "API Integration Enhancement",
-              "details": [
-                "Developed robust service layer for consuming RESTful APIs with comprehensive error handling.",
-                "Implemented JWT authentication flows with refresh token rotation security.",
-                "Created mock API services for development and testing environments."
-              ],
-              "technologies": ["TypeScript", "Axios", "JWT", "MSW"]
-            },
-            {
-              "title": "User Experience Improvements",
-              "details": [
-                "Collaborated with UX designers to implement responsive interface components.",
-                "Conducted usability testing sessions and incorporated feedback into iterative designs.",
-                "Developed accessibility-compliant UI elements meeting WCAG 2.1 standards."
-              ],
-              "technologies": ["Tailwind CSS", "Angular Material", "Storybook"]
-            }
-          ],
-          "collaboration": [
-            "Participated in cross-functional team meetings with product managers",
-            "Worked in Agile development environment with 2-week sprints",
-            "Paired programming with senior developers on complex features"
-          ]
-        },
-        "achievements": {
-          "quantifiable": [
-            "Improved application Lighthouse performance score from 42 to 89",
-            "Reduced largest contentful paint metric from 4.2s to 1.1s",
-            "Decreased production bug reports by 60% through improved testing"
-          ],
-          "qualitative": [
-            "Recognized as 'Intern of the Month' in July 2024",
-            "Invited to present optimization techniques to engineering team",
-            "Contributed to frontend architecture documentation"
-          ]
-        }
-      },
-      {
-        "company": {
-          "name": "Business Web Solutions",
-          "industry": "Web Development Agency",
-          "company_size": "Small Business"
-        },
-        "position": {
-          "title": "Web Developer Intern",
-          "level": "Entry-level Internship",
-          "employment_type": "Full-time",
+          "title": "Web Development Intern",
           "period": {
             "start": "May 2024",
-            "end": "June 2024",
-            "duration": "2 months"
-          },
-          "location": "Remote (India)"
+            "end": "Jun 2024"
+          }
         },
-        "responsibilities": {
-          "core_duties": [
-            {
-              "title": "Responsive Web Development",
-              "details": [
-                "Built pixel-perfect, responsive web interfaces from designer mockups.",
-                "Ensured cross-browser compatibility through systematic testing matrix.",
-                "Implemented mobile-first designs with progressive enhancement strategies."
-              ],
-              "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"]
-            },
-            {
-              "title": "Performance Optimization",
-              "details": [
-                "Analyzed and optimized critical rendering path for key landing pages.",
-                "Implemented image optimization techniques including modern formats and lazy loading.",
-                "Configured proper caching headers and asset versioning strategies."
-              ],
-              "technologies": [
-                "PageSpeed Insights",
-                "WebP",
-                "Intersection Observer"
-              ]
-            },
-            {
-              "title": "Client Project Support",
-              "details": [
-                "Worked on multiple client projects simultaneously with varying requirements.",
-                "Participated in client meetings to gather requirements and present solutions.",
-                "Maintained detailed documentation for client deliverables."
-              ],
-              "technologies": ["WordPress", "Git", "Jira"]
-            }
-          ],
-          "collaboration": [
-            "Worked under supervision of senior developers",
-            "Participated in code review processes",
-            "Attended daily standup meetings"
-          ]
+        "company": {
+          "name": "Business Web Solutions"
         },
-        "achievements": {
-          "quantifiable": [
-            "Improved average page load time by 40% across client projects",
-            "Delivered 12+ client websites during internship period",
-            "Achieved perfect client satisfaction scores on all projects"
-          ],
-          "qualitative": [
-            "Received recommendation letter from company director",
-            "Gained exposure to real-world client development cycles",
-            "Developed professional communication skills"
-          ]
-        }
+        "summary": [
+          "Contributed to multiple client websites using React and Express.",
+          "Developed dynamic web forms, interactive dashboards, and RESTful APIs.",
+          "Improved load times and SEO scores using performance best practices."
+        ]
       }
-    ],
-    "career_progression": {
-      "trajectory": "Rapidly advancing from basic web development to complex AI systems",
-      "specialization": "Convergence of full-stack development and applied machine learning",
-      "future_aspirations": "Technical leadership roles in AI-powered product development"
-    }
+    ]
   },
   "education_background": {
     "degree_programs": [
       {
-        "institution": {
-          "name": "Netaji Subhas University of Technology (NSUT)",
-          "type": "Premier Technical University",
-          "ranking": "Among top 20 engineering colleges in India"
-        },
         "degree": {
-          "title": "Bachelor of Technology in Electronics and Communication Engineering",
-          "specialization": "Internet of Things (IoT)",
-          "duration": "4 years (2020-2024)",
-          "grading": "8.4 CGPA"
+          "title": "Bachelor of Technology (B.Tech) in Electronics and Communication Engineering",
+          "duration": "2020 \u2013 2024"
         },
-        "curriculum": {
-          "core_courses": [
-            {
-              "name": "Data Structures and Algorithms",
-              "projects": [
-                "Implemented graph algorithms for IoT network optimization",
-                "Developed caching systems using advanced data structures"
-              ]
-            },
-            {
-              "name": "Computer Networks",
-              "projects": [
-                "Simulated network protocols for IoT device communication",
-                "Analyzed security vulnerabilities in wireless protocols"
-              ]
-            },
-            {
-              "name": "Database Management Systems",
-              "projects": [
-                "Designed relational schemas for sensor data storage",
-                "Implemented query optimization techniques"
-              ]
-            }
-          ],
-          "electives": [
-            {
-              "name": "Machine Learning Fundamentals",
-              "projects": [
-                "Developed predictive maintenance models for IoT devices",
-                "Implemented anomaly detection in time-series sensor data"
-              ]
-            },
-            {
-              "name": "Cloud Computing",
-              "projects": [
-                "Deployed scalable IoT data pipeline on AWS",
-                "Implemented serverless functions for data processing"
-              ]
-            }
-          ]
-        },
-        "academic_achievements": [
-          "Consistently ranked in top 20% of department",
-          "Received merit-based scholarship for academic performance",
-          "Published research paper on IoT security protocols"
-        ],
-        "extracurricular": [
-          "Member of Coding Club and Hackathon Society",
-          "Participated in 10+ technical competitions",
-          "Organized workshop on modern web development"
-        ]
+        "institution": {
+          "name": "XYZ Institute of Engineering and Technology"
+        }
       }
-    ],
-    "continuous_learning": {
-      "online_courses": [
-        "Deep Learning Specialization (Coursera)",
-        "AWS Certified Developer Associate Prep",
-        "Advanced JavaScript Concepts"
-      ],
-      "certifications": ["Google Cloud Fundamentals", "Python for Data Science"]
-    },
-    "academic_achievements": [],
-    "extracurricular": [],
-    "online_courses": [],
-    "certifications": []
+    ]
   },
   "technical_competencies": {
     "programming_languages": {
@@ -685,5 +428,76 @@
       "availability": "Upon request",
       "types": ["Academic", "Professional"]
     }
-  }
+  },
+  "technical_skills": {
+    "languages": [
+      "C++",
+      "C",
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "SQL",
+      "Node.js"
+    ],
+    "frameworks_and_libraries": [
+      "React",
+      "Next.js",
+      "Express.js",
+      "Tailwind CSS",
+      "OpenCV",
+      "scikit-learn",
+      "PyTorch",
+      "LangChain",
+      "FAISS",
+      "Streamlit",
+      "Flask",
+      "Mongoose"
+    ],
+    "ai_ml": {
+      "machine_learning": [
+        "XGBoost",
+        "SVM",
+        "Random Forest",
+        "KNN",
+        "Na\u00efve Bayes",
+        "Linear Regression"
+      ],
+      "deep_learning": [
+        "CNN",
+        "ResNet",
+        "VGG",
+        "Transformers",
+        "Fine-tuning (Gemma, Qwen2-VL-2B)"
+      ],
+      "domains": [
+        "Image Processing",
+        "OCR",
+        "NLP",
+        "Structured/Unstructured Data"
+      ]
+    },
+    "cloud_and_devops": {
+      "platforms": ["AWS (EC2, S3)", "Google Cloud"],
+      "tools": ["Docker", "Git", "GitHub Actions", "Vercel", "Render"]
+    },
+    "databases": ["MongoDB", "PostgreSQL", "MySQL"],
+    "developer_tools": ["Git", "Docker", "Colab", "VSCode"]
+  },
+  "personal_projects": {
+    "highlights": [
+      "Built a complete RAG system capable of chunking, embedding, and retrieving context from PDFs/URLs using LangChain and Ollama.",
+      "Deployed scalable e-commerce stack (Next.js 14, MongoDB, Clerk, Cloudinary, Inngest) with cart, checkout, and background job orchestration.",
+      "Created an OCR + NLP pipeline using Google Vision, OpenCV, Document AI, and HuggingFace Transformers."
+    ]
+  },
+  "coursework": [
+    "Data Structures and Algorithms",
+    "Operating Systems",
+    "Object-Oriented Programming",
+    "Database Management Systems",
+    "Computer Networks",
+    "Artificial Intelligence",
+    "Computer Vision",
+    "Natural Language Processing"
+  ]
 }
