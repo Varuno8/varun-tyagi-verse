@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
+const OPENWEATHER_KEY = import.meta.env.VITE_OPENWEATHER_KEY as string | undefined;
+
 const buildPrompt = (hour: number, weather: string) => {
   let timeDesc = 'mysterious night sky';
   if (hour >= 5 && hour < 12) timeDesc = 'a serene sunrise';
@@ -19,17 +21,14 @@ const LivingBackground: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Initialize Three.js scene
   useEffect(() => {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      100
-    );
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.z = 1;
+
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
@@ -59,14 +58,16 @@ const LivingBackground: React.FC = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
     };
+
     const handleMove = (e: MouseEvent) => {
       const offsetX = (e.clientX / window.innerWidth - 0.5) * 0.1;
       const offsetY = (e.clientY / window.innerHeight - 0.5) * 0.1;
       camera.position.x = offsetX;
       camera.position.y = -offsetY;
     };
+
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mousemove', handleMove, { passive: true });
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMove);
@@ -75,6 +76,7 @@ const LivingBackground: React.FC = () => {
     };
   }, []);
 
+  // Apply generated texture
   useEffect(() => {
     if (!imageUrl || !meshRef.current) return;
     const loader = new THREE.TextureLoader();
@@ -85,32 +87,40 @@ const LivingBackground: React.FC = () => {
     });
   }, [imageUrl]);
 
+  // Fetch weather, generate prompt, and get image
   useEffect(() => {
+    if (!OPENWEATHER_KEY) {
+      console.warn('VITE_OPENWEATHER_KEY is not set. Weather background disabled.');
+      setLoading(false);
+      return;
+    }
+
     const fetchData = async () => {
       setLoading(true);
       try {
         const hour = new Date().getHours();
         let weatherMain = 'Clear';
+
         try {
           if ('geolocation' in navigator) {
             const pos = await new Promise<GeolocationPosition>((res, rej) =>
               navigator.geolocation.getCurrentPosition(res, rej)
             );
             const resp = await fetch(
-              `https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${import.meta.env.VITE_OPENWEATHER_KEY}`
+              `https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${OPENWEATHER_KEY}`
             );
             const data = await resp.json();
-            weatherMain = data.weather[0].main;
+            weatherMain = data.weather?.[0]?.main || weatherMain;
           } else {
-            throw new Error('no geolocation');
+            throw new Error('Geolocation not available');
           }
         } catch {
           const city = 'London';
           const resp = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_OPENWEATHER_KEY}`
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${OPENWEATHER_KEY}`
           );
           const data = await resp.json();
-          weatherMain = data.weather[0].main;
+          weatherMain = data.weather?.[0]?.main || weatherMain;
         }
 
         const moodPrompt = buildPrompt(hour, weatherMain);
@@ -122,12 +132,13 @@ const LivingBackground: React.FC = () => {
         const { imageUrl: url } = await imgRes.json();
         if (url) setImageUrl(url);
       } catch (e) {
-        console.error('image generation error', e);
+        console.error('Image generation error', e);
       } finally {
         setLoading(false);
       }
     };
 
+    // Initial call + hourly refresh
     fetchData();
     const id = setInterval(fetchData, 60 * 60 * 1000);
     return () => clearInterval(id);
