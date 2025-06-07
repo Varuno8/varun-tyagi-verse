@@ -1,0 +1,5 @@
+[
+  { "year": "2021", "prompt": "mastered the basics of HTML, CSS, and JavaScript by building a personal blog" },
+  { "year": "2022", "prompt": "learned React and deployed a portfolio site with Vercel" },
+  { "year": "2023", "prompt": "dove into AI by building a Retrieval-Augmented Generation tool with Llama and FAISS" }
+]
