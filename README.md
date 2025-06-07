@@ -48,7 +48,7 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 
 ### Prerequisites
 
-- Node.js 16+ and npm installed
+- Node.js 18+ and npm installed (for built-in `fetch` support)
 
 ### Installation
 
@@ -182,7 +182,3 @@ Project Link: [https://github.com/yourusername/portfolio](https://github.com/you
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-```
-
-This markdown is now free of conflicts, well-structured, and clear for your project documentation.
-```

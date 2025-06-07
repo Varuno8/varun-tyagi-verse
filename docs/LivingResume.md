@@ -1,3 +1,4 @@
+
 ````markdown
 # Varun Tyagi - Portfolio Website
 
@@ -181,8 +182,3 @@ Project Link: [https://github.com/yourusername/portfolio](https://github.com/you
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-```
-
-This markdown version is conflict-free and ready for use. Let me know if you need further adjustments!
-```
