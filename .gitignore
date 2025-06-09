@@ -30,3 +30,8 @@ server/.venv/
 .env.*
 !*.example
 
+
+# Generated media
+project/static/audio.wav
+project/static/answer.mp4
+project/static/avatar.png

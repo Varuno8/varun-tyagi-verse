@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AI Avatar Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        #video { width: 320px; height: 240px; background: #000; }
+    </style>
+</head>
+<body>
+    <h1>Ask Me Anything</h1>
+    <input type="text" id="question" placeholder="Type your question" />
+    <button id="askBtn">Ask</button>
+    <div>
+        <video id="video" controls></video>
+    </div>
+<script>
+async function ask() {
+    const q = document.getElementById('question').value;
+    const formData = new FormData();
+    formData.append('question', q);
+    const res = await fetch('/ask', { method: 'POST', body: formData });
+    if (res.ok) {
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const video = document.getElementById('video');
+        video.src = url;
+        video.play();
+    } else {
+        alert('Error getting response');
+    }
+}
+
+document.getElementById('askBtn').addEventListener('click', ask);
+</script>
+</body>
+</html>
