@@ -1,5 +1,26 @@
 [
-  { "year": "2021", "prompt": "mastered the basics of HTML, CSS, and JavaScript by building a personal blog" },
-  { "year": "2022", "prompt": "learned React and deployed a portfolio site with Vercel" },
-  { "year": "2023", "prompt": "dove into AI by building a Retrieval-Augmented Generation tool with Llama and FAISS" }
+  {
+    "year": "2021",
+    "prompt": "started my programming journey by learning the fundamentals of C and C++, and focused on academic coursework in electronic communication and internet of things"
+  },
+  {
+    "year": "2022",
+    "prompt": "dove deep into Data Structures and Algorithms using C++ and JavaScript, participating in coding contests and building problem-solving skills"
+  },
+  {
+    "year": "2023",
+    "prompt": "expanded into frontend development by learning HTML, CSS, JavaScript, and React, and built my first job-seeking platform 'Jobify'"
+  },
+  {
+    "year": "2024",
+    "prompt": "learned full-stack development by mastering backend technologies like Node.js, Express, and MongoDB, and launched projects like 'QuickCart',Ecommerce and 'VitalCarePlatform'"
+  },
+  {
+    "year": "Late 2024",
+    "prompt": "began exploring AI and ML by building an OCR tool using OpenCV and Google Vision API, and later created a PDF-based RAG system using LangChain, FAISS, and Llama"
+  },
+  {
+    "year": "2025",
+    "prompt": "continued advancing in AI and cloud computing, working with Ollama, Transformers, ElevenLabs, and deploying AI pipelines to cloud environments"
+  }
 ]
