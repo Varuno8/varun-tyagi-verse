@@ -1,0 +1,13 @@
+flask
+TTS
+torch  # Required by TTS
+numpy  # Often used by TTS and SadTalker
+scipy  # Audio processing
+soundfile  # Audio file I/O
+gdown  # For model downloads in SadTalker
+ffmpeg-python  # To interface with ffmpeg if needed
+
+# Optional but recommended for SadTalker
+opencv-python
+imageio
+imageio-ffmpeg

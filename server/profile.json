@@ -1,0 +1,503 @@
+{
+  "profile_metadata": {
+    "version": "2.3.1",
+    "last_updated": "2024-06-08",
+    "profile_type": "technical_developer",
+    "status": "actively_seeking_opportunities"
+  },
+  "biographical_information": {
+    "full_name": "Varun Tyagi",
+    "title": "Full-Stack Developer & Machine Learning Engineer",
+    "location": "India",
+    "professional_summary": {
+      "headline": "Engineering AI-Powered Solutions for the Real World",
+      "detailed_description": [
+        "Varun Tyagi is a versatile full-stack developer and machine learning engineer with strong experience building end-to-end digital products and AI-driven platforms. He thrives in fast-paced environments where creative problem-solving and technical depth are both essential.",
+        "His background spans AI/ML, modern web development (MERN stack, Next.js, Tailwind), cloud deployment (AWS, GCP), and developer tooling (Docker, GitHub Actions, Inngest).",
+        "Varun is especially passionate about integrating AI seamlessly into consumer applications\u2014delivering real-world value via robust, intelligent systems."
+      ]
+    },
+    "contact": {
+      "email": "varuntyagi@example.com",
+      "linkedin": "https://linkedin.com/in/varun-tyagi-dev",
+      "github": "https://github.com/Varuno8",
+      "portfolio": "https://varuntyagi.dev"
+    }
+  },
+  "professional_experience": {
+    "timeline": [
+      {
+        "position": {
+          "title": "Software Engineer Intern",
+          "period": {
+            "start": "Nov 2024",
+            "end": "Apr 2025"
+          }
+        },
+        "company": {
+          "name": "Eigengram"
+        },
+        "summary": [
+          "Developed advanced AI workflows including text-to-image pipelines using latent diffusion models and EfficientNet classifiers for image-based labeling.",
+          "Built scalable data scraping pipelines, automated annotation tools, and deployed models using EC2 and S3 for storage and inference.",
+          "Worked on LLM infrastructure and generative applications."
+        ]
+      },
+      {
+        "position": {
+          "title": "Web Development Intern",
+          "period": {
+            "start": "May 2024",
+            "end": "Jun 2024"
+          }
+        },
+        "company": {
+          "name": "Business Web Solutions"
+        },
+        "summary": [
+          "Contributed to multiple client websites using React and Express.",
+          "Developed dynamic web forms, interactive dashboards, and RESTful APIs.",
+          "Improved load times and SEO scores using performance best practices."
+        ]
+      }
+    ]
+  },
+  "education_background": {
+    "degree_programs": [
+      {
+        "degree": {
+          "title": "Bachelor of Technology (B.Tech) in Electronics and Communication Engineering",
+          "duration": "2020 \u2013 2024"
+        },
+        "institution": {
+          "name": "XYZ Institute of Engineering and Technology"
+        }
+      }
+    ]
+  },
+  "technical_competencies": {
+    "programming_languages": {
+      "expert": [
+        {
+          "name": "Python",
+          "applications": [
+            "Machine Learning Development",
+            "Backend API Development",
+            "Data Processing Pipelines"
+          ],
+          "frameworks": ["PyTorch", "FastAPI", "Pandas"]
+        },
+        {
+          "name": "JavaScript/TypeScript",
+          "applications": [
+            "Frontend Web Development",
+            "Server-side Development",
+            "Build Tools Configuration"
+          ],
+          "frameworks": ["React", "Next.js", "Express.js"]
+        }
+      ],
+      "proficient": [
+        {
+          "name": "C++",
+          "applications": ["Algorithm Implementation", "System Programming"]
+        },
+        {
+          "name": "SQL",
+          "applications": ["Database Design", "Query Optimization"]
+        }
+      ]
+    },
+    "frontend_development": {
+      "frameworks": [
+        {
+          "name": "React",
+          "experience": "2+ years",
+          "projects": [
+            "Single Page Applications",
+            "Progressive Web Apps",
+            "Component Libraries"
+          ]
+        },
+        {
+          "name": "Next.js",
+          "experience": "1.5 years",
+          "specializations": [
+            "Server-side Rendering",
+            "Static Site Generation",
+            "API Routes"
+          ]
+        }
+      ],
+      "styling": [
+        {
+          "name": "Tailwind CSS",
+          "usage": "Utility-first styling",
+          "advantages": ["Rapid prototyping", "Design system consistency"]
+        },
+        {
+          "name": "CSS Modules",
+          "usage": "Scoped styling",
+          "advantages": ["Component isolation", "No naming collisions"]
+        }
+      ],
+      "state_management": [
+        {
+          "name": "Context API",
+          "use_cases": ["Theme management", "Global application state"]
+        },
+        {
+          "name": "Redux Toolkit",
+          "use_cases": ["Complex state logic", "Predictable state container"]
+        }
+      ]
+    },
+    "backend_development": {
+      "frameworks": [
+        {
+          "name": "Express.js",
+          "experience": "Production API development",
+          "features": [
+            "Middleware pipelines",
+            "Routing systems",
+            "Error handling"
+          ]
+        },
+        {
+          "name": "FastAPI",
+          "experience": "Machine Learning APIs",
+          "advantages": ["Automatic docs", "Async support", "Data validation"]
+        }
+      ],
+      "authentication": [
+        {
+          "name": "JWT",
+          "implementation": [
+            "Stateless authentication",
+            "Refresh token rotation"
+          ]
+        },
+        {
+          "name": "OAuth 2.0",
+          "implementation": [
+            "Social login integrations",
+            "Third-party API access"
+          ]
+        }
+      ],
+      "database": [
+        {
+          "name": "MongoDB",
+          "use_cases": ["Document storage", "Flexible schemas"]
+        },
+        {
+          "name": "PostgreSQL",
+          "use_cases": ["Relational data", "Complex queries"]
+        }
+      ]
+    },
+    "machine_learning": {
+      "nlp": [
+        {
+          "name": "LangChain",
+          "applications": [
+            "Retrieval-Augmented Generation",
+            "Document Question Answering"
+          ]
+        },
+        {
+          "name": "Transformers",
+          "applications": ["Text Classification", "Named Entity Recognition"]
+        }
+      ],
+      "computer_vision": [
+        {
+          "name": "OpenCV",
+          "applications": ["Image Processing", "Feature Detection"]
+        },
+        {
+          "name": "PyTorch",
+          "applications": ["Custom Model Training", "Transfer Learning"]
+        }
+      ],
+      "deployment": [
+        {
+          "name": "ONNX Runtime",
+          "benefits": [
+            "Cross-platform compatibility",
+            "Performance optimization"
+          ]
+        },
+        {
+          "name": "TensorRT",
+          "benefits": ["GPU acceleration", "Quantization support"]
+        }
+      ]
+    },
+    "devops_cloud": {
+      "aws": [
+        {
+          "service": "EC2",
+          "use_cases": ["Model Serving", "Web Application Hosting"]
+        },
+        {
+          "service": "S3",
+          "use_cases": ["Data Storage", "Static Website Hosting"]
+        }
+      ],
+      "ci_cd": [
+        {
+          "name": "GitHub Actions",
+          "implementations": ["Automated testing", "Deployment pipelines"]
+        },
+        {
+          "name": "Docker",
+          "usage": ["Containerization", "Development environments"]
+        }
+      ]
+    }
+  },
+  "professional_achievements": {
+    "coding_competitions": [
+      {
+        "platform": "LeetCode",
+        "statistics": {
+          "problems_solved": "250+",
+          "contest_rating": "Top 15%",
+          "specializations": [
+            "Dynamic Programming",
+            "Graph Algorithms",
+            "System Design"
+          ]
+        }
+      },
+      {
+        "platform": "CodeChef",
+        "statistics": {
+          "rating": "1500 (3-star)",
+          "contests_participated": "30+",
+          "achievements": [
+            "Consistent performer in monthly challenges",
+            "Specialist in data structure problems"
+          ]
+        }
+      },
+      {
+        "platform": "GeeksforGeeks",
+        "statistics": {
+          "problems_solved": "320+",
+          "article_contributions": "5 technical articles",
+          "campus_ambassador": "2023-2024"
+        }
+      }
+    ],
+    "academic_excellence": [
+      {
+        "exam": "JEE Mains",
+        "percentile": "98.2",
+        "implications": [
+          "Placed among top 1.8% of 1 million+ candidates",
+          "Qualified for advanced engineering programs"
+        ]
+      },
+      {
+        "achievement": "University Scholar",
+        "description": "Consistently ranked in top quartile of department",
+        "duration": "3 consecutive years"
+      }
+    ],
+    "project_milestones": [
+      {
+        "category": "Production Deployments",
+        "count": "5+ live applications",
+        "domains": ["Healthcare", "E-commerce", "Document Processing"]
+      },
+      {
+        "category": "Open Source",
+        "contributions": [
+          "Bug fixes to popular repositories",
+          "Documentation improvements",
+          "Feature suggestions"
+        ]
+      }
+    ]
+  },
+  "professional_network": {
+    "online_presence": [
+      {
+        "platform": "GitHub",
+        "username": "Varuno8",
+        "activity": [
+          "15+ repositories",
+          "Regular contribution streak",
+          "Diverse project portfolio"
+        ],
+        "url": "https://github.com/Varuno8"
+      },
+      {
+        "platform": "LinkedIn",
+        "username": "varun-tyagi-32bb281b9",
+        "highlights": [
+          "500+ professional connections",
+          "Active in technical groups",
+          "Regular content sharing"
+        ],
+        "url": "https://www.linkedin.com/in/varun-tyagi-32bb281b9/"
+      },
+      {
+        "platform": "Portfolio",
+        "features": [
+          "Project showcases",
+          "Technical blog",
+          "Contact information"
+        ],
+        "url": "https://portfolios-lovat.vercel.app/"
+      }
+    ],
+    "community_engagement": [
+      {
+        "type": "Hackathons",
+        "participation": [
+          "IEEE Hackathon 2023 Finalist",
+          "Smart India Hackathon Participant"
+        ]
+      },
+      {
+        "type": "Tech Communities",
+        "involvement": [
+          "NSUT Coding Club Member",
+          "Local Developer Meetups Attendee"
+        ]
+      }
+    ]
+  },
+  "career_objectives": {
+    "short_term": [
+      {
+        "goal": "Master advanced LLM deployment techniques",
+        "action_plan": [
+          "Complete specialized courses on transformer architectures",
+          "Implement production-grade RAG system"
+        ]
+      },
+      {
+        "goal": "Obtain AWS Solutions Architect certification",
+        "timeline": "Q3 2024",
+        "preparation": ["Official AWS training materials", "Hands-on labs"]
+      }
+    ],
+    "long_term": [
+      {
+        "goal": "Technical leadership in AI product development",
+        "path": [
+          "Develop expertise in AI system architecture",
+          "Gain experience in cross-functional team coordination"
+        ]
+      },
+      {
+        "goal": "Build impactful developer tools",
+        "vision": "Create solutions that simplify complex ML workflows for other developers"
+      }
+    ]
+  },
+  "contact_information": {
+    "primary": {
+      "email": "varun28082001@gmail.com",
+      "phone": "+91 7011793823",
+      "preferred_contact_method": "Email first, then scheduled call"
+    },
+    "secondary": {
+      "linkedin": "https://www.linkedin.com/in/varun-tyagi-32bb281b9/",
+      "github": "https://github.com/Varuno8"
+    },
+    "availability": {
+      "timezone": "IST (UTC+5:30)",
+      "response_time": "Within 24 hours for emails",
+      "meeting_preferences": [
+        "Virtual meetings via Google Meet/Zoom",
+        "In-person meetings in Delhi NCR area"
+      ]
+    }
+  },
+  "documentation": {
+    "resume": {
+      "url": "https://drive.google.com/file/d/1zVTN-6JsKmaaIU5qM1okq3pL0qSDCi4N/view",
+      "formats": ["PDF (print-optimized)", "Web version"]
+    },
+    "references": {
+      "availability": "Upon request",
+      "types": ["Academic", "Professional"]
+    }
+  },
+  "technical_skills": {
+    "languages": [
+      "C++",
+      "C",
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "SQL",
+      "Node.js"
+    ],
+    "frameworks_and_libraries": [
+      "React",
+      "Next.js",
+      "Express.js",
+      "Tailwind CSS",
+      "OpenCV",
+      "scikit-learn",
+      "PyTorch",
+      "LangChain",
+      "FAISS",
+      "Streamlit",
+      "Flask",
+      "Mongoose"
+    ],
+    "ai_ml": {
+      "machine_learning": [
+        "XGBoost",
+        "SVM",
+        "Random Forest",
+        "KNN",
+        "Na\u00efve Bayes",
+        "Linear Regression"
+      ],
+      "deep_learning": [
+        "CNN",
+        "ResNet",
+        "VGG",
+        "Transformers",
+        "Fine-tuning (Gemma, Qwen2-VL-2B)"
+      ],
+      "domains": [
+        "Image Processing",
+        "OCR",
+        "NLP",
+        "Structured/Unstructured Data"
+      ]
+    },
+    "cloud_and_devops": {
+      "platforms": ["AWS (EC2, S3)", "Google Cloud"],
+      "tools": ["Docker", "Git", "GitHub Actions", "Vercel", "Render"]
+    },
+    "databases": ["MongoDB", "PostgreSQL", "MySQL"],
+    "developer_tools": ["Git", "Docker", "Colab", "VSCode"]
+  },
+  "personal_projects": {
+    "highlights": [
+      "Built a complete RAG system capable of chunking, embedding, and retrieving context from PDFs/URLs using LangChain and Ollama.",
+      "Deployed scalable e-commerce stack (Next.js 14, MongoDB, Clerk, Cloudinary, Inngest) with cart, checkout, and background job orchestration.",
+      "Created an OCR + NLP pipeline using Google Vision, OpenCV, Document AI, and HuggingFace Transformers."
+    ]
+  },
+  "coursework": [
+    "Data Structures and Algorithms",
+    "Operating Systems",
+    "Object-Oriented Programming",
+    "Database Management Systems",
+    "Computer Networks",
+    "Artificial Intelligence",
+    "Computer Vision",
+    "Natural Language Processing"
+  ]
+}

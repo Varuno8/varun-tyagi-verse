@@ -1,0 +1,165 @@
+{
+  "projects": [
+    {
+      "id": "vitalcare-001",
+      "title": "VitalCarePlatform",
+      "type": "Healthcare SaaS",
+      "description": "VitalCarePlatform is a robust healthcare SaaS platform that connects patients to AI-driven medical services via a subscription-based model. The system enables role-based access for patients, doctors, and administrators, allowing streamlined appointment scheduling, health record management, and AI-powered symptom checking\u2014all through a secure, scalable full-stack infrastructure. The platform offers a personalized healthcare journey by integrating real-time patient monitoring, smart symptom triage, and predictive analytics using machine learning models. Through intuitive dashboards and responsive UI components, patients can manage appointments, view prescriptions, and receive actionable health insights. It adheres to HIPAA compliance standards, employs end-to-end encryption for sensitive medical data, and deploys to AWS using Docker containers orchestrated through ECS. A fine-tuned BERT-based symptom checker helps triage incoming patient queries with high confidence.",
+      "technologies": [
+        "React",
+        "Next.js",
+        "PostgreSQL",
+        "JWT",
+        "REST API",
+        "Tailwind CSS"
+      ],
+      "key_features": [
+        "Role-based access control (RBAC)",
+        "Real-time appointment booking",
+        "Subscription management",
+        "AI symptom checker integration"
+      ],
+      "technical_challenges": [
+        {
+          "problem": "Ensuring HIPAA compliance across microservices",
+          "solution": "Introduced policy-as-code with automated compliance checks in CI/CD pipeline.",
+          "outcome": "Reduced manual security audit time by 70%."
+        },
+        {
+          "problem": "Managing scalability during peak telemedicine hours",
+          "solution": "Used auto-scaling ECS containers and load-balanced PostgreSQL read replicas.",
+          "outcome": "Maintained sub-200ms latency even during 4x user spikes."
+        }
+      ]
+    },
+    {
+      "id": "quickcart-002",
+      "title": "QuickCart E-commerce App",
+      "type": "Retail E-commerce",
+      "description": "QuickCart is a full-stack e-commerce platform enabling seamless product browsing, cart management, secure checkout, and order tracking. Built with a modern tech stack, it integrates Clerk authentication with JWT-based session handling, supports Cloudinary for image optimization, and leverages Inngest for background order events. It supports real-time cart synchronization across devices using localStorage fallback and uses state-of-the-art image processing via Sharp. With advanced error boundary logging using Sentry and redundant server nodes for fault tolerance, it ensures both performance and availability. The platform integrates with Stripe and Razorpay for secure and localized payments, and background tasks (like stock updates and email notifications) are handled via Inngest.",
+      "technologies": [
+        "Next.js",
+        "React",
+        "MongoDB",
+        "Clerk",
+        "Inngest",
+        "Cloudinary",
+        "Tailwind CSS",
+        "JWT"
+      ],
+      "key_features": [
+        "Product CRUD with MongoDB via Mongoose",
+        "Clerk + JWT hybrid authentication",
+        "Image optimization using Sharp + Cloudinary",
+        "Order management with Inngest",
+        "Responsive UI using Tailwind CSS"
+      ],
+      "technical_challenges": [
+        {
+          "problem": "High cart abandonment rate",
+          "solution": "Added recovery emails and persistent carts across sessions.",
+          "outcome": "Improved checkout conversion by 18%."
+        },
+        {
+          "problem": "Inconsistent image delivery across devices",
+          "solution": "Implemented responsive images using Cloudinary transformations.",
+          "outcome": "Reduced average image load size by 35%."
+        }
+      ]
+    },
+    {
+      "id": "docqa-003",
+      "title": "PDF-based RAG Application",
+      "type": "Document Intelligence",
+      "description": "A Retrieval-Augmented Generation (RAG) system that allows users to upload PDF, DOCX, TXT files, or provide URLs and query the content using natural language. The app uses FAISS for vector search and LangChain for orchestration, powered by the Ollama LLM to deliver highly contextual responses with citations. The app features a responsive and clean Streamlit interface allowing users to query hundreds of pages of legal, academic, or business documents. Context-aware citations are appended to every response for traceability. Embeddings are pre-cached using HuggingFace MiniLM models to allow sub-second response retrieval. It also features a document upload progress bar and adaptive chunking to handle mixed content documents.",
+      "technologies": ["Python", "Streamlit", "LangChain", "FAISS", "Ollama"],
+      "key_features": [
+        "Semantic chunking",
+        "Vector indexing with FAISS",
+        "Natural language query interface",
+        "Citation-supported generation"
+      ],
+      "technical_challenges": [
+        {
+          "problem": "Latency in document vectorization",
+          "solution": "Used caching and batch inference with FAISS warm indexing.",
+          "outcome": "Reduced query response latency from 3.2s to 1.1s."
+        },
+        {
+          "problem": "Difficulty in parsing multi-column academic papers",
+          "solution": "Switched to Unstructured.io preprocessing to maintain layout context.",
+          "outcome": "Improved semantic match precision by 28%."
+        }
+      ]
+    },
+    {
+      "id": "ocr-004",
+      "title": "Text Extraction and Analysis (OCR)",
+      "type": "Computer Vision & NLP",
+      "description": "An advanced OCR-based document analysis tool leveraging Google Cloud Vision and Document AI for structured text extraction from scanned files. Preprocessing using OpenCV boosts recognition accuracy. Post-processing is done with HuggingFace LLaMA for text cleanup and classification, making it suitable for archival, automation, and analytics. The tool seamlessly processes scanned receipts, handwritten forms, or typed documents into clean structured output. OCR results undergo sentence segmentation and noise reduction using spaCy and OpenCV pipelines. Outputs are exported in multiple formats like CSV, JSON, and structured HTML.",
+      "technologies": [
+        "Python",
+        "Google Vision API",
+        "Document AI",
+        "HuggingFace",
+        "OpenCV"
+      ],
+      "key_features": [
+        "Multilingual OCR",
+        "Noise reduction using OpenCV",
+        "LLaMA-powered text enhancement",
+        "Structured output formatting"
+      ],
+      "technical_challenges": [
+        {
+          "problem": "OCR misreads due to document noise",
+          "solution": "Applied bilateral filtering and contour detection with OpenCV preprocessing.",
+          "outcome": "OCR precision improved by 37% on noisy scans."
+        },
+        {
+          "problem": "Structuring free-form text from receipts",
+          "solution": "Used rule-based segmentation and LLM-based entity classification.",
+          "outcome": "90% field accuracy across 1k+ invoice formats."
+        }
+      ]
+    },
+    {
+      "id": "jobify-005",
+      "title": "Jobify \u2013 Job Seeking App",
+      "type": "Career Platform",
+      "description": "Jobify is a React-based job seeking platform that simplifies the process of searching and applying for jobs. It includes features like job filtering, resume upload, application tracking, and backend authentication using JWT. Performance optimizations on both client and server-side result in a smooth user experience. Users can build profiles, upload resumes, and track applications in real-time through intuitive dashboards. A backend job-scraping module keeps the listings fresh by pulling from APIs like GitHub Jobs and LinkedIn periodically. Resume files are parsed using python-docx and pdfminer, and skill extraction is done via a mini BERT NER model.",
+      "technologies": ["React", "Node.js", "Express.js", "MongoDB", "JWT"],
+      "key_features": [
+        "Job filtering with advanced search",
+        "JWT-authenticated Express backend",
+        "Resume parsing and upload",
+        "Real-time application tracking"
+      ],
+      "technical_challenges": [
+        {
+          "problem": "Difficulty parsing diverse resume formats",
+          "solution": "Created hybrid rules + NLP-based parser using spaCy and pdfminer.",
+          "outcome": "Achieved 92% field extraction accuracy."
+        },
+        {
+          "problem": "Unresponsive frontend during API calls",
+          "solution": "Optimized async data fetching and introduced skeleton loaders.",
+          "outcome": "Improved time-to-interactive by 40%."
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "3.0.0",
+    "last_updated": "2025-06-08",
+    "project_count": 5,
+    "tech_breakdown": {
+      "frontend": ["React", "Next.js", "Tailwind CSS", "Streamlit"],
+      "backend": ["Node.js", "Express.js", "Python"],
+      "databases": ["PostgreSQL", "MongoDB"],
+      "authentication": ["JWT", "Clerk"],
+      "cloud_services": ["Cloudinary", "Google Cloud", "Ollama"],
+      "machine_learning": ["LangChain", "FAISS", "HuggingFace", "Ollama"]
+    }
+  }
+}

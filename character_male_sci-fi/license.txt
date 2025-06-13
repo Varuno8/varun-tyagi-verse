@@ -1,0 +1,11 @@
+Model Information:
+* title:	Character Male (Sci-fi)
+* source:	https://sketchfab.com/3d-models/character-male-sci-fi-0010a35d806a470b8b01b3496b7dc631
+* author:	LokitoBlu (https://sketchfab.com/martinezequielgorno)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Character Male (Sci-fi)" (https://sketchfab.com/3d-models/character-male-sci-fi-0010a35d806a470b8b01b3496b7dc631) by LokitoBlu (https://sketchfab.com/martinezequielgorno) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
