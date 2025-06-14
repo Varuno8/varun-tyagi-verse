@@ -1,8 +1,8 @@
 ````markdown
 # Varun Tyagi - Portfolio Website
 
-A modern, interactive portfolio website built with React, TypeScript, and Three.js.  
-It now includes an experimental [Living Resume](docs/LivingResume.md) page powered by a conversational AI avatar.
+A modern, interactive portfolio website built with React, TypeScript, and Three.js.
+It now includes an experimental [Living Resume](docs/LivingResume.md) page powered by a conversational voice assistant.
 
 ---
 
@@ -23,12 +23,12 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Experience Timeline**: Visual representation of professional experience  
 - **Skills Section**: Overview of technical skills and expertise  
 - **Achievements Display**: Showcase of certifications and notable accomplishments  
-- **Living Resume**: Conversational AI avatar that answers questions about my experience  
-- **Project List via Chat**: Ask the avatar for my portfolio projects and it will list them  
-- **Experience & Education via Chat**: Ask about my background and the avatar shares a quick summary  
-- **Personal Bio via Chat**: Ask “Who is Varun?” and the avatar responds with a short introduction  
-- **Voice Controls**: Pause, resume, or stop the avatar’s speech while chatting  
-- **Conversational Memory**: The chat server includes recent messages when querying the model so the avatar remembers context  
+- **Living Resume**: Conversational voice assistant that answers questions about my experience
+- **Project List via Chat**: Ask the assistant for my portfolio projects and it will list them
+- **Experience & Education via Chat**: Ask about my background and the assistant shares a quick summary
+- **Personal Bio via Chat**: Ask “Who is Varun?” and the assistant responds with a short introduction
+- **Voice Controls**: Pause, resume, or stop the assistant’s speech while chatting
+- **Conversational Memory**: The chat server includes recent messages when querying the model so the assistant remembers context
 
 ---
 
@@ -108,6 +108,10 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 7. **Open in your browser**
    Navigate to [http://localhost:8080](http://localhost:8080) to view the portfolio locally.
 
+### Run the Voice Chat Bot
+
+After the dev server starts, open [http://localhost:8080/living-resume](http://localhost:8080/living-resume) in your browser. Type a question and the assistant will reply out loud using your browser's speech synthesis. Use the **Pause Voice** or **Stop** buttons to control the audio playback.
+
 ---
 
 ### Building for Production
@@ -149,7 +153,7 @@ This site is configured for deployment on Vercel.
 
 ## Troubleshooting
 
-If you encounter an `ECONNREFUSED` error when chatting with the avatar, check:
+If you encounter an `ECONNREFUSED` error when chatting with the assistant, check:
 
 1. **Ollama server**:
 

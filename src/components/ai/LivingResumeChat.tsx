@@ -10,7 +10,7 @@ interface Message {
 
 const LivingResumeChat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
-    { sender: 'bot', text: "Hi! I'm Varun's AI avatar. Ask me anything about his work." }
+    { sender: 'bot', text: "Hi! Ask me anything about Varun's work." }
   ]);
   const [input, setInput] = useState('');
   const [isSending, setIsSending] = useState(false);
