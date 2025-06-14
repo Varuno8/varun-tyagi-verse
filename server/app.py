@@ -4,6 +4,8 @@ import re
 import json
 import requests
 import numpy as np
+import tempfile
+import whisper
 from flask import Flask, request, jsonify
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -66,6 +68,10 @@ for e in EDU_LIST:
 embedder       = SentenceTransformer("all-MiniLM-L6-v2")
 rag_embeddings = embedder.encode(rag_texts, convert_to_numpy=True)
 
+# whisper model for speech-to-text
+WHISPER_MODEL_NAME = os.getenv("WHISPER_MODEL", "base")
+stt_model = whisper.load_model(WHISPER_MODEL_NAME)
+
 # ─── 3. SESSION & LLM CONFIG ───────────────────────────────────────────────────
 
 sessions   = {}
@@ -98,7 +104,27 @@ def retrieve_context(query: str, top_k: int = 3) -> str:
     idxs  = sims.argsort()[-top_k:][::-1]
     return "\n".join(f"[{rag_meta[i]}] {rag_texts[i]}" for i in idxs)
 
-# ─── 5. /api/chat ───────────────────────────────────────────────────────────────
+# ─── 5. /api/speech ────────────────────────────────────────────────────────────
+
+@app.post("/api/speech")
+def speech_to_text():
+    if "audio" not in request.files:
+        return jsonify({"error": "No audio file"}), 400
+    file = request.files["audio"]
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
+        file.save(tmp.name)
+        tmp_path = tmp.name
+    try:
+        result = stt_model.transcribe(tmp_path)
+        text = result.get("text", "").strip()
+    except Exception as e:
+        print("Whisper error:", e)
+        text = ""
+    finally:
+        os.remove(tmp_path)
+    return jsonify({"text": text})
+
+# ─── 6. /api/chat ───────────────────────────────────────────────────────────────
 
 @app.post("/api/chat")
 def chat():

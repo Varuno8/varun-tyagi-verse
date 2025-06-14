@@ -18,7 +18,8 @@ const LivingResumeChat: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<Blob[]>([]);
   const [sessionId] = useState(() => {
     if (typeof window === 'undefined') return 'default';
     const saved = localStorage.getItem('lr-session');
@@ -30,21 +31,8 @@ const LivingResumeChat: React.FC = () => {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const SpeechRecognitionClass =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (SpeechRecognitionClass) {
+    if (navigator.mediaDevices && (window as any).MediaRecorder) {
       setSpeechSupported(true);
-      recognitionRef.current = new SpeechRecognitionClass();
-      recognitionRef.current.lang = 'en-US';
-      recognitionRef.current.interimResults = false;
-      recognitionRef.current.continuous = false;
-      recognitionRef.current.onresult = (e: SpeechRecognitionEvent) => {
-        const text = e.results[0][0].transcript;
-        setIsListening(false);
-        sendMessage(text);
-      };
-      recognitionRef.current.onend = () => setIsListening(false);
-      recognitionRef.current.onerror = () => setIsListening(false);
     }
   }, []);
 
@@ -68,22 +56,44 @@ const LivingResumeChat: React.FC = () => {
     }
   };
 
-  const startListening = () => {
-    if (!speechSupported || !recognitionRef.current) {
-      alert('Speech recognition not supported in this browser.');
+  const startListening = async () => {
+    if (!speechSupported) {
+      alert('Audio recording not supported in this browser.');
       return;
     }
     try {
-      recognitionRef.current.start();
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = recorder;
+      chunksRef.current = [];
+      recorder.ondataavailable = e => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+      recorder.onstop = async () => {
+        setIsListening(false);
+        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+        const form = new FormData();
+        form.append('audio', blob, 'speech.webm');
+        try {
+          const res = await fetch('/api/speech', { method: 'POST', body: form });
+          const data = await res.json();
+          if (data.text) {
+            sendMessage(data.text);
+          }
+        } catch (err) {
+          console.error('transcription error', err);
+        }
+      };
+      recorder.start();
       setIsListening(true);
     } catch (err) {
-      console.error('Speech recognition start error', err);
+      console.error('media recorder error', err);
     }
   };
 
   const stopListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+      mediaRecorderRef.current.stop();
     }
     setIsListening(false);
   };
