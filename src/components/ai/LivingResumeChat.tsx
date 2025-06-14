@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,9 @@ const LivingResumeChat: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
   const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [speechSupported, setSpeechSupported] = useState(false);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
   const [sessionId] = useState(() => {
     if (typeof window === 'undefined') return 'default';
     const saved = localStorage.getItem('lr-session');
@@ -24,6 +27,26 @@ const LivingResumeChat: React.FC = () => {
     localStorage.setItem('lr-session', id);
     return id;
   });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const SpeechRecognitionClass =
+      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognitionClass) {
+      setSpeechSupported(true);
+      recognitionRef.current = new SpeechRecognitionClass();
+      recognitionRef.current.lang = 'en-US';
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.onresult = (e: SpeechRecognitionEvent) => {
+        const text = e.results[0][0].transcript;
+        setIsListening(false);
+        sendMessage(text);
+      };
+      recognitionRef.current.onend = () => setIsListening(false);
+      recognitionRef.current.onerror = () => setIsListening(false);
+    }
+  }, []);
 
   const togglePause = () => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
@@ -45,8 +68,28 @@ const LivingResumeChat: React.FC = () => {
     }
   };
 
-  const sendMessage = async () => {
-    const trimmed = input.trim();
+  const startListening = () => {
+    if (!speechSupported || !recognitionRef.current) {
+      alert('Speech recognition not supported in this browser.');
+      return;
+    }
+    try {
+      recognitionRef.current.start();
+      setIsListening(true);
+    } catch (err) {
+      console.error('Speech recognition start error', err);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+    }
+    setIsListening(false);
+  };
+
+  const sendMessage = async (override?: string) => {
+    const trimmed = (override ?? input).trim();
     if (!trimmed) return;
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
@@ -116,6 +159,19 @@ const LivingResumeChat: React.FC = () => {
               }
             }}
           />
+          {speechSupported ? (
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={isListening ? stopListening : startListening}
+            >
+              {isListening ? 'Listening...' : '🎤'}
+            </Button>
+          ) : (
+            <Button type="button" variant="secondary" disabled>
+              🎤
+            </Button>
+          )}
           <Button onClick={sendMessage} disabled={isSending}>
             {isSending ? '...' : 'Send'}
           </Button>

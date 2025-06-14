@@ -29,6 +29,7 @@ This portfolio website showcases my skills, projects, experience, and achievemen
 - **Experience & Education via Chat**: Ask about my background and the avatar shares a quick summary  
 - **Personal Bio via Chat**: Ask “Who is Varun?” and the avatar responds with a short introduction  
 - **Voice Controls**: Pause, resume, or stop the avatar’s speech while chatting  
+- **Voice Input**: Click the mic button to ask questions by speaking
 - **Conversational Memory**: The chat server includes recent messages when querying the model so the avatar remembers context  
 
 ---
