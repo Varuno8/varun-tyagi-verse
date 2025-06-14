@@ -23,7 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 server/.venv/
-server/.venv/
+server/venv
 project/.venv/
 
 # Environment variables
